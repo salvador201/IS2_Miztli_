@@ -1,0 +1,16 @@
+MapeoBD\Grupo.class
+modelo\GrupoDAOint.class
+MapeoBD\Profesor.class
+modelo\SalonDAOint.class
+modelo\AlumnoDAO.class
+modelo\CarreraDAO.class
+MapeoBD\Alumno.class
+modelo\AlumnoDAOint.class
+MapeoBD\Inscripcion.class
+controlador\controlador.class
+modelo\CarreraDAOint.class
+MapeoBD\Salon.class
+modelo\ProfesorDAO.class
+modelo\ProfesorDAOint.class
+MapeoBD\Carrera.class
+modelo\SalonDAO.class
