@@ -7,12 +7,14 @@ package controlador;
 
 import modelo.AlumnoDAO;
 import MapeoBD.Alumno;
+import MapeoBD.Cliente;
 import MapeoBD.Grupo;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import modelo.CarreraDAO;
+import modelo.ClienteDAO;
 import modelo.ProfesorDAO;
 import modelo.SalonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +44,15 @@ public class controlador {
     @Autowired
     private ProfesorDAO profesor_bd;
     
+    @Autowired
+    private ClienteDAO cliente_bd;
+    
+    
+    
   @RequestMapping(value = "/")
   public ModelAndView index(ModelMap model){
-      List<Alumno> alumnos= alumno_bd.getAlumnos();
-      System.out.println("AQUI ESTA EL NOMBRE DEL ALUMNO = " + alumnos.get(1).getNombrealumno());
-       model.addAttribute("alumnos", alumnos);
+      List<Cliente> clientes= cliente_bd.getClientes();
+       model.addAttribute("clientes", clientes);
       return new ModelAndView("ogdi",model);
   }
   @RequestMapping(value = "/alumno", method=RequestMethod.POST)
@@ -115,6 +121,49 @@ public ModelAndView consulta5(ModelMap model, HttpServletRequest a){
     List b = profesor_bd.getAlumnos(profe);
     model.addAttribute("lista", b);
     return new ModelAndView("consulta5", model);
+}
+
+@RequestMapping(value = "/salir", method=RequestMethod.GET)
+public ModelAndView salir(ModelMap model, HttpServletRequest a){
+    
+    a.getSession().removeAttribute("admin");
+    model.addAttribute("mensaje", "Has salido con exito");
+    return new ModelAndView("ogdi", model);
+}
+
+@RequestMapping(value = "/prueba", method=RequestMethod.GET)
+public ModelAndView prueba(ModelMap model, HttpServletRequest a){
+    model.addAttribute("mensaje", "Has salido con exito");
+    return new ModelAndView("consulta3", model);
+}
+
+@RequestMapping(value = "/prueba/cliente", method=RequestMethod.GET)
+public ModelAndView cliente(ModelMap model, HttpServletRequest a){
+    List b = cliente_bd.getClientes();
+        model.addAttribute("admin", "Admin" );
+        model.addAttribute("clientes", b);
+    model.addAttribute("mensaje", "Has salido con exito");
+    return new ModelAndView("consulta2", model);
+}
+
+
+@RequestMapping(value = "/login", method=RequestMethod.POST)
+public ModelAndView login(ModelMap model, HttpServletRequest a){
+    String email = String.valueOf(a.getParameter("email"));
+    System.out.println(email);
+    String pass = String.valueOf(a.getParameter("passw"));
+    System.out.println(pass);
+    if(email.equals("hqr@hqr.com")){
+        if(pass.equals("hqr")){
+        a.getSession().setAttribute("admin", "admin");
+        List b = cliente_bd.getClientes();
+        model.addAttribute("admin", "Admin" );
+        model.addAttribute("clientes", b);
+        return new ModelAndView("consulta2", model);
+        }
+    }
+    model.addAttribute("no", "Usuario no valido!" );
+    return new ModelAndView("ogdi", model);
 }
 
 }

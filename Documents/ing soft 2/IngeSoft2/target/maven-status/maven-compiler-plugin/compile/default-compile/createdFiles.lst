@@ -4,6 +4,7 @@ MapeoBD\Profesor.class
 modelo\SalonDAOint.class
 modelo\AlumnoDAO.class
 modelo\CarreraDAO.class
+MapeoBD\Cliente.class
 MapeoBD\Alumno.class
 modelo\AlumnoDAOint.class
 MapeoBD\Inscripcion.class
@@ -13,4 +14,6 @@ MapeoBD\Salon.class
 modelo\ProfesorDAO.class
 modelo\ProfesorDAOint.class
 MapeoBD\Carrera.class
+modelo\ClienteDAO.class
 modelo\SalonDAO.class
+modelo\ClienteDAOint.class

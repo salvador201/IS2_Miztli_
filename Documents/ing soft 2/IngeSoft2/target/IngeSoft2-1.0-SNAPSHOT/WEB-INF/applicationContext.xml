@@ -28,7 +28,8 @@
                 <value>MapeoBD.Grupo</value>
                 <value>MapeoBD.Inscripcion</value>
                 <value>MapeoBD.Profesor</value>
-                <value>MapeoBD.Salon</value>        
+                <value>MapeoBD.Salon</value>
+                <value>MapeoBD.Cliente</value>        
             </list>
         </property>    
         <property name="hibernateProperties">
@@ -52,6 +53,9 @@
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
     <bean id="ProfesorDAO" class="modelo.ProfesorDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    <bean id="ClienteDAO" class="modelo.ClienteDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
     

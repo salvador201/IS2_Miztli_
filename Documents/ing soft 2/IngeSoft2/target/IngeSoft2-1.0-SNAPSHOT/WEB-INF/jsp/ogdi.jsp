@@ -7,68 +7,206 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Formulario 1</h1>
-        <form action="/IngeSoft2/alumno" method="POST" >
-        <input name="alumno" type="text" placeholder="alumno">
-        <br>
-        <input name="carrera" type="text" placeholder="carrera">
-        <br>
-        <input name="semestre" type="text" placeholder="semestre">
-        <br>
-        <input type="submit" value="Enviar">
-        </form>
-        <br>
-        <br>
-        <h1>Formulario 2</h1>
-        <form action="/IngeSoft2/profesor" method="GET">
-        <input name="profesor" type="text" placeholder="profesor">
-        <br>
-        <input name="carrera" type="text" placeholder="carrera">
-        <br>
-        <input name="materia" type="text" placeholder="materia">
-        <br>
-        <input type="submit" value="Enviar">
-        </form>
-        <h1>Consulta1</h1>
-        <form action="/IngeSoft2/consulta1" method="POST">
-            <input name ="carrera" type="text" placeholder="carrera">
-            <br>
-            <input type="submit" value="consultar">
-        </form>
+<html lang="es-MX">
+     <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="<c:url value="/imagenes/LogoHQRmediana.png" /> "/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <style>
+   .formlog2{
+    border: 5px solid #A0B5EC;
+    width: 30%;
+    padding: 10px;
+   position: relative;
+    left: 30px;
+
+    
+}
+
+    .formlog{
+    border: 5px solid #A0B5EC;
+    width: 30%;
+    position: absolute;
+    right: 30px;
+    padding: 10px;
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+button {
+    background-color: #2E9AFE;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 15px;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+div.doe{
+  opacity: 0.1;
+  position: absolute;
+  left: 10%;  
+  
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 50px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+</style>
+    <title>HQR</title>
+  	<nav class="navbar navbar-default w3-cyan" role="navigation">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar">f</span>
+                <span class="icon-bar">g</span>
+                <span class="icon-bar">h</span>
+            </button>
+        </div>
+
+        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+             otro elemento que se pueda ocultar al minimizar la barra -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Menu1</a></li>
+                <li><a href="#">Menu2</a></li>
+                <li><a href="#">Menu3</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-envelope"></i> contacto@hqr.com</a></li>
+                <li><a href="https://www.facebook.com/HumanQualityResearch" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a></li>
+                <li><a href="https://www.facebook.com/HumanQualityResearch" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/HumanQualityResearch" class="w3-hover-text-red"><i class="fa fa-google-plus-circle"></i></a></li>
+                <li><a href="https://www.facebook.com/HumanQualityResearch" class="w3-hover-text-red"><i class="fa fa-linkedin-square"></i></a></li>
+               
+            </ul>
+        </div>
+    </nav>
+  </head>
+  <body>
+    <div id="first" class="first">  
+   <center><img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " height="250" width="180"></center>
+    </div>
+    
+      <hr/>
+
+      <div class="container doe">
+      <img src="<c:url value="/imagenes/mexico.png" /> " style="width:100%; height:100%;">
+      </div>
+        <div class="col-xs-12">
+          <center><h3>Eslogan de la empresa.</h3>
+
+          </center>
+          </div>
+          <br>
+          <br>
+          <br>
+      
+      <div class="formlog">
+          <p style="color:red;">${no}</p>   
+      <h3>Ingreso</h3>
+    <form method="POST" action="/IngeSoft2/login">
+    <label>Correo electrónico</label>
+    <input type="text" placeholder="email@ejemplo.com" name="email">
+    <br>
+    <label><b>Contraseña</b></label>
+    <input type="password" placeholder="contraseña" name="passw">
+    <br>        
+    <button type="submit">Ingresar</button>
+    <br>
+    <p>Si olvidaste tu contraseña click <a href="#"><u>aquí</u></a></p>
+    </form>
+    </div>
+          
+      
+      
+
+    <div class="formlog2">
+    <h3>Contacto</h3>
+    <form>
+    <label>Nombre</label>
+    <input type="text" placeholder="Nombre completo" name="uname">
+    <br>
+    <label><b>Email</b></label>
+    <input type="password" placeholder="email@ejemplo.com" name="psw">
+    <br>        
+    <label>Empresa</label>
+    <input type="text" placeholder="Empresa a la que perteneces" name="uname">
+    <br>
+    <label>¿En que podemos ayudarte?</label>
+    <textarea rows="4" cols="35"></textarea>
+    <button type="submit">Enviar</button>
+   
+    </form>
+    </div>
+
+      
+<hr>
+      <footer class="text-muted">
+      <div class="col-sm-6">
+          <center><p>&copy; <img src="<c:url value="/imagenes/miztli.png" /> " width="70" ></p></center>
+        </div>      
+    </footer>
         
-        <h1>Consulta2</h1>
-        <form action="/IngeSoft2/consulta2" method="POST">
-            <input name ="salon" type="text" placeholder="id grupo">
-            <br>
-            <input type="submit" value="consultar">
-        </form>
-        <h1>Consulta3</h1>
-        <form action="/IngeSoft2/consulta3" method="POST">
-            <input name ="nombre_alumno" type="text" placeholder="nombre del alumno">
-            <br>
-            <input type="submit" value="consultar">
-        </form>
-        <h1>Consulta4</h1>
-        <form action="/IngeSoft2/consulta4" method="POST">
-            <input name ="id" type="text" placeholder="id del alumno">
-            <br>
-            <input type="submit" value="consultar">
-        </form>
         
-        <h1>Consulta5</h1>
-        <form action="/IngeSoft2/consulta5" method="POST">
-            <input name ="id" type="text" placeholder="id del profesor">
-            <br>
-            <input type="submit" value="consultar">
-        </form>
-        <c:forEach var="alumno" items="${alumnos}">
-            <h2>${alumno.nombrealumno}</h2>
-        </c:forEach>
-    </body>
+
+    
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 </html>
