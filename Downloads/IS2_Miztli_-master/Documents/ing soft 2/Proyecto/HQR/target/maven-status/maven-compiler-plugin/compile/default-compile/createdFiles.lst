@@ -1,0 +1,5 @@
+Modelo\ClienteDAO.class
+MapeoBD\Cliente.class
+Modelo\ClienteDAOImpl.class
+Controlador\ABCM_Clinete.class
+Controlador\C_PRUEBA_RESPUESTA_PREGUNTA.class
