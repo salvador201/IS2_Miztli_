@@ -141,13 +141,13 @@ span.psw {
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#">Clientes</a></li>
-                <li><a href="prueba/">Pruebas</a></li>
+                <li><a href="<c:url value="/prueba"/> ">Pruebas</a></li>
                 <li><a href="#">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Usuario: ${admin}</a></li>
+                <li><a href="#">Usuario: ${login}</a></li>
                 <li><a href="/IngeSoft2/salir">Salir</a></li>
                 
             </ul>
@@ -172,9 +172,8 @@ span.psw {
           <br>
           <br>
           <br>
-          <form action="/IngeSoft2/crear">
-          <button type="submtit">Agregar Cliente</button>
-          </form>
+          <a href="<c:url value="/crear"/> "><button>Agregar Cliente</button></a>
+         
   <center><h2>Clientes:</h2>
       <table>
           <tr>

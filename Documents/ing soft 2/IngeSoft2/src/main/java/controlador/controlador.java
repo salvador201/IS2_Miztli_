@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -34,57 +36,69 @@ public class controlador {
     
     
   @RequestMapping(value = "/")
-  public ModelAndView index(ModelMap model){
-      List<Cliente> clientes= cliente_bd.getClientes();
-       model.addAttribute("clientes", clientes);
-      return new ModelAndView("index",model);
+  public String index(ModelMap model){
+      return "index";
   }
  
 
 
 @RequestMapping(value = "/salir", method=RequestMethod.GET)
-public ModelAndView salir(ModelMap model, HttpServletRequest a){
-    
-    a.getSession().removeAttribute("admin");
-    model.addAttribute("mensaje", "Has salido con exito");
-    return new ModelAndView("index", model);
+public String salir(ModelMap model, HttpServletRequest a){
+    a.getSession().invalidate();
+    return "redirect:/";
 }
 
 @RequestMapping(value = "/prueba", method=RequestMethod.GET)
-public ModelAndView prueba(ModelMap model, HttpServletRequest a){
-    model.addAttribute("mensaje", "Has salido con exito");
-    return new ModelAndView("prueba", model);
+public String prueba(ModelMap model, HttpServletRequest a){
+    if(a.getSession().getAttribute("login") == null){
+         return "redirect:/";
+     }
+    return "prueba";
 }
 
 @RequestMapping(value = "/crear", method=RequestMethod.GET)
-public ModelAndView crear(ModelMap model, HttpServletRequest a){
-    model.addAttribute("mensaje", "Has salido con exito");
-    return new ModelAndView("crear", model);
+public String crear(HttpServletRequest a){
+     if(a.getSession().getAttribute("login") == null){
+         return "redirect:/";
+     }
+    return "crear";
 }
 
-@RequestMapping(value = "/prueba/cliente", method=RequestMethod.GET)
-public ModelAndView cliente(ModelMap model, HttpServletRequest a){
+
+
+
+@RequestMapping(value = "/home", method=RequestMethod.GET)
+public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     List b = cliente_bd.getClientes();
-        model.addAttribute("admin", "Admin" );
-        model.addAttribute("clientes", b);
-    model.addAttribute("mensaje", "Has salido con exito");
+    if(a.getSession().getAttribute("login") != null){
+        model.addAttribute("clientes",b);
+        model.addAttribute("login", a.getSession().getAttribute("login"));
     return new ModelAndView("home", model);
+    }else{
+        if((String) (redirect.getFlashAttributes().get("login")) !=null){
+        a.getSession(true).invalidate();
+        a.getSession(true).setAttribute("login", (String) (redirect.getFlashAttributes().get("login")));
+        model.addAttribute("clientes",b);
+        model.addAttribute("login", a.getSession().getAttribute("login"));
+        return new ModelAndView("home", model);
+        }
+    }
+    return new ModelAndView("redirect:/");
 }
-
 
 @RequestMapping(value = "/login", method=RequestMethod.POST)
-public ModelAndView login(ModelMap model, HttpServletRequest a){
+public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     String email = String.valueOf(a.getParameter("email"));
     System.out.println(email);
     String pass = String.valueOf(a.getParameter("passw"));
     System.out.println(pass);
     if(email.equals("hqr@hqr.com")){
         if(pass.equals("hqr")){
-        a.getSession().setAttribute("admin", "admin");
-        List b = cliente_bd.getClientes();
-        model.addAttribute("admin", "Admin" );
-        model.addAttribute("clientes", b);
-        return new ModelAndView("home", model);
+            redirect.addFlashAttribute("login", "Admin");
+        a.getSession(true).setAttribute("login", "Admin");
+        
+        return new ModelAndView("redirect:/home");
         }
     }
     model.addAttribute("no", "Usuario no valido!" );
@@ -137,9 +151,7 @@ public ModelAndView login(ModelMap model, HttpServletRequest a){
    }
     
      @RequestMapping(value = "/crearCliente", method = RequestMethod.POST)
-    public ModelAndView creaCliente(ModelMap model,HttpServletRequest request){
-
-       String id_cliente = request.getParameter("id_cliente"); 
+    public String creaCliente(ModelMap model,HttpServletRequest request){
        String correo = request.getParameter("correo"); 
        String password = request.getParameter("password"); 
        String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
@@ -153,31 +165,10 @@ public ModelAndView login(ModelMap model, HttpServletRequest a){
        Cliente c =new Cliente(correo,password,Nombre_Cliente,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa);
        cliente_bd.crearCliente(c);
      
-       model.addAttribute("id_cliente", id_cliente);
+   
        
    
-       return new ModelAndView("agregado",model);   
-   }
-    
-    
-    @RequestMapping(value = "/modificarCliente", method = RequestMethod.POST)
-    public ModelAndView modificarCliente(ModelMap model,HttpServletRequest request){
-
-       String id_cliente = request.getParameter("id_cliente"); 
-       String correo = request.getParameter("correo"); 
-       String password = request.getParameter("password"); 
-       String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
-       String Telefono_Local = request.getParameter("Telefono_Local"); 
-       String Telefono_Movil = request.getParameter("Telefono_Movil"); 
-       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
-       String Area = request.getParameter("Area"); 
-       String Puesto = request.getParameter("Puesto"); 
-       String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
-       
-       Cliente c =new Cliente(correo,password,Nombre_Cliente,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa);
-       cliente_bd.modificaCliente(c);
-       model.addAttribute("id_cliente", id_cliente);
-       return new ModelAndView("modificado",model);   
+       return "redirect:/home";   
    }
 
 }

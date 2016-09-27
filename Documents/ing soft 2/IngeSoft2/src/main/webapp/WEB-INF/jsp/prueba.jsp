@@ -144,14 +144,14 @@ span.psw {
              otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="cliente/">Clientes</a></li>
-                <li><a href="prueba/">Pruebas</a></li>
+                <li><a href="<c:url value="/home"/> ">Clientes</a></li>
+                <li><a href="<c:url value="/prueba"/>">Pruebas</a></li>
                 <li><a href="#">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Usuario: ${admin}</a></li>
+                <li><a href="#">Usuario: ${login}</a></li>
                 <li><a href="/IngeSoft2/salir">Salir</a></li>
                 
             </ul>
