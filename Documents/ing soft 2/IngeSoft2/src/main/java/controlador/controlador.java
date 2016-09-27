@@ -158,5 +158,26 @@ public ModelAndView login(ModelMap model, HttpServletRequest a){
    
        return new ModelAndView("agregado",model);   
    }
+    
+    
+    @RequestMapping(value = "/modificarCliente", method = RequestMethod.POST)
+    public ModelAndView modificarCliente(ModelMap model,HttpServletRequest request){
+
+       String id_cliente = request.getParameter("id_cliente"); 
+       String correo = request.getParameter("correo"); 
+       String password = request.getParameter("password"); 
+       String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
+       String Telefono_Local = request.getParameter("Telefono_Local"); 
+       String Telefono_Movil = request.getParameter("Telefono_Movil"); 
+       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
+       String Area = request.getParameter("Area"); 
+       String Puesto = request.getParameter("Puesto"); 
+       String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
+       
+       Cliente c =new Cliente(correo,password,Nombre_Cliente,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa);
+       cliente_bd.modificaCliente(c);
+       model.addAttribute("id_cliente", id_cliente);
+       return new ModelAndView("modificado",model);   
+   }
 
 }
