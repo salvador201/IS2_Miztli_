@@ -14,51 +14,78 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Marco
+ * @author Salvador
  */
 @Entity
-@Table(name="cliente")
+@Table(name="Cliente")
 public class Cliente {
-
-   
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    
     @Column(name = "id_cliente")
-    private long id;
+    private long id_cliente;
     
-    @Column(name="correo")
+    @Column(name = "correo")
     private String correo;
     
-    @Column(name="password")
-    private String pass;
+    @Column(name = "password")
+    private String password;
     
-    @Column(name="nombre_cliente")
-    private String nombre;
+    @Column(name = "nombre_cliente")
+    private String nombre_cliente;
     
-    @Column(name="telefono_local")
-    private String telefono;
+    @Column(name = "telefono_local")
+    private String telefono_local;
     
-    @Column(name="telefono_movil")
-    private String telefonom;
+    @Column(name = "telefono_movil")
+    private String telefono_movil;
     
-    @Column(name="nombre_usuario")
-    private String nombreu;
+    @Column(name = "nombre_usuario")
+    private String nombre_usuario;
     
-    @Column(name="area")
+      @Column(name = "area")
     private String area;
     
-    @Column(name="puesto")
+    @Column(name = "puesto")
     private String puesto;
     
-    @Column(name="nombre_empresa")
-    private String n_empresa;
+    @Column(name = "nombre_empresa")
+    private String nombre_empresa;
+
+    public Cliente() {
+    }
     
-     public long getId() {
-        return id;
+    public Cliente(String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa) {
+        
+        this.correo = correo;
+        this.password = password;
+        this.nombre_cliente = nombre_cliente;
+        this.telefono_local = telefono_local;
+        this.telefono_movil = telefono_movil;
+        this.nombre_usuario = nombre_usuario;
+        this.area = area;
+        this.puesto = puesto;
+        this.nombre_empresa = nombre_empresa;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Cliente(long id_cliente, String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa) {
+        this.id_cliente = id_cliente;
+        this.correo = correo;
+        this.password = password;
+        this.nombre_cliente = nombre_cliente;
+        this.telefono_local = telefono_local;
+        this.telefono_movil = telefono_movil;
+        this.nombre_usuario = nombre_usuario;
+        this.area = area;
+        this.puesto = puesto;
+        this.nombre_empresa = nombre_empresa;
+    }
+
+    
+    public long getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(long id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getCorreo() {
@@ -69,44 +96,44 @@ public class Cliente {
         this.correo = correo;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_cliente() {
+        return nombre_cliente;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre_cliente(String nombre_cliente) {
+        this.nombre_cliente = nombre_cliente;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefono_local() {
+        return telefono_local;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefono_local(String telefono_local) {
+        this.telefono_local = telefono_local;
     }
 
-    public String getTelefonom() {
-        return telefonom;
+    public String getTelefono_movil() {
+        return telefono_movil;
     }
 
-    public void setTelefonom(String telefonom) {
-        this.telefonom = telefonom;
+    public void setTelefono_movil(String telefono_movil) {
+        this.telefono_movil = telefono_movil;
     }
 
-    public String getNombreu() {
-        return nombreu;
+    public String getNombre_usuario() {
+        return nombre_usuario;
     }
 
-    public void setNombreu(String nombreu) {
-        this.nombreu = nombreu;
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
     }
 
     public String getArea() {
@@ -125,11 +152,14 @@ public class Cliente {
         this.puesto = puesto;
     }
 
-    public String getN_empresa() {
-        return n_empresa;
+    public String getNombre_empresa() {
+        return nombre_empresa;
     }
 
-    public void setN_empresa(String n_empresa) {
-        this.n_empresa = n_empresa;
+    public void setNombre_empresa(String nombre_empresa) {
+        this.nombre_empresa = nombre_empresa;
     }
+
+    
+    
 }

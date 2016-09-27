@@ -23,12 +23,6 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>MapeoBD.Alumno</value>
-                <value>MapeoBD.Carrera</value>
-                <value>MapeoBD.Grupo</value>
-                <value>MapeoBD.Inscripcion</value>
-                <value>MapeoBD.Profesor</value>
-                <value>MapeoBD.Salon</value>
                 <value>MapeoBD.Cliente</value>        
             </list>
         </property>    
@@ -43,18 +37,7 @@
     
     <!--  Se agrega para poder inyectarlo a los Controladores, revisa EjemploController.java
           en el paquete controlador, se esta haciendo uso de @Autowiring-->
-    <bean id="AlumnoDAO" class="modelo.AlumnoDAO"
-        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
-    />
-    <bean id="CarreraDAO" class="modelo.CarreraDAO"
-        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
-    />
-    <bean id="SalonDAO" class="modelo.SalonDAO"
-        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
-    />
-    <bean id="ProfesorDAO" class="modelo.ProfesorDAO"
-        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
-    />
+   
     <bean id="ClienteDAO" class="modelo.ClienteDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
