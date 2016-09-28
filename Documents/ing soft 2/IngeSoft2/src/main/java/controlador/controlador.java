@@ -122,6 +122,7 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        String area=un_cliente.getArea();
        String puesto=un_cliente.getPuesto();
        String nombre_empresa=un_cliente.getNombre_empresa();
+       int habilitado=un_cliente.getHabilitado();
        
        
        model.addAttribute("id_cliente", id_cliente);
@@ -135,6 +136,7 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        model.addAttribute("area", area);
        model.addAttribute("puesto", puesto);
        model.addAttribute("nombre_empresa", nombre_empresa);
+       model.addAttribute("habilitado",habilitado);
        return new ModelAndView("datos",model);   
    }
     
@@ -161,12 +163,10 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
+    
        
-       Cliente c =new Cliente(correo,password,Nombre_Cliente,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa);
+       Cliente c =new Cliente(correo,password,Nombre_Cliente,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1);
        cliente_bd.crearCliente(c);
-     
-   
-       
    
        return "redirect:/home";   
    }

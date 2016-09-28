@@ -73,7 +73,8 @@ public class ClienteDAO implements ClienteDAOint {
         try {
            tx = session.beginTransaction();
            cli = (Cliente) session.get(Cliente.class, numero);
-             session.delete(cli);
+           cli.setHabilitado(0);
+           session.update(cli);
            tx.commit();
         }
         catch (Exception e) {
@@ -119,6 +120,7 @@ public class ClienteDAO implements ClienteDAOint {
        String puesto=un_cliente.getPuesto();
        String nombre_empresa=un_cliente.getNombre_empresa();
        long id_c=un_cliente.getId_cliente();
+       int habilitado =un_cliente.getHabilitado();
        Cliente cli = new Cliente(id_c,
                correo,
                pass,
@@ -128,7 +130,8 @@ public class ClienteDAO implements ClienteDAOint {
                nombre_usuario,
                area,
                puesto,
-               nombre_empresa);   
+               nombre_empresa,
+               habilitado);   
          try {
            tx = session.beginTransaction();
             session.update(cli);

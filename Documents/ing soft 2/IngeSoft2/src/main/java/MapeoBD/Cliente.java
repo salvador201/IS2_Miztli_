@@ -49,12 +49,14 @@ public class Cliente {
     
     @Column(name = "nombre_empresa")
     private String nombre_empresa;
-
+    
+    @Column(name = "habilitado")
+    private int habilitado;
+    
     public Cliente() {
     }
-    
-    public Cliente(String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa) {
-        
+
+    public Cliente(String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa, int habilitado) {
         this.correo = correo;
         this.password = password;
         this.nombre_cliente = nombre_cliente;
@@ -64,9 +66,10 @@ public class Cliente {
         this.area = area;
         this.puesto = puesto;
         this.nombre_empresa = nombre_empresa;
+        this.habilitado = habilitado;
     }
-
-    public Cliente(long id_cliente, String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa) {
+    
+    public Cliente(long id_cliente, String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa, int habilitado) {
         this.id_cliente = id_cliente;
         this.correo = correo;
         this.password = password;
@@ -77,8 +80,18 @@ public class Cliente {
         this.area = area;
         this.puesto = puesto;
         this.nombre_empresa = nombre_empresa;
+        this.habilitado = habilitado;
+    }
+    
+    public int getHabilitado() {
+        return habilitado;
     }
 
+    public void setHabilitado(int habilitado) {
+        this.habilitado = habilitado;
+    }
+    
+    
     
     public long getId_cliente() {
         return id_cliente;
