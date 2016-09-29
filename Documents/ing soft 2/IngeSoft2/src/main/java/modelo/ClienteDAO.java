@@ -107,34 +107,27 @@ public class ClienteDAO implements ClienteDAOint {
         }
 }
      
-      public void modificaCliente(Cliente un_cliente){
+      public void modificaCliente(Cliente un_cliente,long id){
       Session session = sessionFactory.openSession();
         Transaction tx = null;
-       String correo=un_cliente.getCorreo();
-       String pass=un_cliente.getPassword();
-       String nombre_cliente=un_cliente.getNombre_cliente();
-       String telefono_local=un_cliente.getTelefono_local();
-       String telefono_movil=un_cliente.getTelefono_movil();
-       String nombre_usuario=un_cliente.getNombre_usuario();
-       String area=un_cliente.getArea();
-       String puesto=un_cliente.getPuesto();
-       String nombre_empresa=un_cliente.getNombre_empresa();
-       long id_c=un_cliente.getId_cliente();
-       int habilitado =un_cliente.getHabilitado();
-       Cliente cli = new Cliente(id_c,
-               correo,
-               pass,
-               nombre_cliente,
-               telefono_local,
-               telefono_movil,
-               nombre_usuario,
-               area,
-               puesto,
-               nombre_empresa,
-               habilitado);   
+        Cliente cli =null;
          try {
            tx = session.beginTransaction();
-            session.update(cli);
+           cli=(Cliente) session.get(Cliente.class, id );
+           cli.setCorreo(un_cliente.getCorreo());
+           cli.setPassword(un_cliente.getPassword());
+           cli.setNombre_cliente(un_cliente.getNombre_cliente());
+           cli.setApellido_paterno_cliente(un_cliente.getApellido_paterno_cliente());
+           cli.setApellido_materno_cliente(un_cliente.getApellido_materno_cliente());
+           cli.setTelefono_local(un_cliente.getTelefono_local());
+           cli.setTelefono_movil(un_cliente.getTelefono_movil());
+           cli.setNombre_usuario(un_cliente.getNombre_usuario());
+           cli.setArea(un_cliente.getArea());
+           cli.setPuesto(un_cliente.getPuesto());
+           cli.setNombre_empresa(un_cliente.getNombre_empresa());
+           cli.setHabilitado(un_cliente.getHabilitado());
+           
+           session.update(cli);
              
            tx.commit();
         }

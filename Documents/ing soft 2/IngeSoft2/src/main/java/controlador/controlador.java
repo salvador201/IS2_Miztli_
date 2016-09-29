@@ -116,6 +116,8 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        String pass=un_cliente.getPassword();
        String nom_cli=un_cliente.getNombre_cliente();
        String nombre_cliente=un_cliente.getNombre_cliente();
+       String apellido_pa=un_cliente.getApellido_paterno_cliente();
+       String apellido_ma=un_cliente.getApellido_materno_cliente();
        String telefono_local=un_cliente.getTelefono_local();
        String telefono_movil=un_cliente.getTelefono_movil();
        String nombre_usuario=un_cliente.getNombre_usuario();
@@ -130,6 +132,8 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        model.addAttribute("pass", pass);
        model.addAttribute("nom_cli", nom_cli);
        model.addAttribute("nombre_cliente", nombre_cliente);
+       model.addAttribute("apellido_pa",apellido_pa);
+       model.addAttribute("apellido_ma",apellido_ma);
        model.addAttribute("telefono_local", telefono_local );
        model.addAttribute("telefono_movil", telefono_movil);
        model.addAttribute("nombre_usuario", nombre_usuario);
@@ -163,9 +167,10 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
-    
+       String ape_pa=request.getParameter("Apellido_Paterno");
+       String ape_ma=request.getParameter("Apellido_Materno");
        
-       Cliente c =new Cliente(correo,password,Nombre_Cliente,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1);
+       Cliente c =new Cliente(correo,password,Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1);
        cliente_bd.crearCliente(c);
    
        return "redirect:/home";   

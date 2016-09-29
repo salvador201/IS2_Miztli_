@@ -32,6 +32,12 @@ public class Cliente {
     @Column(name = "nombre_cliente")
     private String nombre_cliente;
     
+    @Column(name = "apellido_paterno_cliente")
+    private String apellido_paterno_cliente;
+    
+    @Column(name = "apellido_materno_cliente")
+    private String apellido_materno_cliente;
+    
     @Column(name = "telefono_local")
     private String telefono_local;
     
@@ -41,7 +47,7 @@ public class Cliente {
     @Column(name = "nombre_usuario")
     private String nombre_usuario;
     
-      @Column(name = "area")
+    @Column(name = "area")
     private String area;
     
     @Column(name = "puesto")
@@ -56,10 +62,28 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa, int habilitado) {
+    public String getApellido_paterno_cliente() {
+        return apellido_paterno_cliente;
+    }
+
+    public void setApellido_paterno_cliente(String apellido_paterno_cliente) {
+        this.apellido_paterno_cliente = apellido_paterno_cliente;
+    }
+
+    public String getApellido_materno_cliente() {
+        return apellido_materno_cliente;
+    }
+
+    public void setApellido_materno_cliente(String apellido_materno_cliente) {
+        this.apellido_materno_cliente = apellido_materno_cliente;
+    }
+
+    public Cliente(String correo, String password, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa, int habilitado) {
         this.correo = correo;
         this.password = password;
         this.nombre_cliente = nombre_cliente;
+        this.apellido_paterno_cliente = apellido_paterno_cliente;
+        this.apellido_materno_cliente = apellido_materno_cliente;
         this.telefono_local = telefono_local;
         this.telefono_movil = telefono_movil;
         this.nombre_usuario = nombre_usuario;
@@ -68,12 +92,14 @@ public class Cliente {
         this.nombre_empresa = nombre_empresa;
         this.habilitado = habilitado;
     }
-    
-    public Cliente(long id_cliente, String correo, String password, String nombre_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa, int habilitado) {
+
+    public Cliente(long id_cliente, String correo, String password, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String nombre_usuario, String area, String puesto, String nombre_empresa, int habilitado) {
         this.id_cliente = id_cliente;
         this.correo = correo;
         this.password = password;
         this.nombre_cliente = nombre_cliente;
+        this.apellido_paterno_cliente = apellido_paterno_cliente;
+        this.apellido_materno_cliente = apellido_materno_cliente;
         this.telefono_local = telefono_local;
         this.telefono_movil = telefono_movil;
         this.nombre_usuario = nombre_usuario;
@@ -82,6 +108,8 @@ public class Cliente {
         this.nombre_empresa = nombre_empresa;
         this.habilitado = habilitado;
     }
+
+    
     
     public int getHabilitado() {
         return habilitado;

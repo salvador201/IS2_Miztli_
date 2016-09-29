@@ -5,6 +5,7 @@
  */
 package MapeoBD;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class Empleado {
     private int numero_hijos;
     
     @Column(name = "fecha_nacimiento")
-    private String fecha_nacimiento;
+    private Date fecha_nacimiento;
     
     @Column(name = "antiguiedad")
     private String antiguiedad;
@@ -59,7 +60,7 @@ public class Empleado {
     @Column(name = "habilitado")
     private int habilitado;
 
-    public Empleado(long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, String fecha_nacimiento, String antiguiedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
+    public Empleado(long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguiedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
         this.cliente_id = cliente_id;
         this.direccion = direccion;
         this.horas_x_semana = horas_x_semana;
@@ -74,7 +75,7 @@ public class Empleado {
         this.habilitado = habilitado;
     }
 
-    public Empleado(long id_empleado, long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, String fecha_nacimiento, String antiguiedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
+    public Empleado(long id_empleado, long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguiedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
         this.id_empleado = id_empleado;
         this.cliente_id = cliente_id;
         this.direccion = direccion;
@@ -147,11 +148,11 @@ public class Empleado {
         this.numero_hijos = numero_hijos;
     }
 
-    public String getFecha_nacimiento() {
+    public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
