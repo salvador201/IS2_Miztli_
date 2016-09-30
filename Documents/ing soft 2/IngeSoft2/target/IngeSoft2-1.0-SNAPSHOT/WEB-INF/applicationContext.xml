@@ -24,6 +24,8 @@
         <property name="annotatedClasses">
             <list>
                 <value>MapeoBD.Cliente</value>        
+                <value>MapeoBD.Proyecto</value>        
+                
             </list>
         </property>    
         <property name="hibernateProperties">
@@ -41,7 +43,9 @@
     <bean id="ClienteDAO" class="modelo.ClienteDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
-    
+    <bean id="ProyectoDAO" class="modelo.ProyectoDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
     
     
 </beans>

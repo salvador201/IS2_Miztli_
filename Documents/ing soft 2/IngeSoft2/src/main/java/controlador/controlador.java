@@ -176,4 +176,33 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        return "redirect:/home";   
    }
 
+     @RequestMapping(value = "/modificarCliente", method = RequestMethod.POST)
+    public ModelAndView modificarCliente(ModelMap model,HttpServletRequest request){
+
+       String id_cliente = request.getParameter("id_cliente"); 
+       String correo = request.getParameter("correo"); 
+       String password = request.getParameter("password"); 
+       String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
+       String ape_pa=request.getParameter("Apellido_Paterno"); 
+       String ape_ma=request.getParameter("Apellido_Materno");
+       String Telefono_Local = request.getParameter("Telefono_Local"); 
+       String Telefono_Movil = request.getParameter("Telefono_Movil"); 
+       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
+       String Area = request.getParameter("Area"); 
+       String Puesto = request.getParameter("Puesto"); 
+       String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
+       
+       Cliente c =new Cliente(correo,
+               password,
+               Nombre_Cliente,
+               ape_pa,
+               ape_ma,
+               Telefono_Local,
+               Telefono_Movil,
+               Nombre_Usuario,Area,Puesto,Nombre_Empresa,1);
+       
+       cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
+       model.addAttribute("id_cliente", id_cliente);
+       return new ModelAndView("modificado",model);   
+   }
 }

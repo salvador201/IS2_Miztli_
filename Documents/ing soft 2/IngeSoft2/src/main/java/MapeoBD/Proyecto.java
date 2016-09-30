@@ -45,6 +45,10 @@ public class Proyecto {
     @Column(name = "habilitado")
     private int habilitado;
 
+    public Proyecto() {
+    }
+
+    
     public Proyecto(long cliente_id, long prueba_id, String nombre_proyecto, String descripcion, Date fecha_inicio, Date fecha_fin, int habilitado) {
         this.cliente_id = cliente_id;
         this.prueba_id = prueba_id;

@@ -173,7 +173,10 @@ span.psw {
           <br>
           <br>
           <a href="<c:url value="/crear"/> "><button>Agregar Cliente</button></a>
-         
+          <br> 
+          <a href="<c:url value="/verifica"/> "><button>Agregar Proyecto</button></a>
+          
+          
   <center><h2>Clientes:</h2>
       <table>
           <tr>
