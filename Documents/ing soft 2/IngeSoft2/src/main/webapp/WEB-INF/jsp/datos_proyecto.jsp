@@ -20,7 +20,7 @@
             <h2>${descripcion}</h2>
             <h2>${fecha_inicio}</h2>
             <h2>${fecha_fin}</h2>
-            <h2>${habilitado}</h2>
+            <h2>habilitado :${habilitado}</h2>
             <h2>${area}</h2>
             <h2>${puesto}</h2>
             <h2>${nombre_empresa}</h2>

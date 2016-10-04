@@ -7,7 +7,10 @@ package modelo;
 
 
 
+import MapeoBD.Cliente;
 import MapeoBD.Proyecto;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -45,13 +48,19 @@ public class ProyectoDAO {
         }
      }
      
-     public void modificaProyecto(Proyecto pro,long id){
+     public void modificaProyecto(Proyecto pro,String nom){
          Session session = sessionFactory.openSession();
          Transaction tx = null;
          Proyecto viejo=null;
+         List<Proyecto> lista=null; 
           try {
-           tx = session.beginTransaction();
-            viejo=(Proyecto) session.get(Proyecto.class,id);
+           
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Proyecto "
+                   + "where nombre_proyecto = :var");
+           query.setParameter("var",nom );
+           lista = query.list(); 
+            viejo=lista.get(0);
             viejo.setDescripcion(pro.getDescripcion());
             viejo.setFecha_fin(pro.getFecha_fin() );
             viejo.setFecha_inicio(pro.getFecha_inicio() );
@@ -73,13 +82,18 @@ public class ProyectoDAO {
      
      }
      
-    public void borrarProyecto(long num){
+    public void borrarProyecto(String nom){
      Session session = sessionFactory.openSession();
         Transaction tx = null;
         Proyecto pro = null;
+         List<Proyecto> lista=null; 
         try {
            tx = session.beginTransaction();
-           pro = (Proyecto) session.get(Proyecto.class, num);
+            Query query = session.createQuery("from Proyecto "
+                   + "where nombre_proyecto = :var");
+           query.setParameter("var",nom );
+           lista = query.list(); 
+           pro=lista.get(0);    
            pro.setHabilitado(0);
            session.update(pro);
            tx.commit();
@@ -95,16 +109,20 @@ public class ProyectoDAO {
      
      }
      
-    public Proyecto consultaProyecto(long id){
+    public Proyecto consultaProyecto(String nom){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         Proyecto pro = null;
-        
+        List<Proyecto> lista=null; 
         
         try {
+           
            tx = session.beginTransaction();
-           pro = (Proyecto) session.get(Proyecto.class, id);
-             
+           Query query = session.createQuery("from Proyecto "
+                   + "where nombre_proyecto = :var");
+           query.setParameter("var",nom );
+           lista = query.list(); 
+           pro=lista.get(0);
            tx.commit();
         }
         catch (Exception e) {

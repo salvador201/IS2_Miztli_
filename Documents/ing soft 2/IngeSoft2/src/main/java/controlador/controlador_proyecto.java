@@ -6,8 +6,10 @@
 package controlador;
 
 import MapeoBD.Proyecto;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,8 +40,8 @@ public String crear(HttpServletRequest a){
 }
  @RequestMapping(value = "/verProyecto", method = RequestMethod.POST)
     public ModelAndView ConsultarProyecto(ModelMap model,HttpServletRequest request){
-        String id_proyecto = request.getParameter("id_proyecto"); 
-       Proyecto pro= proyecto_bd.consultaProyecto(Long.parseLong(id_proyecto));
+        String id_proyecto = request.getParameter("nom_pro"); 
+       Proyecto pro= proyecto_bd.consultaProyecto(id_proyecto);
        
        long id_pro=pro.getId_proyecto();
        long cli_id=pro.getCliente_id();
@@ -65,18 +67,18 @@ public String crear(HttpServletRequest a){
     }
     
      @RequestMapping(value = "/borraProyecto", method = RequestMethod.POST)
-    public ModelAndView borrarCliente(ModelMap model,HttpServletRequest request){
-         String id_proyecto = request.getParameter("id_proyecto"); 
-         proyecto_bd.borrarProyecto(Long.parseLong(id_proyecto));
+    public ModelAndView borrarProyecto(ModelMap model,HttpServletRequest request){
+         String nom_Pro = request.getParameter("nom_Pro"); 
+         proyecto_bd.borrarProyecto(nom_Pro);
          
-         model.addAttribute("id_proyecto", id_proyecto);
+         model.addAttribute("nom_Pro", nom_Pro);
      
-       return new ModelAndView("confirmacion_proyecto",model);   
+       return new ModelAndView("modificadoPro",model);   
        
     }
     
     @RequestMapping(value = "/crearProyecto", method = RequestMethod.POST)
-    public String creaCliente(ModelMap model,HttpServletRequest request){
+    public String creaProyecto(ModelMap model,HttpServletRequest request){
         
        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
        
@@ -112,11 +114,30 @@ public String crear(HttpServletRequest a){
     }
     
     
+    @RequestMapping(value = "/remodificaProyecto", method = RequestMethod.POST)
+    public ModelAndView remodificaCliente(ModelMap model,HttpServletRequest request){
+        String nom_Pro=request.getParameter("nom_Pro");
+        
+        
+        Proyecto ve=(Proyecto) proyecto_bd.consultaProyecto(nom_Pro);
+       model.addAttribute("id_pro", ve.getId_proyecto());
+       model.addAttribute("cli_id", ve.getCliente_id());
+       model.addAttribute("prueba_id", ve.getPrueba_id());
+       model.addAttribute("nom_pro", ve.getNombre_proyecto());
+       model.addAttribute("descripcion", ve.getDescripcion());
+       model.addAttribute("fecha_inicio", ve.getFecha_inicio());
+       model.addAttribute("fecha_fin", ve.getFecha_fin());
+       model.addAttribute("habilitado", ve.getHabilitado());
+       
+      return new ModelAndView("remodificadoPro",model);   
+    }
+       
+    
     @RequestMapping(value = "/modificaProyecto", method = RequestMethod.POST)
     public ModelAndView modificaCliente(ModelMap model,HttpServletRequest request){
-       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
        
-       String id_pro=request.getParameter("Id_proyecto");
+       String id_pro=request.getParameter("id_pro");
        String cli_id=request.getParameter("cli_id");
        String prueba_id=request.getParameter("prueba_id");
        String descripcion=request.getParameter("descripcion");
@@ -127,8 +148,8 @@ public String crear(HttpServletRequest a){
        Date inicio=null;
        Date fin=null;
        try {
-       inicio= formatter.parse(fecha_inicio);
-       fin=formatter.parse(fecha_fin);
+       inicio= format.parse(fecha_inicio);
+       fin=format.parse(fecha_fin);
        } catch (ParseException ex) {
          Logger.getLogger(controlador_proyecto.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -144,9 +165,9 @@ public String crear(HttpServletRequest a){
                  Integer.parseInt(habilitado));
      
        
-       proyecto_bd.crearProyecto(p);
+       proyecto_bd.modificaProyecto(p,nom_Pro);
        
-       model.addAttribute("id_pro", id_pro);
+       model.addAttribute("nom_Pro", nom_Pro);
        return new ModelAndView("modificadoPro",model);   
        
        
