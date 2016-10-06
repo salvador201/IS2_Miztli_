@@ -24,7 +24,7 @@
         
         table {
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
 }
 
 th, td {
@@ -71,8 +71,8 @@ input[type=text], input[type=password] {
 button {
     background-color: #2E9AFE;
     color: white;
-    padding: 10px 16px;
-    margin: 6px 0;
+    padding: 7px 12px;
+    margin: 2px 0;
     border: none;
     cursor: pointer;
     width: 10%;
@@ -142,7 +142,7 @@ span.psw {
             <ul class="nav navbar-nav">
                 <li><a href="#">Clientes</a></li>
                 <li><a href="<c:url value="/prueba"/> ">Pruebas</a></li>
-                <li><a href="#">Proyectos</a></li>
+                <li><a href="<c:url value="/proyectos"/> ">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
 
@@ -172,33 +172,30 @@ span.psw {
           <br>
           <br>
           <br>
-          <a href="<c:url value="/crear"/> "><button>Agregar Cliente</button></a>
+          <a href="<c:url value="/crear"/> "><button>Agregar Cuenta</button></a>
           <br> 
-          <a href="<c:url value="/verifica"/> "><button>Agregar Proyecto</button></a>
           
           
-  <center><h2>Clientes:</h2>
+          
+  <center><h2>Cuentas de empresas:</h2>
+      <br>
       <table>
           <tr>
-              <th>Correo</th>
-              <th>Nombre</th>
-              <th>Teléfono local</th>
-              <th>Teléfono Movil</th>
-              <th>Nombre de Usuario</th>
-              <th>Empresa</th>
-              <th>Puesto</th>
-              <th>Área</th>
+              <th><h3>Empresa</h3></th>
+              <th><h3>Titular de Empresa</h3></th>
+              <th><h3>Correo</h3></th>
+              <th><h3>Puesto</h3></th>
+              <th><h3>Área</h3></th>
           </tr>
   <c:forEach var="cliente" items="${clientes}">
-      <tr>
-          <td><a href="/IngeSoft2/show/">${cliente.correo}</a></td>
-          <td>${cliente.nombre_cliente}</td>
-          <td>${cliente.telefono_local}</td>
-          <td>${cliente.telefono_movil}</td>
-          <td>${cliente.nombre_usuario}</td>
+      <tr <c:if test="${cliente.habilitado!=1}">bgcolor="#FD6C84"</c:if>>
+          
+          <td><a href="<c:url value="/show?id=${cliente.id_cliente}" />">${cliente.nombre_empresa}</a></td>
+          <td>${cliente.nombre_cliente}</td> 
+          <td>${cliente.correo}</td>
           <td>${cliente.area}</td>
           <td>${cliente.puesto}</td>
-          <td>${cliente.nombre_empresa}</td>
+          
       </tr>
         </c:forEach>
       </table>

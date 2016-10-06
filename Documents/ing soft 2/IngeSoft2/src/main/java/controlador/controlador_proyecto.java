@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,17 @@ public class controlador_proyecto {
  @Autowired
     private ProyectoDAO proyecto_bd;
  
+ 
+ @RequestMapping(value = "/proyectos", method=RequestMethod.GET)
+public ModelAndView proyecots(HttpServletRequest a, ModelMap b){
+     if(a.getSession().getAttribute("login") == null){
+         return new ModelAndView("redirect:/");
+     }
+     List c = proyecto_bd.getProyectos();
+     b.addAttribute("proyectos", c);
+     return new ModelAndView("datos_proyecto",b);   
+}
+ 
 @RequestMapping(value = "/verifica", method=RequestMethod.GET)
 public String crear(HttpServletRequest a){
      if(a.getSession().getAttribute("login") == null){
@@ -45,7 +57,6 @@ public String crear(HttpServletRequest a){
        
        long id_pro=pro.getId_proyecto();
        long cli_id=pro.getCliente_id();
-       long prueba_id=pro.getPrueba_id();
        String nom_pro=pro.getNombre_proyecto();
        String descripcion=pro.getDescripcion();
        Date fecha_inicio=pro.getFecha_inicio();
@@ -54,7 +65,6 @@ public String crear(HttpServletRequest a){
        
        model.addAttribute("id_pro", id_pro);
        model.addAttribute("cli_id", cli_id);
-       model.addAttribute("prueba_id", prueba_id);
        model.addAttribute("nom_pro", nom_pro);
        model.addAttribute("descripcion", descripcion);
        model.addAttribute("fecha_inicio", fecha_inicio);
@@ -122,7 +132,6 @@ public String crear(HttpServletRequest a){
         Proyecto ve=(Proyecto) proyecto_bd.consultaProyecto(nom_Pro);
        model.addAttribute("id_pro", ve.getId_proyecto());
        model.addAttribute("cli_id", ve.getCliente_id());
-       model.addAttribute("prueba_id", ve.getPrueba_id());
        model.addAttribute("nom_pro", ve.getNombre_proyecto());
        model.addAttribute("descripcion", ve.getDescripcion());
        model.addAttribute("fecha_inicio", ve.getFecha_inicio());

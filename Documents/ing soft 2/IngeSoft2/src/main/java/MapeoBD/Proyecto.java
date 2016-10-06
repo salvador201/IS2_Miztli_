@@ -27,9 +27,6 @@ public class Proyecto {
     @Column(name = "cliente_id")
     private long cliente_id;
     
-    @Column(name = "prueba_id")
-    private long prueba_id;
-    
     @Column(name = "nombre_proyecto")
     private String nombre_proyecto;
     
@@ -49,9 +46,8 @@ public class Proyecto {
     }
 
     
-    public Proyecto(long cliente_id, long prueba_id, String nombre_proyecto, String descripcion, Date fecha_inicio, Date fecha_fin, int habilitado) {
+    public Proyecto(long cliente_id, String nombre_proyecto, String descripcion, Date fecha_inicio, Date fecha_fin, int habilitado) {
         this.cliente_id = cliente_id;
-        this.prueba_id = prueba_id;
         this.nombre_proyecto = nombre_proyecto;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
@@ -59,10 +55,9 @@ public class Proyecto {
         this.habilitado = habilitado;
     }
 
-    public Proyecto(long id_proyecto, long cliente_id, long prueba_id, String nombre_proyecto, String descripcion, Date fecha_inicio, Date fecha_fin, int habilitado) {
+    public Proyecto(long id_proyecto, long cliente_id, String nombre_proyecto, String descripcion, Date fecha_inicio, Date fecha_fin, int habilitado) {
         this.id_proyecto = id_proyecto;
         this.cliente_id = cliente_id;
-        this.prueba_id = prueba_id;
         this.nombre_proyecto = nombre_proyecto;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
@@ -88,13 +83,6 @@ public class Proyecto {
         this.cliente_id = cliente_id;
     }
 
-    public long getPrueba_id() {
-        return prueba_id;
-    }
-
-    public void setPrueba_id(long prueba_id) {
-        this.prueba_id = prueba_id;
-    }
 
     public String getNombre_proyecto() {
         return nombre_proyecto;

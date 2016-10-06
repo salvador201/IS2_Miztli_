@@ -59,6 +59,17 @@ public class Cliente {
     @Column(name = "habilitado")
     private int habilitado;
     
+    @Column(name = "rol")
+    private String rol;
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
     public Cliente() {
     }
 

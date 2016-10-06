@@ -29,7 +29,7 @@ public class ClienteDAO implements ClienteDAOint {
         List<Cliente> lista = new LinkedList<>();
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Cliente");
+            Query query = session.createQuery("from Cliente cliente order by cliente.id_cliente");
             lista = query.list();
         }catch(Exception e){
             e.printStackTrace(); 
@@ -115,7 +115,6 @@ public class ClienteDAO implements ClienteDAOint {
            tx = session.beginTransaction();
            cli=(Cliente) session.get(Cliente.class, id );
            cli.setCorreo(un_cliente.getCorreo());
-           cli.setPassword(un_cliente.getPassword());
            cli.setNombre_cliente(un_cliente.getNombre_cliente());
            cli.setApellido_paterno_cliente(un_cliente.getApellido_paterno_cliente());
            cli.setApellido_materno_cliente(un_cliente.getApellido_materno_cliente());

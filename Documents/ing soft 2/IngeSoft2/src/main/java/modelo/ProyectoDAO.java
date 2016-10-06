@@ -9,6 +9,7 @@ package modelo;
 
 import MapeoBD.Cliente;
 import MapeoBD.Proyecto;
+import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -27,6 +28,22 @@ public class ProyectoDAO {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+    
+    public List<Proyecto> getProyectos(){
+         Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Proyecto> lista = new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Proyecto");
+            lista = query.list();
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return lista;   
+     }
      
      public void crearProyecto(Proyecto pro){
         Session session = sessionFactory.openSession();
@@ -65,8 +82,7 @@ public class ProyectoDAO {
             viejo.setFecha_fin(pro.getFecha_fin() );
             viejo.setFecha_inicio(pro.getFecha_inicio() );
             viejo.setHabilitado(pro.getHabilitado() );
-            viejo.setCliente_id(pro.getCliente_id());
-            viejo.setPrueba_id(pro.getPrueba_id());
+            viejo.setCliente_id(pro.getCliente_id());  
             viejo.setNombre_proyecto(pro.getNombre_proyecto());
             session.update(viejo);
              tx.commit();
