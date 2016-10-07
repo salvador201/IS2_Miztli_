@@ -26,7 +26,7 @@
   <c:forEach var="proyecto" items="${proyectos}">
       <tr>
   
-          <td><a href="/IngeSoft2/show/">${proyecto.nombre_proyecto}</a></td>
+          <td><a href="/IngeSoft2/show_P?id=${proyecto.id_proyecto}">${proyecto.nombre_proyecto}</a></td>
           <td>${proyecto.descripcion}</td>
           <td>${proyecto.fecha_inicio}</td>
           <td>${proyecto.fecha_fin}</td>

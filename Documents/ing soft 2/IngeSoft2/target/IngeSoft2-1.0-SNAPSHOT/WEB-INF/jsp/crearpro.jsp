@@ -30,22 +30,8 @@
              <button type="submit">Aceptar</button>
         </form>
         
-        <form method="POST" action="/IngeSoft2/verProyecto">
-            <h2>Ingresa id del Proyecto para ver sus datos</h2>
-            <input id="nom_pro" name="nom_pro" type="text" placeholder=" nom_pro">
-            <button>Aceptar</button>
-        </form>
         
-        <form method="POST" action="/IngeSoft2/remodificaProyecto">
-            <h2>Ingresa nombre del Proyecto para modificarlo</h2>
-            <input id="nom_Pro" name="nom_Pro" type="text" placeholder=" nom_Pro">
-            <button>Aceptar</button>
-        </form>
         
-        <form method="POST" action="/IngeSoft2/borraProyecto">
-            <h2>Ingresa nombre del Proyecto para modificarlo</h2>
-            <input id="nom_Pro" name="nom_Pro" type="text" placeholder=" nom_Pro">
-            <button>Aceptar</button>
-        </form>
+       
     </body>
 </html>

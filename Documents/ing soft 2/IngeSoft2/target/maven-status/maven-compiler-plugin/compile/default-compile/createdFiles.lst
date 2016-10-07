@@ -1,7 +1,7 @@
+MapeoBD\Cliente.class
 controlador\controlador.class
 MapeoBD\Proyecto.class
 controlador\controlador_proyecto.class
-MapeoBD\Cliente.class
 modelo\EmpleadoDAO.class
 modelo\ClienteDAO.class
 MapeoBD\Empleado.class

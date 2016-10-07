@@ -65,19 +65,15 @@ public class ProyectoDAO {
         }
      }
      
-     public void modificaProyecto(Proyecto pro,String nom){
+     public void modificaProyecto(Proyecto pro,Long id){
          Session session = sessionFactory.openSession();
          Transaction tx = null;
-         Proyecto viejo=null;
-         List<Proyecto> lista=null; 
+         Proyecto viejo;
+         
           try {
            
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Proyecto "
-                   + "where nombre_proyecto = :var");
-           query.setParameter("var",nom );
-           lista = query.list(); 
-            viejo=lista.get(0);
+            viejo = (Proyecto) session.get(Proyecto.class, id);
             viejo.setDescripcion(pro.getDescripcion());
             viejo.setFecha_fin(pro.getFecha_fin() );
             viejo.setFecha_inicio(pro.getFecha_inicio() );
@@ -152,5 +148,27 @@ public class ProyectoDAO {
         return pro;
     }
      
-
+    public Proyecto verProyecto(Long id){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Proyecto pro = null;
+        List<Proyecto> lista=null; 
+        
+        try {
+           
+           tx = session.beginTransaction();
+           pro = (Proyecto) session.get(Proyecto.class, id);
+           
+           tx.commit();
+        }
+        catch (Exception e) {
+           if (tx!=null){
+               tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+           session.close();
+        }
+        return pro;
+    }
 }

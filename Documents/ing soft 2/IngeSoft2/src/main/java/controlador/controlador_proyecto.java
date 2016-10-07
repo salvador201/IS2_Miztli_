@@ -5,6 +5,7 @@
  */
 package controlador;
 
+
 import MapeoBD.Proyecto;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,6 +23,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -32,6 +34,17 @@ public class controlador_proyecto {
  @Autowired
     private ProyectoDAO proyecto_bd;
  
+ 
+@RequestMapping(value = "/show_P", method=RequestMethod.GET)
+public ModelAndView mostrarp(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+    Proyecto proyecto = proyecto_bd.verProyecto(Long.parseLong(a.getParameter("id")));
+    if(proyecto.getHabilitado() == 1){
+        model.addAttribute("checado", "checked");
+    }
+    model.addAttribute("proyecto", proyecto);
+    return new ModelAndView("remodificadoPro", model);
+    
+}
  
  @RequestMapping(value = "/proyectos", method=RequestMethod.GET)
 public ModelAndView proyecots(HttpServletRequest a, ModelMap b){
@@ -146,11 +159,11 @@ public String crear(HttpServletRequest a){
     public ModelAndView modificaCliente(ModelMap model,HttpServletRequest request){
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
        
-       String id_pro=request.getParameter("id_pro");
+       String id_proyecto=request.getParameter("id_proyecto");
        String cli_id=request.getParameter("cli_id");
        String prueba_id=request.getParameter("prueba_id");
        String descripcion=request.getParameter("descripcion");
-       String nom_Pro=request.getParameter("nom_Pro");
+       String nom_Pro=request.getParameter("nom_pro");
        String fecha_inicio=request.getParameter("fecha_inicio");
        String fecha_fin=request.getParameter("fecha_fin");
        String habilitado=request.getParameter("habilitado");
@@ -174,10 +187,10 @@ public String crear(HttpServletRequest a){
                  Integer.parseInt(habilitado));
      
        
-       proyecto_bd.modificaProyecto(p,nom_Pro);
+       proyecto_bd.modificaProyecto(p,Long.parseLong(id_proyecto));
        
        model.addAttribute("nom_Pro", nom_Pro);
-       return new ModelAndView("modificadoPro",model);   
+       return new ModelAndView("home",model);   
        
        
     }

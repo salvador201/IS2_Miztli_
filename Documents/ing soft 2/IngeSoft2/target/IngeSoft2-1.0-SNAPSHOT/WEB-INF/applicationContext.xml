@@ -25,7 +25,9 @@
             <list>
                 <value>MapeoBD.Cliente</value>        
                 <value>MapeoBD.Proyecto</value>        
-                
+                <value>MapeoBD.Empleado</value>  
+                <value>MapeoBD.Empleado_proyecto</value>  
+                <value>MapeoBD.Password_token</value>  
             </list>
         </property>    
         <property name="hibernateProperties">
@@ -46,6 +48,16 @@
     <bean id="ProyectoDAO" class="modelo.ProyectoDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
+    <bean id="EmpleadoDAO" class="modelo.EmpleadoDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
     
+    <bean id="Empleado_proyectoDAO" class="modelo.Empleado_proyectoDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    
+    <bean id="Password_tokenDAO" class="modelo.Password_tokenDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
     
 </beans>
