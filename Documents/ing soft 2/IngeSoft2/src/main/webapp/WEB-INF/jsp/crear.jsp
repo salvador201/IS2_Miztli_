@@ -141,14 +141,14 @@ span.psw {
              otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Clientes</a></li>
-                <li><a href="<c:url value="/prueba"/> ">Pruebas</a></li>
-                <li><a href="<c:url value="/proyectos"/> ">Proyectos</a></li>
+                <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
+                <li><a href="<c:url value="/administrador/prueba"/>">Pruebas</a></li>
+                <li><a href="<c:url value="/administrador/proyectos"/>">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Usuario: ${login}</a></li>
+                <li><a href="#">Usuario: ${username}</a></li>
                 <li><a href="/IngeSoft2/salir">Salir</a></li>
                 
             </ul>
@@ -158,7 +158,7 @@ span.psw {
     <body>
     <center>
         <div class="formlog">
-        <form name="crear_cliente" method="POST" action="/IngeSoft2/crearCliente">
+        <form name="crear_cliente" method="POST" action="/IngeSoft2/administrador/crearCliente">
             <h2>Completa el formulario para crear una cuenta grupal</h2>
             <input id="Nombre_Empresa" name="Nombre_Empresa" type="text" placeholder=" Nombre de la Empresa">
             <input id="Nombre_Cliente" name="Nombre_Cliente" type="text" placeholder=" Nombre titular empresa">

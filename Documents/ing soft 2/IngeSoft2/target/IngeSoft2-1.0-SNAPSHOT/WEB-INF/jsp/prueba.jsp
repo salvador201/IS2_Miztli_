@@ -19,112 +19,62 @@
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-
-    <style>
-        
-       
-        
-        table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-    background-color: #0040FF;
-    color: white;
-}
-
-
-        
-   .formlog2{
-    border: 5px solid #A0B5EC;
-    width: 30%;
-    padding: 10px;
-   position: relative;
-    left: 30px;
-
     
+    <script src="<c:url value="/js/jquery-1.12.4.min.js" />" ></script>
+    <script src="<c:url value="/js/jquery.multipage.js" />" ></script>
+   
+    
+    <style>
+        .multipage_nav { border-top:1px solid #CCC; padding-top:10px;}
+.multipage_nav a { font-weight: bold; display:block; padding: 10px 20px; color: #FFF; text-shadow: #333 1px 1px 5px; text-decoration:none; -moz-box-shadow: 0px 0px 5px #333; -webkit-box-shadow: 0px 0px 5px #333; }
+.multipage_nav .multipage_next { float:right;
+	background: #a9db80; /* old browsers */
+	background: -moz-linear-gradient(top, #a9db80 0%, #96c56f 100%); /* firefox */
+	
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9db80), color-stop(100%,#96c56f)); /* webkit */
+	
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* ie */		
 }
 
-    .formlog{
-    border: 5px solid #A0B5EC;
-    width: 70%;
-    position: absolute;
-    right: 180px;
-    padding: 10px;
+.multipage_nav .multipage_back { 
+	float:left;
+	background: #a9db80; /* old browsers */
+	background: -moz-linear-gradient(top, #a9db80 0%, #96c56f 100%); /* firefox */
+	
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9db80), color-stop(100%,#96c56f)); /* webkit */
+	
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* ie */		
 }
 
+.multipage_nav .submit { 
 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 15px;
+	background: #fceabb; /* old browsers */
+	background: -moz-linear-gradient(top, #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%); /* firefox */
+	
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(50%,#fccd4d), color-stop(51%,#f8b500), color-stop(100%,#fbdf93)); /* webkit */
+	
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* ie */
 }
 
-button {
-    background-color: #2E9AFE;
-    color: white;
-    padding: 10px 16px;
-    margin: 6px 0;
-    border: none;
-    cursor: pointer;
-    width: 10%;
-    border-radius: 15px;
+.multipage_nav .multipage_state { display: block; text-align:center; width:100px; margin-left:auto;margin-right:auto; font-size:18px;}
+.multipage fieldset { border:0px; padding:10px; margin:0px; }
+
+div.clearer{
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height:0;
+    border-width:0;
+    margin:0;
+    padding:0;
 }
 
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
+ul.multipage_tabs { list-style-type: none; margin:0px; padding:0px; border-bottom:1px solid #CCC; margin-bottom:20px;}
+ul.multipage_tabs li { display:block; float: left; margin-right:20px;}
+ul.multipage_tabs li a { display:block; padding:10px; }
+ul.multipage_tabs li.active { background: #CCC; } 
 
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
 
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-div.doe{
-  opacity: 0.1;
-  position: absolute;
-  left: 10%;  
-  
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 50px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
 </style>
     <title>HQR</title>
   	<nav class="navbar navbar-default w3-cyan" role="navigation">
@@ -144,9 +94,9 @@ span.psw {
              otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<c:url value="/home"/> ">Clientes</a></li>
-                <li><a href="<c:url value="/prueba"/>">Pruebas</a></li>
-                <li><a href="#">Proyectos</a></li>
+                <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
+                <li><a href="<c:url value="/administrador/prueba"/>">Pruebas</a></li>
+                <li><a href="<c:url value="/administrador/proyectos"/>">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
 
@@ -190,279 +140,784 @@ Te pedimos contestar de la manera más honesta y sincera posible ya que no exist
 
 buenas o malas.</p>
   <br>
-      <form>
-          <label>1. No pierdo la concentración cuando se presentan eventos inesperados en mi trabajo. *</label>
-          <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="uno" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="uno" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="uno" value="4"> De acuerdo<br>
-  <input type="radio" name="uno" value="5"> Totalmente de acuerdo<br>
-  
-  <label>2. Aunque las situaciones no sean estables, soy totalmente competente. *</label>
-  <br>
-           <input type="radio" name="dos" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="dos" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="dos" value="4"> De acuerdo<br>
-  <input type="radio" name="dos" value="5"> Totalmente de acuerdo<br>
-  
-  <label>3. Es difícil para mí encarar eventos inesperados. *</label>
-  <br>
-           <input type="radio" name="tres" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="tres" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="tres" value="4"> De acuerdo<br>
-  <input type="radio" name="tres" value="5"> Totalmente de acuerdo<br>
-  
-  <label>4. Me cuesta trabajo ser una persona madura. *</label>
-  <br>
-           <input type="radio" name="cuatro" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="cuatro" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="cuatro" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cuatro" value="5"> Totalmente de acuerdo<br>
-  
-  <label>5. Mi desempeño es igual de bueno en diferentes entornos. *</label>
-  <br>
-           <input type="radio" name="cinco" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="cinco" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="cinco" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cinco" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>6. Tengo agilidad mental. *</label>
-  <br>
-           <input type="radio" name="seis" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="seis" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="seis" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="seis" value="4"> De acuerdo<br>
-  <input type="radio" name="seis" value="5"> Totalmente de acuerdo<br>
-  
-  <label>7. Soy una persona madura que sabe cómo actuar en eventos impredecibles. *</label>
-  <br>
-           <input type="radio" name="siete" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="siete" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="siete" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="siete" value="4"> De acuerdo<br>
-  <input type="radio" name="siete" value="5"> Totalmente de acuerdo<br>
-  
-  <label>8. Me considero hábil para resolver eventos inesperados. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>9. Aunque las situaciones en mi trabajo sean inciertas, soy capaz de encararlas. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>10. Aunque no conozca a fondo la situación en la que me encuentre salgo adelante. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>11. Me siento entusiasmado cuando me enfrento a un reto difícil de resolver. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>12. Resuelvo los conflictos de forma eficaz. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>13. No soy innovador. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>14. Muchos me consideran una persona cuadrada. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>15. Soy astuto para salir de los apuros. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>16. ¿Cuál es la respuesta correcta de la siguiente operación 38+21-66? *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> -5<br>
-  <input type="radio" name="dos" value="2"> -6
-<br>
-  <input type="radio" name="tres" value="3"> 7<br>
-   <input type="radio" name="cuatro" value="4"> 6<br>
-  <input type="radio" name="cinco" value="5"> -7<br>
-  
-  <label>17. Soluciono conflictos hábilmente. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>18. Me causa desconfianza escuchar a personas que no siguen los pasos específicos necesarios para alcanzar una meta. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>19. Soy creativo, a menudo se me ocurren diferentes formas de hacer las cosas. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>20. Encuentro rápidamente respuestas a los problemas. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>21. Se me dificulta establecer nuevas relaciones personales en la empresa. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>22. No soy comunicativo. * </label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>23. Algunas personas dicen que soy irritante. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>24. La relación con mis compañeros de trabajo es limitada. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>25. Prefiero estar solo que mal acompañado. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>26. A veces soy inmaduro en mi trabajo. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>27. Me enojo muy rápido si alguien me contradice. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>28. Soy agresivo con aquellos que me provocan. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>29. Soy tímido, me cuesta trabajo hablar con desconocidos. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  
-  <label>30. Puedo ser irrespetuoso. *</label>
-  <br>
-           <input type="radio" name="uno" value="1"> Totalmente en desacuerdo<br>
-  <input type="radio" name="dos" value="2"> . En desacuerdo
-<br>
-  <input type="radio" name="tres" value="3"> Ni de acuerdo ni en desacuerdo<br>
-   <input type="radio" name="cuatro" value="4"> De acuerdo<br>
-  <input type="radio" name="cinco" value="5"> Totalmente de acuerdo<br>
-  <button>Enviar</button>
-</form>
-  
+      <div style="width:500px; margin:20px; padding:10px; border:20px solid #F0F0F0;">
+	<form id="multipage">
+		<fieldset id="page_one">
+			<legend>Pregunta 1</legend>
+			    No pierdo la concentración cuando se presentan eventos inesperados en mi trabajo. *
+			    <br>
+			    <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+				
+				
+			
+		</fieldset>
+		<fieldset id="page_two">
+		<legend>Pregunta 2</legend>
+		 Aunque las situaciones no sean estables, soy totalmente competente. *
+		 <br>
+		 <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+		<fieldset id="page_three">
+		<legend>Pregunta 3</legend>
+		Es difícil para mí encarar eventos inesperados. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 4</legend>
+		Me cuesta trabajo ser una persona madura. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 5</legend>
+		 Mi desempeño es igual de bueno en diferentes entornos. *
+		 <br>
+		 <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 6</legend>
+		Tengo agilidad mental. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 7</legend>
+		Soy una persona madura que sabe cómo actuar en eventos impredecibles. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 8</legend>
+		Me considero hábil para resolver eventos inesperados. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 9</legend>
+		Aunque las situaciones en mi trabajo sean inciertas, soy capaz de encararlas. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 10</legend>
+		Aunque no conozca a fondo la situación en la que me encuentre salgo adelante. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 11</legend>
+		 Me siento entusiasmado cuando me enfrento a un reto difícil de resolver. *
+		 <br>
+		 <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 12</legend>
+		Resuelvo los conflictos de forma eficaz. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 13</legend>
+		No soy innovador. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 14</legend>
+		 Muchos me consideran una persona cuadrada. *
+		 <br>
+		 <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 15</legend>
+		Soy astuto para salir de los apuros. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 16</legend>
+		¿Cuál es la respuesta correcta de la siguiente operación 38+21-66? *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">-5</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">-6</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">7</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">6</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">-7</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 17</legend>
+		Soluciono conflictos hábilmente. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 18</legend>
+		Me causa desconfianza escuchar a personas que no siguen los pasos específicos necesarios para alcanzar una meta. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 19</legend>
+		Soy creativo, a menudo se me ocurren diferentes formas de hacer las cosas. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 20</legend>
+		Encuentro rápidamente respuestas a los problemas. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 21</legend>
+		Se me dificulta establecer nuevas relaciones personales en la empresa. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 22</legend>
+		No soy comunicativo. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+		<legend>Pregunta 23</legend>
+		Algunas personas dicen que soy irritante. *
+		<br>
+		<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+			
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 24</legend>
+			 La relación con mis compañeros de trabajo es limitada. *
+			 <br>
+			 <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 25</legend>
+			 Prefiero estar solo que mal acompañado. *
+			 <br>
+			 <br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 26</legend>
+			A veces soy inmaduro en mi trabajo. *
+			<br>
+			<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 27</legend>
+			Me enojo muy rápido si alguien me contradice. *
+			<br>
+			<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 28</legend>
+			Soy agresivo con aquellos que me provocan. *
+			<br>
+			<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 29</legend>
+			Soy tímido, me cuesta trabajo hablar con desconocidos. *
+			<br>
+			<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<fieldset id="page_three">
+			<legend>Pregunta 30</legend>
+			Puedo ser irrespetuoso. *
+			<br>
+			<br>
+			    <input id="1" type="radio" name="1" value="1"> 
+				<label for="1">Totalmente en desacuerdo</label>
+				
+				<br>
+                 <input id="2" type="radio" name="1" value="2"> 
+				<label for="2">En desacuerdo</label>
+				
+				<br>
+                 <input id="3" type="radio" name="1" value="3"> 
+				<label for="3">Ni de acuerdo ni en desacuerdo</label>
+				
+				<br>
+                 <input id="4" type="radio" name="1" value="4"> 
+				<label for="4">De acuerdo</label>
+				
+				<br>
+                 <input id="5" type="radio" name="1" value="5">
+				<label for="5">Totalmente de acuerdo</label>
+		</fieldset>
+
+		<input type="submit" value="Terminar" />
+	</form>
+	</div>
 
   </div>
   

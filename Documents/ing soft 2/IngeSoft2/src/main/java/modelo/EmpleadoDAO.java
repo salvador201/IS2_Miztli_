@@ -26,6 +26,25 @@ public class EmpleadoDAO {
         this.sessionFactory = sessionFactory;
     }
     
+    
+    
+    public List<Empleado> getEmpleadosP(long proyecto){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Empleado> lista = new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Empleado where proyecto_id = :var");
+            query.setParameter("var",proyecto);
+            lista = query.list();
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return lista;
+    }
+    
     public List<Empleado> getEmpleados(){
         Session session = sessionFactory.openSession();
         Transaction tx = null;

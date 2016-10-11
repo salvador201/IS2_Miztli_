@@ -23,6 +23,23 @@ public class ClienteDAO implements ClienteDAOint {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+    
+    public List<Cliente> porCorreo(String correo){
+         Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Cliente> lista = new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Cliente where correo = :var");
+            query.setParameter("var",correo);
+            lista = query.list();
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return lista;   
+     }
      public List<Cliente> getClientes(){
          Session session = sessionFactory.openSession();
         Transaction tx = null;

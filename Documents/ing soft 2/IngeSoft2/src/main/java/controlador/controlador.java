@@ -7,12 +7,18 @@ package controlador;
 
 
 import MapeoBD.Cliente;
+import MapeoBD.Proyecto;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
+import modelo.ProyectoDAO;
+import static org.apache.commons.codec.digest.DigestUtils.md5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,39 +39,30 @@ public class controlador {
     @Autowired
     private ClienteDAO cliente_bd;
     
+    @Autowired
+    private ProyectoDAO proyecto_bd;
     
     
-  @RequestMapping(value = "/")
-  public String index(ModelMap model){
-      return "index";
-  }
+
  
 
 
-@RequestMapping(value = "/salir", method=RequestMethod.GET)
-public String salir(ModelMap model, HttpServletRequest a){
-    a.getSession().invalidate();
-    return "redirect:/";
-}
 
-@RequestMapping(value = "/prueba", method=RequestMethod.GET)
+
+@RequestMapping(value = "/administrador/prueba", method=RequestMethod.GET)
 public String prueba(ModelMap model, HttpServletRequest a){
-    if(a.getSession().getAttribute("login") == null){
-         return "redirect:/";
-     }
+   
     return "prueba";
 }
 
 @RequestMapping(value = "/crear", method=RequestMethod.GET)
 public String crear(HttpServletRequest a){
-     if(a.getSession().getAttribute("login") == null){
-         return "redirect:/";
-     }
+     
     return "crear";
 }
 
 
-@RequestMapping(value = "/show", method=RequestMethod.GET)
+@RequestMapping(value = "/administrador/show", method=RequestMethod.GET)
 public ModelAndView mostrarc(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Cliente cliente = cliente_bd.verCliente(Long.parseLong(a.getParameter("id")));
     if(cliente.getHabilitado() == 1){
@@ -76,48 +73,46 @@ public ModelAndView mostrarc(ModelMap model, HttpServletRequest a, RedirectAttri
     
 }
 
-@RequestMapping(value = "/home", method=RequestMethod.GET)
-public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
-    List b = cliente_bd.getClientes();
-    if(a.getSession().getAttribute("login") != null){
-        model.addAttribute("clientes",b);
-        model.addAttribute("login", a.getSession().getAttribute("login"));
-    return new ModelAndView("home", model);
-    }else{
-        if((String) (redirect.getFlashAttributes().get("login")) !=null){
-        a.getSession(true).invalidate();
-        a.getSession(true).setAttribute("login", (String) (redirect.getFlashAttributes().get("login")));
-        model.addAttribute("clientes",b);
-        model.addAttribute("login", a.getSession().getAttribute("login"));
-        return new ModelAndView("home", model);
-        }
-    }
-    return new ModelAndView("redirect:/");
+@RequestMapping(value = "/cliente/show", method=RequestMethod.GET)
+public ModelAndView perfil(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+    Cliente cliente = cliente_bd.porCorreo(a.getParameter("correo")).get(0);
+    model.addAttribute("cliente", cliente);
+    return new ModelAndView("clientec", model);
+    
 }
 
-@RequestMapping(value = "/login", method=RequestMethod.POST)
-public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    String email = String.valueOf(a.getParameter("email"));
-    System.out.println(email);
-    String pass = String.valueOf(a.getParameter("passw"));
-    System.out.println(pass);
-    if(email.equals("hqr@hqr.com")){
-        if(pass.equals("hqr")){
-            redirect.addFlashAttribute("login", "Admin");
-        a.getSession(true).setAttribute("login", "Admin");
-        
-        return new ModelAndView("redirect:/home");
-        }
-    }
-    model.addAttribute("no", "Usuario no valido!" );
-    return new ModelAndView("index", model);
+
+@RequestMapping(value = "home", method=RequestMethod.GET)
+public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String currentPrincipalName = authentication.getName();
+     System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+    System.out.println("hola");
+  if(String.valueOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities()).equals("[ROLE_ADMIN]")){
+    System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+    System.out.println("hola");
+    List b = cliente_bd.getClientes();
+    b.remove(0);
+    model.addAttribute("clientes", b);
+    model.addAttribute("username", currentPrincipalName);
+    return new ModelAndView("home", model);
+   }else{
+      List c = cliente_bd.porCorreo(currentPrincipalName);
+       Cliente aa = (Cliente) c.get(0);
+       long f = aa.getId_cliente();
+       List b = proyecto_bd.getProyecto(f);
+       model.addAttribute("proyectos", b);
+       model.addAttribute("username", currentPrincipalName);
+       return new ModelAndView("homec", model);
+   }
 }
+
+
 
 
 
     
-     @RequestMapping(value = "/borraCliente", method = RequestMethod.POST)
+     @RequestMapping(value = "/administrador/borraCliente", method = RequestMethod.POST)
     public ModelAndView borrarCliente(ModelMap model,HttpServletRequest request){
 
        String id_cliente = request.getParameter("id_cliente"); 
@@ -129,10 +124,10 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        return new ModelAndView("confirmacion",model);   
    }
     
-     @RequestMapping(value = "/crearCliente", method = RequestMethod.POST)
-    public String creaCliente(ModelMap model,HttpServletRequest request){
+     @RequestMapping(value = "/administrador/crearCliente", method = RequestMethod.POST)
+    public String creaCliente(ModelMap model,HttpServletRequest request) throws UnsupportedEncodingException{
        String correo = request.getParameter("correo"); 
-       String password = request.getParameter("password"); 
+        String password = request.getParameter("password"); 
        String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
        String Telefono_Local = request.getParameter("Telefono_Local"); 
        String Telefono_Movil = request.getParameter("Telefono_Movil"); 
@@ -144,13 +139,16 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        String ape_ma=request.getParameter("apellidom");
        
        Cliente c =new Cliente(correo,password,Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1);
-       c.setRol("ROL_CLIENTE");
+       c.setRol("ROLE_CLIENTE");
        cliente_bd.crearCliente(c);
    
        return "redirect:/home";   
    }
 
-     @RequestMapping(value = "/modificarCliente", method = RequestMethod.POST)
+    
+    
+    
+     @RequestMapping(value = "/administrador/modificarCliente", method = RequestMethod.POST)
     public ModelAndView modificarCliente(ModelMap model,HttpServletRequest request){
 
        String id_cliente = request.getParameter("id_cliente"); 
@@ -185,6 +183,44 @@ public ModelAndView login(ModelMap model, HttpServletRequest a, RedirectAttribut
        
        cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
        model.addAttribute("id_cliente", id_cliente);
-       return new ModelAndView("redirect:/show?id="+id_cliente);   
+       return new ModelAndView("redirect:/administrador/show?id="+id_cliente);   
    }
+    
+    
+    @RequestMapping(value = "/cliente/modificarCliente", method = RequestMethod.POST)
+    public ModelAndView modificarClie(ModelMap model,HttpServletRequest request){
+
+       String id_cliente = request.getParameter("id_cliente"); 
+       String correo = request.getParameter("correo"); 
+       String password = "hola"; 
+       String Nombre_Cliente = request.getParameter("Nombre_Cliente");
+       String ape_pa=request.getParameter("apellidop");
+       String ape_ma=request.getParameter("apellidom");
+       String Telefono_Local = request.getParameter("Telefono_Local"); 
+       String Telefono_Movil = request.getParameter("Telefono_Movil"); 
+       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
+       String Area = request.getParameter("Area"); 
+       String Puesto = request.getParameter("Puesto"); 
+       String Nombre_Empresa = request.getParameter("Nombre_Empresa");
+       int habilitado = 1;
+       
+       
+       Cliente c =new Cliente(correo,
+               password,
+               Nombre_Cliente,
+               ape_pa,
+               ape_ma,
+               Telefono_Local,
+               Telefono_Movil,
+               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado);
+       
+       cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
+       model.addAttribute("id_cliente", id_cliente);
+       return new ModelAndView("redirect:/home");   
+   }
+        
+  @RequestMapping(value = "/")
+  public String index(ModelMap model){
+      return "index";
+  }
 }

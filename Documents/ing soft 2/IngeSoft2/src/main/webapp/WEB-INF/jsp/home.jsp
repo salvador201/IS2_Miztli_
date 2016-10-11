@@ -140,15 +140,15 @@ span.psw {
              otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Clientes</a></li>
-                <li><a href="<c:url value="/prueba"/> ">Pruebas</a></li>
-                <li><a href="<c:url value="/proyectos"/> ">Proyectos</a></li>
+               <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
+                <li><a href="<c:url value="/administrador/prueba"/>">Pruebas</a></li>
+                <li><a href="<c:url value="/administrador/proyectos"/>">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Usuario: ${login}</a></li>
-                <li><a href="/IngeSoft2/salir">Salir</a></li>
+                <li><a href="#">Usuario: ${username}</a></li>
+                <li><a href="/IngeSoft2/logout">Salir</a></li>
                 
             </ul>
         </div>
@@ -188,9 +188,9 @@ span.psw {
               <th><h3>Área</h3></th>
           </tr>
   <c:forEach var="cliente" items="${clientes}">
-      <tr <c:if test="${cliente.habilitado!=1}">bgcolor="#FD6C84"</c:if>>
+      <tr <c:if test="${cliente.habilitado == 0}"> bgcolor="#FD6C84" </c:if>>
           
-          <td><a href="<c:url value="/show?id=${cliente.id_cliente}" />">${cliente.nombre_empresa}</a></td>
+          <td><a href="<c:url value="/administrador/show?id=${cliente.id_cliente}" />">${cliente.nombre_empresa}</a></td>
           <td>${cliente.nombre_cliente}</td> 
           <td>${cliente.correo}</td>
           <td>${cliente.area}</td>

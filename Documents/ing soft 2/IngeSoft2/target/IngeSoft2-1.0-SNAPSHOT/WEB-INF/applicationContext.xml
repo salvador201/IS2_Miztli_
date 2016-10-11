@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd" >
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-4.1.xsd">
     
     
      <!-- Se especifica la ruta del archivo que tendra los datos de la conexión a la BD,
@@ -59,5 +62,34 @@
     <bean id="Password_tokenDAO" class="modelo.Password_tokenDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
+    <!-- SpringSecurity -->
+
+    <security:http pattern="/css/*" security="none"/>
+    <security:http pattern="/imagenes/*" security="none"/>
+    <security:http pattern="/js/*" security="none"/>
+    <security:http auto-config='true'>
+        <security:intercept-url pattern="/" access="permitAll" />
+        <security:intercept-url pattern="/administrador/*" access="hasAuthority('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/cliente/*" access="hasAuthority('ROLE_CLIENTE')" />
+        <!-- <security:intercept-url pattern="/**" access="hasAnyRole('ADMINISTRADOR','CLIENTE')" /> -->
+        <security:form-login login-page="/"
+                             authentication-failure-url="/?login_error=1"
+                             default-target-url="/home"
+                             always-use-default-target="true"/>
+        <security:csrf disabled="true"/>
+        <security:access-denied-handler error-page="/" />
+        <security:logout logout-success-url="/"
+                         delete-cookies="JSESSIONID"/>
+        
+    </security:http>
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:password-encoder hash="md5" />
+            <security:jdbc-user-service data-source-ref="dataSource" 
+             users-by-username-query= "select correo, password, 1 from cliente where correo=?"
+             authorities-by-username-query="select correo, rol from cliente where correo=?;"
+            />
+        </security:authentication-provider>
+    </security:authentication-manager>
     
 </beans>

@@ -44,6 +44,22 @@ public class ProyectoDAO {
         }
         return lista;   
      }
+    public List<Proyecto> getProyecto(Long id){
+         Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Proyecto> lista = new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Proyecto where cliente_id = :var");
+             query.setParameter("var",id);
+            lista = query.list();
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return lista;   
+     }
      
      public void crearProyecto(Proyecto pro){
         Session session = sessionFactory.openSession();

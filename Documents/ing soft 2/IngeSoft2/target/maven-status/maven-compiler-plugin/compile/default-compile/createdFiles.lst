@@ -1,4 +1,7 @@
+MapeoBD\Password_token.class
+modelo\Password_tokenDAO.class
 MapeoBD\Cliente.class
+MapeoBD\Empleado_proyecto.class
 controlador\controlador.class
 MapeoBD\Proyecto.class
 controlador\controlador_proyecto.class
@@ -6,5 +9,6 @@ modelo\EmpleadoDAO.class
 modelo\ClienteDAO.class
 MapeoBD\Empleado.class
 modelo\ClienteDAOint.class
+modelo\Empleado_proyectoDAO.class
 controlador\controlador_empleado.class
 modelo\ProyectoDAO.class

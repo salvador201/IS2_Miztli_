@@ -162,10 +162,10 @@ span.psw {
       <h3>Ingreso</h3>
     <form method="POST" action="/IngeSoft2/login">
     <label>Correo electrónico</label>
-    <input type="text" placeholder="email@ejemplo.com" name="email">
+    <input type="text" placeholder="email@ejemplo.com" name="username">
     <br>
     <label><b>Contraseña</b></label>
-    <input type="password" placeholder="contraseña" name="passw">
+    <input type="password" placeholder="contraseña" name="password">
     <br>        
     <button type="submit">Ingresar</button>
     <br>

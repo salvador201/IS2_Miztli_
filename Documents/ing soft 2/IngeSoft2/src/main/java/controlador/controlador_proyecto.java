@@ -32,10 +32,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class controlador_proyecto {
  @Autowired
-    private ProyectoDAO proyecto_bd;
+ private ProyectoDAO proyecto_bd;
  
  
-@RequestMapping(value = "/show_P", method=RequestMethod.GET)
+@RequestMapping(value = "/administrador/show_p", method=RequestMethod.GET)
 public ModelAndView mostrarp(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Proyecto proyecto = proyecto_bd.verProyecto(Long.parseLong(a.getParameter("id")));
     if(proyecto.getHabilitado() == 1){
@@ -46,11 +46,9 @@ public ModelAndView mostrarp(ModelMap model, HttpServletRequest a, RedirectAttri
     
 }
  
- @RequestMapping(value = "/proyectos", method=RequestMethod.GET)
+ @RequestMapping(value = "/administrador/proyectos", method=RequestMethod.GET)
 public ModelAndView proyecots(HttpServletRequest a, ModelMap b){
-     if(a.getSession().getAttribute("login") == null){
-         return new ModelAndView("redirect:/");
-     }
+     
      List c = proyecto_bd.getProyectos();
      b.addAttribute("proyectos", c);
      return new ModelAndView("datos_proyecto",b);   
@@ -58,9 +56,7 @@ public ModelAndView proyecots(HttpServletRequest a, ModelMap b){
  
 @RequestMapping(value = "/verifica", method=RequestMethod.GET)
 public String crear(HttpServletRequest a){
-     if(a.getSession().getAttribute("login") == null){
-         return "redirect:/";
-     }
+     
     return "crearpro";
 }
  @RequestMapping(value = "/verProyecto", method = RequestMethod.POST)
@@ -123,7 +119,6 @@ public String crear(HttpServletRequest a){
        }
        Proyecto p=new Proyecto(
                Long.parseLong(cli_id),
-               Long.parseLong(prueba_id),
                nom_Pro, 
                descripcion,
                inicio,
