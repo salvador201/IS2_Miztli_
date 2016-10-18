@@ -36,7 +36,7 @@ public class controlador_proyecto {
  
  
 @RequestMapping(value = "/administrador/show_p", method=RequestMethod.GET)
-public ModelAndView mostrarp(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+public ModelAndView show_proyecto(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Proyecto proyecto = proyecto_bd.verProyecto(Long.parseLong(a.getParameter("id")));
     if(proyecto.getHabilitado() == 1){
         model.addAttribute("checado", "checked");
@@ -47,15 +47,15 @@ public ModelAndView mostrarp(ModelMap model, HttpServletRequest a, RedirectAttri
 }
  
  @RequestMapping(value = "/administrador/proyectos", method=RequestMethod.GET)
-public ModelAndView proyecots(HttpServletRequest a, ModelMap b){
+public ModelAndView admin_proyecto(HttpServletRequest a, ModelMap b){
      
      List c = proyecto_bd.getProyectos();
      b.addAttribute("proyectos", c);
      return new ModelAndView("datos_proyecto",b);   
 }
  
-@RequestMapping(value = "/verifica", method=RequestMethod.GET)
-public String crear(HttpServletRequest a){
+@RequestMapping(value = "/verificaProyecto", method=RequestMethod.GET)
+public String crearProyecto(HttpServletRequest a){
      
     return "crearpro";
 }

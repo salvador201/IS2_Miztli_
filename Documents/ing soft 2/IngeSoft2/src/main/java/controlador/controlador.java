@@ -9,9 +9,13 @@ package controlador;
 import MapeoBD.Cliente;
 import MapeoBD.Proyecto;
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
 import modelo.ProyectoDAO;
@@ -127,7 +131,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
      @RequestMapping(value = "/administrador/crearCliente", method = RequestMethod.POST)
     public String creaCliente(ModelMap model,HttpServletRequest request) throws UnsupportedEncodingException{
        String correo = request.getParameter("correo"); 
-        String password = request.getParameter("password"); 
+       
        String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
        String Telefono_Local = request.getParameter("Telefono_Local"); 
        String Telefono_Movil = request.getParameter("Telefono_Movil"); 
@@ -137,8 +141,25 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
        String ape_pa=request.getParameter("apellidop");
        String ape_ma=request.getParameter("apellidom");
+       String pass = request.getParameter("password");
+       String rol="ROLE_CLIENTE";
+       String password= null;
+       MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+            md.update(pass.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+                } 
+            password=sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
        
-       Cliente c =new Cliente(correo,password,Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1);
+       Cliente c =new Cliente(correo,password,Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1,rol);
        c.setRol("ROLE_CLIENTE");
        cliente_bd.crearCliente(c);
    
@@ -152,7 +173,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
     public ModelAndView modificarCliente(ModelMap model,HttpServletRequest request){
 
        String id_cliente = request.getParameter("id_cliente"); 
-       String correo = request.getParameter("correo"); 
+       String correo = request.getParameter("correo");  
        String password = "hola"; 
        String Nombre_Cliente = request.getParameter("Nombre_Cliente");
        String ape_pa=request.getParameter("apellidop");
@@ -163,6 +184,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa");
+       String Rol = request.getParameter("ROL");
        int habilitado;
        if (request.getParameter("habilitado") == null ){
            habilitado = 0;
@@ -179,7 +201,8 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
                ape_ma,
                Telefono_Local,
                Telefono_Movil,
-               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado);
+               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado,
+               Rol );
        
        cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
        model.addAttribute("id_cliente", id_cliente);
@@ -202,6 +225,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa");
+       String Rol = request.getParameter("ROL");
        int habilitado = 1;
        
        
@@ -212,7 +236,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
                ape_ma,
                Telefono_Local,
                Telefono_Movil,
-               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado);
+               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado,Rol);
        
        cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
        model.addAttribute("id_cliente", id_cliente);

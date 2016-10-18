@@ -44,6 +44,7 @@ public class ProyectoDAO {
         }
         return lista;   
      }
+    
     public List<Proyecto> getProyecto(Long id){
          Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -111,8 +112,8 @@ public class ProyectoDAO {
      }
      
     public void borrarProyecto(String nom){
-     Session session = sessionFactory.openSession();
-        Transaction tx = null;
+        Session session = sessionFactory.openSession();
+           Transaction tx = null;
         Proyecto pro = null;
          List<Proyecto> lista=null; 
         try {

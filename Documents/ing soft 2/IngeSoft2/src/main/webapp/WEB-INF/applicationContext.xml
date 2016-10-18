@@ -31,6 +31,9 @@
                 <value>MapeoBD.Empleado</value>  
                 <value>MapeoBD.Empleado_proyecto</value>  
                 <value>MapeoBD.Password_token</value>  
+                <value>MapeoBD.Pregunta</value> 
+                <value>MapeoBD.Prueba</value>   
+                <value>MapeoBD.Respuesta</value>  
             </list>
         </property>    
         <property name="hibernateProperties">
@@ -62,6 +65,19 @@
     <bean id="Password_tokenDAO" class="modelo.Password_tokenDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
+    
+    <bean id="PreguntaDAO" class="modelo.PreguntaDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    
+    <bean id="PruebaDAO" class="modelo.PruebaDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    
+    <bean id="RespuestaDAO" class="modelo.RespuestaDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    
     <!-- SpringSecurity -->
 
     <security:http pattern="/css/*" security="none"/>
