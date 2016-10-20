@@ -28,21 +28,21 @@ public class EmpleadoDAO {
     
     
     
-    public List<Empleado> getEmpleadosP(long proyecto){
+    public Empleado getEmpleadosP(long id_empleado){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         List<Empleado> lista = new LinkedList<>();
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Empleado where proyecto_id = :var");
-            query.setParameter("var",proyecto);
+            Query query = session.createQuery("from Empleado where id_empleado = :var");
+            query.setParameter("var",id_empleado);
             lista = query.list();
         }catch(Exception e){
             e.printStackTrace(); 
         }finally{
             session.close();
         }
-        return lista;
+        return lista.get(0);
     }
     
     public List<Empleado> getEmpleados(){
