@@ -8,7 +8,11 @@ package modelo;
 
 
 import MapeoBD.Cliente;
+import MapeoBD.Empleado;
+import MapeoBD.Empleado_proyecto;
 import MapeoBD.Proyecto;
+import MapeoBD.Prueba;
+import MapeoBD.Prueba_Proyecto;
 import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Query;
@@ -45,14 +49,19 @@ public class ProyectoDAO {
         return lista;   
      }
     
+    /**
+     * Consulta A
+     * @param id
+     * @return 
+     */
     public List<Proyecto> getProyecto(Long id){
-         Session session = sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         Transaction tx = null;
         List<Proyecto> lista = new LinkedList<>();
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("from Proyecto where cliente_id = :var");
-             query.setParameter("var",id);
+            query.setParameter("var",id);
             lista = query.list();
         }catch(Exception e){
             e.printStackTrace(); 
@@ -61,7 +70,86 @@ public class ProyectoDAO {
         }
         return lista;   
      }
+    
+    /**
+     * Consulta B
+     * @param id_proyecto
+     * @return 
+     */
+     public Cliente dameCliente(Long id_proyecto){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Cliente> lista=null;
+        Cliente dueno=null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Proyecto where id_proyecto = :var");
+            query.setParameter("var",id_proyecto);
+            lista = query.list();
+            dueno = (Cliente) session.get(Proyecto.class,lista.get(0).getId_cliente());
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return dueno;
+     }
+    
+     /**
+      * Consulta C
+      * @param id_proyecto
+      * @return 
+      */
+     public List<Prueba> damePruebas(Long id_proyecto){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Prueba_Proyecto> lista=new LinkedList<>();
+        List<Prueba> pruebas=new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Prueba_Proyecto where prueba_id = :var");
+            query.setParameter("var",id_proyecto);
+            lista = query.list();
+            Query query_prueba = session.createQuery("from Prueba where id_prueba = :var");
+            query_prueba.setParameter("var",lista.get(0).getPrueba_id());
+            pruebas= query_prueba.list();
+            
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return pruebas;  
+         
+     }
      
+     /**
+      * Consulta D
+      * @param id_proyecto
+      * @return 
+      */
+     public List<Empleado> dameEmpleados(Long id_proyecto){
+         Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Empleado_proyecto> lista=new LinkedList<>();
+        List<Empleado> empleados=new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Empleado_proyecto where proyecto_id = :var");
+            query.setParameter("var",id_proyecto);
+            lista = query.list();
+            Query query_empleado = session.createQuery("from Empleado where id_empleado = :var");
+            query_empleado.setParameter("var",lista.get(0).getEmpleado_id());
+            empleados= query_empleado.list();
+            
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return empleados;  
+         
+     }
      public void crearProyecto(Proyecto pro){
         Session session = sessionFactory.openSession();
         Transaction tx = null;

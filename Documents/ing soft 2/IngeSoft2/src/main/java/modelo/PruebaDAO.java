@@ -160,7 +160,7 @@ public class PruebaDAO {
           
       }
       
-
+      
       public Prueba verPrueba(Long id){
         Session session = sessionFactory.openSession();
         Transaction tx = null;

@@ -6,7 +6,10 @@
 package controlador;
 
 
+import MapeoBD.Cliente;
+import MapeoBD.Empleado;
 import MapeoBD.Proyecto;
+import MapeoBD.Prueba;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -84,7 +87,73 @@ public String crearProyecto(HttpServletRequest a){
        
        
     }
+    /**
+     * Consulta A 
+     * todos los proyectos que son de un cliente por id
+     * @param model
+     * @param request
+     * @return 
+     */
+    @RequestMapping(value = "/verProyectos_cliente", method = RequestMethod.POST)
+    public ModelAndView ConsultarProyectos_cliente(ModelMap model,HttpServletRequest request){
+        String id_cliente = request.getParameter("id_cliente"); 
+       List<Proyecto> proyectos= proyecto_bd.getProyecto(Long.parseLong(id_cliente));
+       
+       model.addAttribute("proyectos", proyectos);
+       
+       return new ModelAndView("proyectos_cliente",model);   
+    }
     
+    /**
+     * Consulta B
+     * obtener el cliente dado un proyecto por id
+     * @param model
+     * @param request
+     * @return 
+     */
+    @RequestMapping(value = "/clientede_proyecto", method = RequestMethod.POST)
+    public ModelAndView ConsultarCliente_proyecto(ModelMap model,HttpServletRequest request){
+        String id_proyecto = request.getParameter("id_proyecto");
+        Cliente cliente=proyecto_bd.dameCliente(Long.parseLong(id_proyecto));
+        
+        model.addAttribute("cliente", cliente);
+       
+       return new ModelAndView("cliente_proyecto",model);   
+        
+    }
+    
+    /**
+     * Consulta C
+     * dado un proyecto obtener las pruebas asociadas a el
+     * @param model
+     * @param request
+     * @return 
+     */
+     @RequestMapping(value = "/proyecto_pruebas", method = RequestMethod.POST)
+    public ModelAndView proyecto_pruebas(ModelMap model,HttpServletRequest request){
+        String id_proyecto = request.getParameter("id_proyecto");
+        List<Prueba> pruebas=proyecto_bd.damePruebas(Long.parseLong(id_proyecto));
+        model.addAttribute("pruebas", pruebas);
+       
+       return new ModelAndView("verproyecto_pruebas",model);  
+    }
+    
+    /**
+     * Consulta D
+     * dado un proyecto obtener las pruebas asociadas a el 
+     * @param model
+     * @param request
+     * @return 
+     */
+    @RequestMapping(value = "/proyecto_empleados", method = RequestMethod.POST)
+    public ModelAndView proyecto_empleados(ModelMap model,HttpServletRequest request){
+        String id_proyecto = request.getParameter("id_proyecto");
+        List<Empleado> empleados=proyecto_bd.dameEmpleados(Long.parseLong(id_proyecto));
+        model.addAttribute("pruebas", empleados);
+       
+       return new ModelAndView("verproyecto_empleado",model);  
+        
+    }
      @RequestMapping(value = "/borraProyecto", method = RequestMethod.POST)
     public ModelAndView borrarProyecto(ModelMap model,HttpServletRequest request){
          String nom_Pro = request.getParameter("nom_Pro"); 
@@ -133,7 +202,7 @@ public String crearProyecto(HttpServletRequest a){
     
     
     @RequestMapping(value = "/remodificaProyecto", method = RequestMethod.POST)
-    public ModelAndView remodificaCliente(ModelMap model,HttpServletRequest request){
+    public ModelAndView remodificaProyecto(ModelMap model,HttpServletRequest request){
         String nom_Pro=request.getParameter("nom_Pro");
         
         
@@ -151,7 +220,7 @@ public String crearProyecto(HttpServletRequest a){
        
     
     @RequestMapping(value = "/modificaProyecto", method = RequestMethod.POST)
-    public ModelAndView modificaCliente(ModelMap model,HttpServletRequest request){
+    public ModelAndView modificaProyecto(ModelMap model,HttpServletRequest request){
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
        
        String id_proyecto=request.getParameter("id_proyecto");
