@@ -9,6 +9,7 @@ package controlador;
 import MapeoBD.Prueba;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import modelo.ClienteDAO;
 
 import modelo.PruebaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class controlador_prueba {
     @Autowired
     private PruebaDAO prueba_bd;
+    private ClienteDAO cliente_db;
     
     @RequestMapping(value = "/administrador/show_prueba", method=RequestMethod.GET)
     public ModelAndView show_prueba(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
@@ -117,4 +119,13 @@ public class controlador_prueba {
             prueba_bd.modificaPrueba(p, Long.parseLong(id_prueba));
              return new ModelAndView("home",model);  
     }
+    
+     @RequestMapping(value = "/ClientePruebas", method = RequestMethod.POST)
+    public ModelAndView daPruebasCliente(ModelMap model,HttpServletRequest request){
+        String id_cliente=request.getParameter("id");
+        model.addAttribute("pruebas",cliente_db.daPruebas(Long.parseLong(id_cliente)));
+        return new ModelAndView("Lista_pruebas",model);  
+        
+    }
+    
 }
