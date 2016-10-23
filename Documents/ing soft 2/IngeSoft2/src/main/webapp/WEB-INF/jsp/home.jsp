@@ -200,8 +200,17 @@ span.psw {
         </c:forEach>
       </table>
   </center>
-      
-<hr>
+  
+  <br>
+  <br>
+  <br>
+ 
+     <a href="<c:url value="/exportarExcelCliente"/> "><button>Exportar Excel</button></a>
+    
+ 
+
+  
+  <hr>
       <footer class="text-muted">
       <div class="col-sm-6">
           <center><p>&copy; <img src="<c:url value="/imagenes/miztli.png" /> " width="70" ></p></center>

@@ -6,6 +6,7 @@
 package controlador;
 
 
+import ExcelView.ClientesExcelView;
 import MapeoBD.Cliente;
 import MapeoBD.Proyecto;
 import java.io.UnsupportedEncodingException;
@@ -25,6 +26,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,12 +47,6 @@ public class controlador {
     
     @Autowired
     private ProyectoDAO proyecto_bd;
-    
-    
-
- 
-
-
 
 
 @RequestMapping(value = "/administrador/prueba", method=RequestMethod.GET)
@@ -111,7 +107,13 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
    }
 }
 
-
+ @RequestMapping(value="/exportarExcelCliente", method = RequestMethod.GET)
+    public ClientesExcelView exportarExcelAlumnoNombre(Model model, HttpServletRequest request, RedirectAttributes redirect){
+       
+        model.addAttribute("clientes", cliente_bd.getClientes());    
+        
+        return new ClientesExcelView();
+    }
 
 
 

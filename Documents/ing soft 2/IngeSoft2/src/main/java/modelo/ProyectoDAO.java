@@ -63,6 +63,7 @@ public class ProyectoDAO {
             Query query = session.createQuery("from Proyecto where cliente_id = :var");
             query.setParameter("var",id);
             lista = query.list();
+            tx.commit();
         }catch(Exception e){
             e.printStackTrace(); 
         }finally{

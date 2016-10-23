@@ -6,8 +6,11 @@
 package modelo;
 
 import MapeoBD.Cliente;
+import MapeoBD.Prueba;
+import MapeoBD.Prueba_Cliente;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.beans.binding.Bindings;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -60,14 +63,9 @@ public class ClienteDAO implements ClienteDAOint {
       Session session = sessionFactory.openSession();
         Transaction tx = null;
         Cliente cli = null;
-        
-        
         try {
            tx = session.beginTransaction();
-           
-           
            cli = (Cliente) session.get(Cliente.class, numero);
-             
            tx.commit();
         }
         catch (Exception e) {
@@ -157,5 +155,38 @@ public class ClienteDAO implements ClienteDAOint {
            session.close();
         }
     }
-    
+    /**
+     * Consulta E
+     * las pruebas de un cliente disponibles apartir del ID del cliente
+     * @param id
+     * @return 
+     */
+      public List<Prueba> daPruebas(long id){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Prueba_Cliente pc= null;
+        List<Prueba_Cliente> lista = new LinkedList<>();
+        List<Prueba> pruebas=new LinkedList<>();
+        try {
+           tx = session.beginTransaction();
+           Query query = session.createQuery("from Prueba_Cliente where cliente_id = :var");
+           query.setParameter("var",id);
+           lista = query.list();
+           for(int i=0;i<lista.size();i++){
+               pc =lista.get(i);
+               pruebas.add((Prueba) session.get(Prueba.class, pc.getPrueba_id()));
+           }
+           tx.commit();
+        }
+        catch (Exception e) {
+           if (tx!=null){
+               tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+           session.close();
+        }
+        
+        return pruebas;
+      }
 }
