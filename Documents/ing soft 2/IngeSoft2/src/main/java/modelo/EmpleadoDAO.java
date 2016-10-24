@@ -96,7 +96,7 @@ public class EmpleadoDAO {
             viejo.setEstado_civil(em.getEstado_civil());
             viejo.setNumero_hijos(em.getNumero_hijos());
             viejo.setFecha_nacimiento(em.getFecha_nacimiento());
-            viejo.setAntiguiedad(em.getAntiguiedad());
+            viejo.setAntiguiedad(em.getAntiguedad());
             viejo.setSueldo_mensual(em.getSueldo_mensual());
             viejo.setSexo(em.getSexo());
             viejo.setCandidato(em.getCandidato());
@@ -144,7 +144,7 @@ public class EmpleadoDAO {
             viejo.setEstado_civil(em.getEstado_civil());
             viejo.setNumero_hijos(em.getNumero_hijos());
             viejo.setFecha_nacimiento(em.getFecha_nacimiento());
-            viejo.setAntiguiedad(em.getAntiguiedad());
+            viejo.setAntiguiedad(em.getAntiguedad());
             viejo.setSueldo_mensual(em.getSueldo_mensual());
             viejo.setSexo(em.getSexo());
             viejo.setCandidato(em.getCandidato());

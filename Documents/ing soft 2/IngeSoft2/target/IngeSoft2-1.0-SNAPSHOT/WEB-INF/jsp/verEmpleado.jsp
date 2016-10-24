@@ -1,15 +1,20 @@
 <%-- 
-    Document   : consulta2
-    Created on : 13-sep-2016, 20:10:47
-    Author     : Marco
+    Document   : verEmpleado
+    Created on : 24-oct-2016, 1:23:09
+    Author     : Salvador
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="es-MX">
-   <head>
-    <meta charset="utf-8">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="<c:url value="/js/jquery-1.12.4.min.js" />" ></script>
+        <script src="<c:url value="/js/jquery.validate.js" />" ></script>
+        <script src="<c:url value="/js/form-validation.js" />" ></script>
+        
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -41,19 +46,16 @@ th {
         
    .formlog2{
     border: 5px solid #A0B5EC;
-    width: 30%;
+    width: 80%;
     padding: 10px;
-   position: relative;
-    left: 30px;
+  
 
     
 }
 
     .formlog{
     border: 5px solid #A0B5EC;
-    width: 30%;
-    position: absolute;
-    right: 30px;
+    width: 80%;
     padding: 10px;
 }
 
@@ -140,7 +142,7 @@ span.psw {
              otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-               <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
+                <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
                 <li><a href="<c:url value="/administrador/prueba"/>">Pruebas</a></li>
                 <li><a href="<c:url value="/administrador/proyectos"/>">Proyectos</a></li>
                 <li><a href="#">Reportes</a></li>
@@ -148,81 +150,53 @@ span.psw {
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Usuario: ${username}</a></li>
-                <li><a href="/IngeSoft2/logout">Salir</a></li>
+                <li><a href="/IngeSoft2/salir">Salir</a></li>
                 
             </ul>
         </div>
     </nav>
-  </head>
-  <body>
-    <div id="first" class="first">  
-   <center><img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " height="250" width="180"></center>
-    </div>
-    
-      <hr/>
-
-      <div class="container doe">
-      <img src="<c:url value="/imagenes/mexico.png" /> " style="width:100%; height:100%;">
-      </div>
-        <div class="col-xs-12">
-          <center><h3>Eslogan de la empresa.</h3>
-
-          </center>
-          </div>
-          <br>
-          <br>
-          <br>
-          <a href="<c:url value="/crear"/> "><button>Agregar Cuenta</button></a>
-          <br> 
-          <br> 
-          <a href="<c:url value="/verificaEmpleado"/> "><button>Agregar Empleado</button></a>
-          <br> 
-          
-  <center><h2>Cuentas de empresas:</h2>
+    </head>
+    <body>
+    <center><h2>Datos Empleado:</h2>
       <br>
       <table>
           <tr>
-              <th><h3>Empresa</h3></th>
-              <th><h3>Titular de Empresa</h3></th>
-              <th><h3>Correo</h3></th>
-              <th><h3>Puesto</h3></th>
-              <th><h3>Área</h3></th>
+              <th><h3>Direccion</h3></th>
+              <th><h3>horas x semana</h3></th>
+              <th><h3>carrera</h3></th>
+              <th><h3>estado civil</h3></th>
+              <th><h3>numero hijos</h3></th>
+              <th><h3>fecha nacimiento</h3></th>
+              <th><h3>antiguedad</h3></th>
+              <th><h3>sueldo mensual</h3></th>
+              <th><h3>sexo</h3></th>
+              <th><h3>candidato</h3></th>
           </tr>
-  <c:forEach var="cliente" items="${clientes}">
-      <tr <c:if test="${cliente.habilitado == 0}"> bgcolor="#FD6C84" </c:if>>
+ 
+      <tr <c:if test="${empleado.habilitado == 0}"> bgcolor="#FD6C84" </c:if>>
           
-          <td><a href="<c:url value="/administrador/show?id=${cliente.id_cliente}" />">${cliente.nombre_empresa}</a></td>
-          <td>${cliente.nombre_cliente}</td> 
-          <td>${cliente.correo}</td>
-          <td>${cliente.area}</td>
-          <td>${cliente.puesto}</td>
+          
+          <td>${empleado.direccion}</td> 
+          <td>${empleado.horas_x_semana}</td> 
+          <td>${empleado.carrera}</td> 
+          <td>${empleado.estado_civil}</td> 
+          <td>${empleado.numero_hijos}</td> 
+          <td>${empleado.fecha_nacimiento}</td> 
+          <td>${empleado.antiguedad}</td> 
+          <td>${empleado.sueldo_mensual}</td> 
+          <td>${empleado.sexo}</td> 
+          <td>${empleado.candidato}</td> 
+          
           
       </tr>
-        </c:forEach>
+        
       </table>
   </center>
-  
-  <br>
-  <br>
-  <br>
- 
-     <a href="<c:url value="/exportarExcelCliente"/> "><button>Exportar Excel</button></a>
-    
- 
-
-  
-  <hr>
+    </body>
+    <hr>
       <footer class="text-muted">
       <div class="col-sm-6">
           <center><p>&copy; <img src="<c:url value="/imagenes/miztli.png" /> " width="70" ></p></center>
         </div>      
     </footer>
-        
-        
-
-    
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 </html>
- 

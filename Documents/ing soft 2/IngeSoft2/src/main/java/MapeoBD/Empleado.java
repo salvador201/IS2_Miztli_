@@ -45,8 +45,8 @@ public class Empleado {
     @Column(name = "fecha_nacimiento")
     private Date fecha_nacimiento;
     
-    @Column(name = "antiguiedad")
-    private String antiguiedad;
+    @Column(name = "antiguedad")
+    private String antiguedad;
     
     @Column(name = "sueldo_mensual")
     private String sueldo_mensual;
@@ -60,7 +60,7 @@ public class Empleado {
     @Column(name = "habilitado")
     private int habilitado;
 
-    public Empleado(long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguiedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
+    public Empleado(long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
         this.cliente_id = cliente_id;
         this.direccion = direccion;
         this.horas_x_semana = horas_x_semana;
@@ -68,14 +68,14 @@ public class Empleado {
         this.estado_civil = estado_civil;
         this.numero_hijos = numero_hijos;
         this.fecha_nacimiento = fecha_nacimiento;
-        this.antiguiedad = antiguiedad;
+        this.antiguedad = antiguedad;
         this.sueldo_mensual = sueldo_mensual;
         this.sexo = sexo;
         this.candidato = candidato;
         this.habilitado = habilitado;
     }
 
-    public Empleado(long id_empleado, long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguiedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
+    public Empleado(long id_empleado, long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
         this.id_empleado = id_empleado;
         this.cliente_id = cliente_id;
         this.direccion = direccion;
@@ -84,7 +84,7 @@ public class Empleado {
         this.estado_civil = estado_civil;
         this.numero_hijos = numero_hijos;
         this.fecha_nacimiento = fecha_nacimiento;
-        this.antiguiedad = antiguiedad;
+        this.antiguedad = antiguedad;
         this.sueldo_mensual = sueldo_mensual;
         this.sexo = sexo;
         this.candidato = candidato;
@@ -156,12 +156,12 @@ public class Empleado {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public String getAntiguiedad() {
-        return antiguiedad;
+    public String getAntiguedad() {
+        return antiguedad;
     }
 
-    public void setAntiguiedad(String antiguiedad) {
-        this.antiguiedad = antiguiedad;
+    public void setAntiguiedad(String antiguedad) {
+        this.antiguedad = antiguedad;
     }
 
     public String getSueldo_mensual() {

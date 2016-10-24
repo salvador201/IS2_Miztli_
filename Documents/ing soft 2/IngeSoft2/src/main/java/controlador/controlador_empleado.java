@@ -6,6 +6,7 @@
 package controlador;
 
 
+import MapeoBD.Cliente;
 import MapeoBD.Empleado;
 import MapeoBD.Proyecto;
 import java.text.ParseException;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import modelo.ClienteDAO;
 import modelo.EmpleadoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +36,8 @@ public class controlador_empleado {
 
  @Autowired
  private EmpleadoDAO empleado_bd;
- 
+ @Autowired
+ private ClienteDAO cliente_bd;
  @RequestMapping(value = "/empleados", method=RequestMethod.GET)
 public ModelAndView listaEmpleados(HttpServletRequest a, ModelMap b){
      if(a.getSession().getAttribute("login") == null){
@@ -45,12 +48,10 @@ public ModelAndView listaEmpleados(HttpServletRequest a, ModelMap b){
      return new ModelAndView("datos_empleado",b);   
 }
 
-@RequestMapping(value = "/verificaempleado", method=RequestMethod.GET)
+@RequestMapping(value = "/verificaEmpleado", method=RequestMethod.GET)
 public String crearEmpleado(HttpServletRequest a){
-     if(a.getSession().getAttribute("login") == null){
-         return "redirect:/";
-     }
-    return "crear_empleado";
+     
+    return "crearEm";
 }
 
 @RequestMapping(value = "/verEmpleado", method = RequestMethod.POST)
@@ -66,7 +67,7 @@ public String crearEmpleado(HttpServletRequest a){
        String edo_civil=empleado.getEstado_civil();
        int numero_hijos=empleado.getNumero_hijos();
        Date fecha_nac=empleado.getFecha_nacimiento();
-       String antiguedad=empleado.getAntiguiedad();
+       String antiguedad=empleado.getAntiguedad();
        String sueldo=empleado.getSueldo_mensual();
        String sexo=empleado.getSexo();
        String candidato=empleado.getCandidato();
@@ -104,12 +105,14 @@ public String crearEmpleado(HttpServletRequest a){
     
     
     @RequestMapping(value = "/crearEmpleado", method = RequestMethod.POST)
-    public String creaEmpleado(ModelMap model,HttpServletRequest request){
+    public ModelAndView creaEmpleado(ModelMap model,HttpServletRequest request){
         
        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
        
        
-       String cliente_id=request.getParameter("cliente_id");
+       String nombre_empresa=request.getParameter("Nombre_Empresa");
+       Cliente aux=cliente_bd.porEmpresa(nombre_empresa);
+       long cliente_id=aux.getId_cliente();
        String direcciones=request.getParameter("direccion");
        String h_x_s=request.getParameter("horas_x_semana");
        String carrera=request.getParameter("carrera");
@@ -132,7 +135,7 @@ public String crearEmpleado(HttpServletRequest a){
          Logger.getLogger(controlador_empleado.class.getName()).log(Level.SEVERE, null, ex);
        }
        Empleado e=new Empleado(
-               Long.parseLong(cliente_id),
+               cliente_id,
                direcciones,
                Integer.parseInt(h_x_s),
                carrera,
@@ -146,8 +149,8 @@ public String crearEmpleado(HttpServletRequest a){
                1);
        
        empleado_bd.crearEmpleado(e);
-       
-       return "home";
+       model.addAttribute("empleado", e);
+       return new ModelAndView("verEmpleado",model); 
        
     }
 }

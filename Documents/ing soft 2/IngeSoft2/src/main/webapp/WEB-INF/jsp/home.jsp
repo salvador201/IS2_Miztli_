@@ -174,8 +174,9 @@ span.psw {
           <br>
           <a href="<c:url value="/crear"/> "><button>Agregar Cuenta</button></a>
           <br> 
-          
-          
+          <br> 
+          <a href="<c:url value="/verificaEmpleado"/> "><button>Agregar Empleado</button></a>
+          <br> 
           
   <center><h2>Cuentas de empresas:</h2>
       <br>

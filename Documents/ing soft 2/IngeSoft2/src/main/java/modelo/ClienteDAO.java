@@ -43,6 +43,25 @@ public class ClienteDAO implements ClienteDAOint {
         }
         return lista;   
      }
+    
+    public Cliente porEmpresa(String empresa){
+         Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Cliente> lista = new LinkedList<>();
+        Cliente cli=null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Cliente where nombre_empresa = :var");
+            query.setParameter("var",empresa);
+            lista = query.list();
+            cli=lista.get(0);
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return cli;   
+     }
      public List<Cliente> getClientes(){
          Session session = sessionFactory.openSession();
         Transaction tx = null;
