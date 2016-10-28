@@ -80,14 +80,15 @@ public class ProyectoDAO {
      public Cliente dameCliente(Long id_proyecto){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        List<Cliente> lista=null;
+        List<Proyecto> lista=null;
         Cliente dueno=null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Proyecto where id_proyecto = :var");
+            Query query = session.createQuery("from Proyecto where cliente_id = :var");
             query.setParameter("var",id_proyecto);
             lista = query.list();
-            dueno = (Cliente) session.get(Proyecto.class,lista.get(0).getId_cliente());
+            long d = lista.get(0).getCliente_id();
+            dueno = (Cliente) session.get(Cliente.class, d);
         }catch(Exception e){
             e.printStackTrace(); 
         }finally{
@@ -108,11 +109,12 @@ public class ProyectoDAO {
         List<Prueba> pruebas=new LinkedList<>();
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Prueba_Proyecto where prueba_id = :var");
+            Query query = session.createQuery("from Prueba_Proyecto where proyecto_id = :var");
             query.setParameter("var",id_proyecto);
             lista = query.list();
             Query query_prueba = session.createQuery("from Prueba where id_prueba = :var");
-            query_prueba.setParameter("var",lista.get(0).getPrueba_id());
+            long bbb = 1;
+            query_prueba.setParameter("var",bbb);
             pruebas= query_prueba.list();
             
         }catch(Exception e){

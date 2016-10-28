@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Salvador
  */
 @Entity
-@Table(name="Prueba")
+@Table(name="Prueba_Proyecto")
 public class Prueba_Proyecto {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id_prueba_proyecto")
@@ -38,6 +38,10 @@ public class Prueba_Proyecto {
     
     @Column(name = "habilitado")
     private int habilitado;
+    
+    Prueba_Proyecto(){
+        
+    }
 
     public Prueba_Proyecto(long id_prueba_proyecto, long prueba_id, long proyecto_id, int puntaje_prueba, Date fecha_creacion, int habilitado) {
         this.id_prueba_proyecto = id_prueba_proyecto;

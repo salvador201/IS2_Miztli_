@@ -34,6 +34,7 @@
                 <value>MapeoBD.Pregunta</value> 
                 <value>MapeoBD.Prueba</value>   
                 <value>MapeoBD.Respuesta</value>  
+                <value>MapeoBD.Prueba_Proyecto</value>  
             </list>
         </property>    
         <property name="hibernateProperties">

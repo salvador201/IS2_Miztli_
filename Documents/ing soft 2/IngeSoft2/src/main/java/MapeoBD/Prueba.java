@@ -39,6 +39,10 @@ public class Prueba {
         this.habilitado = habilitado;
     }
     
+    public Prueba(){
+        
+    }
+    
     
     
    

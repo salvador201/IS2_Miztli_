@@ -44,6 +44,10 @@ public ModelAndView show_proyecto(ModelMap model, HttpServletRequest a, Redirect
     if(proyecto.getHabilitado() == 1){
         model.addAttribute("checado", "checked");
     }
+    Cliente e = proyecto_bd.dameCliente(proyecto.getCliente_id());
+    List<Prueba> pruebas = proyecto_bd.damePruebas(proyecto.getId_proyecto());
+    model.addAttribute("pruebas", pruebas);
+    model.addAttribute("cliente",e);
     model.addAttribute("proyecto", proyecto);
     return new ModelAndView("remodificadoPro", model);
     
@@ -231,6 +235,9 @@ public String crearProyecto(HttpServletRequest a){
        String fecha_inicio=request.getParameter("fecha_inicio");
        String fecha_fin=request.getParameter("fecha_fin");
        String habilitado=request.getParameter("habilitado");
+       if(habilitado == null){
+           habilitado = "0";
+       }
        Date inicio=null;
        Date fin=null;
        try {
@@ -242,8 +249,8 @@ public String crearProyecto(HttpServletRequest a){
        Proyecto p;
      
          p = new Proyecto(
+                 Long.parseLong(id_proyecto),
                  Long.parseLong(cli_id),
-                 Long.parseLong(prueba_id),
                  nom_Pro,
                  descripcion,
                  inicio,
