@@ -91,7 +91,7 @@ body, html {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
-      <li><a href="#"><img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " width="60" height="90"></a></li>
+      <li><a href="#"></a></li>
     <li class="w3-hide-small w3-right">
         <form method="POST" action="/IngeSoft2/login" class="form-inline">
             <form class="form-inline">
@@ -109,6 +109,8 @@ body, html {
     </li>
   </ul>
 </div>
+
+
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container">

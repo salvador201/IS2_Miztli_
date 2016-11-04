@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <style>
-        
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </style>
     <title>HQR</title>
   	<nav class="navbar navbar-default w3-cyan" role="navigation">
@@ -62,9 +62,7 @@
     
       <hr/>
 
-      <div class="container doe">
-      <img src="<c:url value="/imagenes/mexico.png" /> " style="width:100%; height:100%;">
-      </div>
+     
         <div class="col-xs-12">
           <center><h3>Eslogan de la empresa.</h3>
 
