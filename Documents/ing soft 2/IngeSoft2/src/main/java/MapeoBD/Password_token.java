@@ -24,8 +24,8 @@ public class Password_token {
     @Column(name = "id_password_token")
     private long id_password_token;
     
-    @Column(name = "cliente_id")
-    private long cliente_id;
+    @Column(name = "usuario_password_token")
+    private long usuario_password_token;
     
     @Column(name = "token_password_token")
     private String token_password_token;
@@ -33,18 +33,22 @@ public class Password_token {
     @Column(name = "date_password_token")
     private Date date_password_token;
 
-    public Password_token(long cliente_id, String token_password_token, Date date_password_token) {
-        this.cliente_id = cliente_id;
+    public Password_token(long id_password_token, long usuario_password_token, String token_password_token, Date date_password_token) {
+        this.id_password_token = id_password_token;
+        this.usuario_password_token = usuario_password_token;
         this.token_password_token = token_password_token;
         this.date_password_token = date_password_token;
     }
 
-    public Password_token(long id_password_token, long cliente_id, String token_password_token, Date date_password_token) {
-        this.id_password_token = id_password_token;
-        this.cliente_id = cliente_id;
-        this.token_password_token = token_password_token;
-        this.date_password_token = date_password_token;
+    public long getUsuario_password_token() {
+        return usuario_password_token;
     }
+
+    public void setUsuario_password_token(long usuario_password_token) {
+        this.usuario_password_token = usuario_password_token;
+    }
+
+    
 
     public long getId_password_token() {
         return id_password_token;
@@ -52,14 +56,6 @@ public class Password_token {
 
     public void setId_password_token(long id_password_token) {
         this.id_password_token = id_password_token;
-    }
-
-    public long getCliente_id() {
-        return cliente_id;
-    }
-
-    public void setCliente_id(long cliente_id) {
-        this.cliente_id = cliente_id;
     }
 
     public String getToken_password_token() {

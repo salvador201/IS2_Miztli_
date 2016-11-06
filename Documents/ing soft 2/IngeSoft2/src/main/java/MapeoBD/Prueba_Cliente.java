@@ -26,13 +26,16 @@ public class Prueba_Cliente {
     
     @Column(name = "cliente_id")
     private long cliente_id;
+    
+     @Column(name = "habilitado"  )
+    private int habilitado ;
 
-    public Prueba_Cliente(long prueba_id, long cliente_id) {
+    public Prueba_Cliente(long prueba_id, long cliente_id, int habilitado) {
         this.prueba_id = prueba_id;
         this.cliente_id = cliente_id;
+        this.habilitado = habilitado;
     }
-    
-    
+
     public long getPrueba_id() {
         return prueba_id;
     }
@@ -48,6 +51,14 @@ public class Prueba_Cliente {
     public void setCliente_id(long cliente_id) {
         this.cliente_id = cliente_id;
     }
-    
+
+    public int getHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(int habilitado) {
+        this.habilitado = habilitado;
+    }
+
     
 }

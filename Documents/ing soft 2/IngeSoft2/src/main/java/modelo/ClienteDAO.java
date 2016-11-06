@@ -8,6 +8,7 @@ package modelo;
 import MapeoBD.Cliente;
 import MapeoBD.Prueba;
 import MapeoBD.Prueba_Cliente;
+import MapeoBD.Usuario;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.beans.binding.Bindings;
@@ -62,7 +63,8 @@ public class ClienteDAO implements ClienteDAOint {
         }
         return cli;   
      }
-     public List<Cliente> getClientes(){
+   
+    public List<Cliente> getClientes(){
          Session session = sessionFactory.openSession();
         Transaction tx = null;
         List<Cliente> lista = new LinkedList<>();
@@ -141,26 +143,33 @@ public class ClienteDAO implements ClienteDAOint {
         }
 }
      
-      public void modificaCliente(Cliente un_cliente,long id){
+      public void modificaCliente(Cliente un_cliente,long id, Usuario usu){
       Session session = sessionFactory.openSession();
         Transaction tx = null;
         Cliente cli =null;
+        Usuario user =null;
          try {
            tx = session.beginTransaction();
            cli=(Cliente) session.get(Cliente.class, id );
+           cli.setUsuario_id(un_cliente.getUsuario_id());
            cli.setCorreo(un_cliente.getCorreo());
            cli.setNombre_cliente(un_cliente.getNombre_cliente());
            cli.setApellido_paterno_cliente(un_cliente.getApellido_paterno_cliente());
            cli.setApellido_materno_cliente(un_cliente.getApellido_materno_cliente());
            cli.setTelefono_local(un_cliente.getTelefono_local());
            cli.setTelefono_movil(un_cliente.getTelefono_movil());
-           cli.setNombre_usuario(un_cliente.getNombre_usuario());
            cli.setArea(un_cliente.getArea());
            cli.setPuesto(un_cliente.getPuesto());
            cli.setNombre_empresa(un_cliente.getNombre_empresa());
            cli.setHabilitado(un_cliente.getHabilitado());
-           cli.setRol("ROLE_CLIENTE");
            
+           
+           user.setId_cliente(cli.getUsuario_id());
+           user.setLogin_usuario(usu.getLogin_usuario());
+           user.setPassword_usuario(usu.getPassword_usuario());
+           user.setRol_usuario(usu.getRol_usuario());
+                
+           session.update(user);
            session.update(cli);
              
            tx.commit();

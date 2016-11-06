@@ -49,7 +49,7 @@ public class Password_tokenDAO {
           try {
            tx = session.beginTransaction();
            viejo=(Password_token) session.get(Password_token.class,id);
-           viejo.setCliente_id(em.getCliente_id());
+           viejo.setUsuario_password_token(em.getUsuario_password_token());
            viejo.setToken_password_token(em.getToken_password_token());
            viejo.setDate_password_token(em.getDate_password_token());
            
@@ -74,7 +74,7 @@ public class Password_tokenDAO {
         try {
            tx = session.beginTransaction();
            em = (Password_token) session.get(Password_token.class, num);
-           em.setCliente_id(0);
+           em.setUsuario_password_token(0);
            session.update(em);
            tx.commit();
         }

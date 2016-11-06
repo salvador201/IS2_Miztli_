@@ -47,16 +47,16 @@ public class ClientesExcelView extends AbstractXlsView {
         for (Cliente cliente : clientes) {
              
             Row courseRow = sheet.createRow(contador);
-                courseRow.createCell(0).setCellValue(cliente.getCorreo());
-                courseRow.createCell(1).setCellValue(cliente.getNombre_usuario());
+                courseRow.createCell(0).setCellValue(cliente.getCorreo());          
+                courseRow.createCell(1).setCellValue(cliente.getNombre_cliente());
                 courseRow.createCell(2).setCellValue(cliente.getApellido_paterno_cliente());
                 courseRow.createCell(3).setCellValue(cliente.getApellido_materno_cliente());
                 courseRow.createCell(4).setCellValue(cliente.getTelefono_local());
                 courseRow.createCell(5).setCellValue(cliente.getTelefono_movil());
-                courseRow.createCell(6).setCellValue(cliente.getNombre_cliente());
-                courseRow.createCell(7).setCellValue(cliente.getArea());
-                courseRow.createCell(8).setCellValue(cliente.getPuesto());
-                courseRow.createCell(9).setCellValue(cliente.getNombre_empresa());
+                
+                courseRow.createCell(6).setCellValue(cliente.getArea());
+                courseRow.createCell(7).setCellValue(cliente.getPuesto());
+                courseRow.createCell(8).setCellValue(cliente.getNombre_empresa());
                 
             contador++;
         

@@ -9,6 +9,7 @@ package controlador;
 import ExcelView.ClientesExcelView;
 import MapeoBD.Cliente;
 import MapeoBD.Proyecto;
+import MapeoBD.Usuario;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
 import modelo.ProyectoDAO;
+import modelo.UsuarioDAO;
 import static org.apache.commons.codec.digest.DigestUtils.md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -48,6 +50,8 @@ public class controlador {
     @Autowired
     private ProyectoDAO proyecto_bd;
 
+    @Autowired
+    private UsuarioDAO usuario_bd;
 
 @RequestMapping(value = "/administrador/prueba", method=RequestMethod.GET)
 public String prueba(ModelMap model, HttpServletRequest a){
@@ -137,14 +141,15 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        String Nombre_Cliente = request.getParameter("Nombre_Cliente"); 
        String Telefono_Local = request.getParameter("Telefono_Local"); 
        String Telefono_Movil = request.getParameter("Telefono_Movil"); 
-       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa"); 
        String ape_pa=request.getParameter("apellidop");
        String ape_ma=request.getParameter("apellidom");
+       
        String pass = request.getParameter("password");
        String rol="ROLE_CLIENTE";
+       String login_u = request.getParameter("Nombre_Usuario"); 
        String password= null;
        MessageDigest md;
         try {
@@ -159,12 +164,16 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+        
+        Usuario u= new Usuario(login_u,password,rol);
+        usuario_bd.crearUsuario(u);
        
-       Cliente c =new Cliente(correo,password,Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Nombre_Usuario,Area,Puesto,Nombre_Empresa,1,rol);
-       c.setRol("ROLE_CLIENTE");
+       Cliente c =new Cliente(u.getId_usuario(),correo, 
+               Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Area,Puesto,Nombre_Empresa,1);
        cliente_bd.crearCliente(c);
-   
+        List b = cliente_bd.getClientes();
+        b.remove(0);
+        model.addAttribute("clientes", b);
        return "redirect:/home";   
    }
 
@@ -182,11 +191,12 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        String ape_ma=request.getParameter("apellidom");
        String Telefono_Local = request.getParameter("Telefono_Local"); 
        String Telefono_Movil = request.getParameter("Telefono_Movil"); 
-       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
+       String login_u = request.getParameter("Nombre_Usuario"); 
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa");
        String Rol = request.getParameter("ROL");
+       
        int habilitado;
        if (request.getParameter("habilitado") == null ){
            habilitado = 0;
@@ -195,18 +205,20 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
            habilitado = 1;
        }
        
+       Usuario u=new Usuario (login_u,password,Rol);
        
-       Cliente c =new Cliente(correo,
-               password,
+       Long id_user=u.getId_usuario();
+       Cliente c =new Cliente(id_user,
+               correo,
                Nombre_Cliente,
                ape_pa,
                ape_ma,
                Telefono_Local,
                Telefono_Movil,
-               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado,
-               Rol );
+               Area,Puesto,Nombre_Empresa,habilitado
+               );
        
-       cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
+       cliente_bd.modificaCliente(c,Long.parseLong(id_cliente),u);
        model.addAttribute("id_cliente", id_cliente);
        return new ModelAndView("redirect:/administrador/show?id="+id_cliente);   
    }
@@ -214,34 +226,44 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
     
     @RequestMapping(value = "/cliente/modificarCliente", method = RequestMethod.POST)
     public ModelAndView modificarClie(ModelMap model,HttpServletRequest request){
-
-       String id_cliente = request.getParameter("id_cliente"); 
-       String correo = request.getParameter("correo"); 
+        String id_cliente = request.getParameter("id_cliente"); 
+       String correo = request.getParameter("correo");  
        String password = "hola"; 
        String Nombre_Cliente = request.getParameter("Nombre_Cliente");
        String ape_pa=request.getParameter("apellidop");
        String ape_ma=request.getParameter("apellidom");
        String Telefono_Local = request.getParameter("Telefono_Local"); 
        String Telefono_Movil = request.getParameter("Telefono_Movil"); 
-       String Nombre_Usuario = request.getParameter("Nombre_Usuario"); 
+       String login_u = request.getParameter("Nombre_Usuario"); 
        String Area = request.getParameter("Area"); 
        String Puesto = request.getParameter("Puesto"); 
        String Nombre_Empresa = request.getParameter("Nombre_Empresa");
        String Rol = request.getParameter("ROL");
-       int habilitado = 1;
        
+       int habilitado;
+       if (request.getParameter("habilitado") == null ){
+           habilitado = 0;
+           
+       }else{
+           habilitado = 1;
+       }
        
-       Cliente c =new Cliente(correo,
-               password,
+       Usuario u=new Usuario (login_u,password,Rol);
+       
+       Long id_user=u.getId_usuario();
+       Cliente c =new Cliente(id_user,
+               correo,
                Nombre_Cliente,
                ape_pa,
                ape_ma,
                Telefono_Local,
                Telefono_Movil,
-               Nombre_Usuario,Area,Puesto,Nombre_Empresa,habilitado,Rol);
-       
-       cliente_bd.modificaCliente(c,Long.parseLong(id_cliente));
+               Area,Puesto,Nombre_Empresa,habilitado
+               );
        model.addAttribute("id_cliente", id_cliente);
+        List b = cliente_bd.getClientes();
+        b.remove(0);
+        model.addAttribute("clientes", b);
        return new ModelAndView("redirect:/home");   
    }
         
