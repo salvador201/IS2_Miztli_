@@ -70,6 +70,24 @@ public class Cliente {
         this.habilitado = habilitado;
     }
 
+    public Cliente() {
+    }
+
+    public Cliente(long id_cliente, long usuario_id, String correo, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String area, String puesto, String nombre_empresa, int habilitado) {
+        this.id_cliente = id_cliente;
+        this.usuario_id = usuario_id;
+        this.correo = correo;
+        this.nombre_cliente = nombre_cliente;
+        this.apellido_paterno_cliente = apellido_paterno_cliente;
+        this.apellido_materno_cliente = apellido_materno_cliente;
+        this.telefono_local = telefono_local;
+        this.telefono_movil = telefono_movil;
+        this.area = area;
+        this.puesto = puesto;
+        this.nombre_empresa = nombre_empresa;
+        this.habilitado = habilitado;
+    }
+
     
 
     
