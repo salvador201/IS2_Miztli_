@@ -92,7 +92,7 @@ body, html {
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
       <li><a href="#"></a></li>
-    <li class="w3-hide-small w3-right">
+    <li class="w3-right">
         <form method="POST" action="/IngeSoft2/login" class="form-inline">
             <form class="form-inline">
     <div class="form-group">
