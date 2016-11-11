@@ -168,7 +168,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
         Usuario u= new Usuario(login_u,password,rol);
         usuario_bd.crearUsuario(u);
        
-       Cliente c =new Cliente(u.getId_usuario(),correo, 
+       Cliente c =new Cliente(u,correo, 
                Nombre_Cliente,ape_pa,ape_ma,Telefono_Local,Telefono_Movil,Area,Puesto,Nombre_Empresa,1);
        cliente_bd.crearCliente(c);
         List b = cliente_bd.getClientes();
@@ -208,7 +208,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        Usuario u=new Usuario (login_u,password,Rol);
        
        Long id_user=u.getId_usuario();
-       Cliente c =new Cliente(id_user,
+       Cliente c =new Cliente(u,
                correo,
                Nombre_Cliente,
                ape_pa,
@@ -251,7 +251,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        Usuario u=new Usuario (login_u,password,Rol);
        
        Long id_user=u.getId_usuario();
-       Cliente c =new Cliente(id_user,
+       Cliente c =new Cliente(u,
                correo,
                Nombre_Cliente,
                ape_pa,

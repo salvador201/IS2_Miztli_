@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,8 +25,9 @@ public class Cliente {
     @Column(name = "id_cliente")
     private long id_cliente;
     
-    @Column(name = "usuario_id")
-    private long usuario_id;
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario_id;
     
     @Column(name = "correo")
     private String correo;
@@ -56,7 +59,7 @@ public class Cliente {
     @Column(name = "habilitado")
     private int habilitado;
 
-    public Cliente(long usuario_id, String correo, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String area, String puesto, String nombre_empresa, int habilitado) {
+    public Cliente(Usuario usuario_id, String correo, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String area, String puesto, String nombre_empresa, int habilitado) {
         this.usuario_id = usuario_id;
         this.correo = correo;
         this.nombre_cliente = nombre_cliente;
@@ -73,7 +76,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(long id_cliente, long usuario_id, String correo, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String area, String puesto, String nombre_empresa, int habilitado) {
+    public Cliente(long id_cliente, Usuario usuario_id, String correo, String nombre_cliente, String apellido_paterno_cliente, String apellido_materno_cliente, String telefono_local, String telefono_movil, String area, String puesto, String nombre_empresa, int habilitado) {
         this.id_cliente = id_cliente;
         this.usuario_id = usuario_id;
         this.correo = correo;
@@ -99,13 +102,15 @@ public class Cliente {
         this.id_cliente = id_cliente;
     }
 
-    public long getUsuario_id() {
+    public Usuario getUsuario_id() {
         return usuario_id;
     }
 
-    public void setUsuario_id(long usuario_id) {
+    public void setUsuario_id(Usuario usuario_id) {
         this.usuario_id = usuario_id;
     }
+
+   
 
     public String getCorreo() {
         return correo;

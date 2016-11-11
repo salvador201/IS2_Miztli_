@@ -1,4 +1,5 @@
 MapeoBD\Password_token.class
+modelo\RestablecerPasswordDAOImpl.class
 MapeoBD\Usuario.class
 modelo\Password_tokenDAO.class
 MapeoBD\Empleado_proyecto.class
@@ -8,6 +9,7 @@ modelo\UsuarioDAO.class
 MapeoBD\Prueba_Cliente.class
 MapeoBD\Respuesta.class
 modelo\Prueba_ProyectoDAO.class
+controlador\controlador_RestablecerPassword.class
 MapeoBD\Pregunta_prueba.class
 modelo\ClienteDAO.class
 MapeoBD\Empleado.class
@@ -26,6 +28,7 @@ MapeoBD\Prueba_empleado.class
 MapeoBD\Pregunta.class
 MapeoBD\Pregunta_respuesta.class
 controlador\controlador_proyecto.class
+controlador\controlador_RestablecerPassword$1.class
 modelo\EmpleadoDAO.class
 modelo\PruebaDAO.class
 modelo\RespuestaDAO.class

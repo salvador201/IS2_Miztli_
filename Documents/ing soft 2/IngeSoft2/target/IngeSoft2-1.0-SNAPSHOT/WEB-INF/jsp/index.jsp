@@ -103,6 +103,7 @@ body, html {
       <label for="pwd">Contraseña:</label>
       <input type="password" class="form-control" id="pwd" name="password" placeholder="*****">
     </div>
+    <a href=" <c:url value="/restablecimientoPassword"/> " >¿Olvidaste tu password?</a>
     <button type="submit" class="btn btn-primary">Ingresar</button>
   </form>
         </form>

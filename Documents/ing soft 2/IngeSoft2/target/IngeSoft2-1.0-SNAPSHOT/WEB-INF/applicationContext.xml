@@ -34,7 +34,8 @@
                 <value>MapeoBD.Pregunta</value> 
                 <value>MapeoBD.Prueba</value>   
                 <value>MapeoBD.Respuesta</value>  
-                <value>MapeoBD.Prueba_Proyecto</value>  
+                <value>MapeoBD.Prueba_Proyecto</value>
+                <value>MapeoBD.Usuario</value>    
             </list>
         </property>    
         <property name="hibernateProperties">
@@ -82,6 +83,11 @@
      <bean id="UsuarioDAO" class="modelo.UsuarioDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
+      <bean id="RestablecerPasswordDAOImpl" class="modelo.RestablecerPasswordDAOImpl"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+     
+     
     <!-- SpringSecurity -->
 
     <security:http pattern="/css/*" security="none"/>

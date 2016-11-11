@@ -6,6 +6,7 @@
 package modelo;
 
 import MapeoBD.Password_token;
+import MapeoBD.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -74,7 +75,7 @@ public class Password_tokenDAO {
         try {
            tx = session.beginTransaction();
            em = (Password_token) session.get(Password_token.class, num);
-           em.setUsuario_password_token(0);
+           em.setUsuario_password_token(new Usuario());
            session.update(em);
            tx.commit();
         }

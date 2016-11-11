@@ -9,6 +9,7 @@ package modelo;
 import MapeoBD.Usuario;
 import java.util.LinkedList;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,6 +24,53 @@ public class UsuarioDAO {
     
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+    
+    
+    
+     public Usuario getUsuario(String correo_usuario) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n" + correo_usuario + "\n\n\n\n\n\n\n\n\n\n");
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Usuario usuario = null;
+
+        int id_usuario = -1;
+
+        try {
+            tx = session.beginTransaction();
+
+            String hql = "SELECT U "
+                    + "FROM Usuario U JOIN U.cliente_usuario P "
+                    + "WHERE P.correo = :correo_usuario";
+            Query query_profesor = session.createQuery(hql);
+            query_profesor.setParameter("correo_usuario", correo_usuario);
+            usuario = (Usuario) query_profesor.uniqueResult();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n" + hql + "\n\n\n\n\n\n\n\n\n\n");
+
+//            if (usuario == null) {
+//
+//                hql = "SELECT U "
+//                        + "FROM Usuario U JOIN U.alumno_usuario A "
+//                        + "WHERE A.correo_alumno = :correo_usuario";
+//                Query query_alumno = session.createQuery(hql);
+//                query_alumno.setParameter("correo_usuario", correo_usuario);
+//                usuario = (Usuario) query_alumno.uniqueResult();
+//                System.out.println("\n\n\n\n\n\n\n\n\n\n" + hql + "\n\n\n\n\n\n\n\n\n\n");
+//
+//            }
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return usuario;
+
     }
     
     public List<Usuario> getUsuario(){
@@ -108,6 +156,34 @@ public class UsuarioDAO {
         }
      }
     
+    
+    public boolean cambiarPassword(long id_usuario, String password) {
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        boolean exito = false;
+
+        try {
+            tx = session.beginTransaction();
+
+            Usuario usuario = (Usuario) session.load(Usuario.class, id_usuario);
+            usuario.setPassword_usuario(password);
+            session.update(usuario);
+
+            tx.commit();
+            exito = true;
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return exito;
+    }
     
     
 }

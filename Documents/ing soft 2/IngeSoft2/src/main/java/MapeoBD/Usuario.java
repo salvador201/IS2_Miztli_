@@ -5,11 +5,14 @@
  */
 package MapeoBD;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +31,16 @@ public class Usuario {
     private String password_usuario;
     @Column(name = "rol_usuario")
     private String rol_usuario;
+    @OneToOne(mappedBy="usuario_id")
+    private Cliente cliente_usuario;
+       
+    @OneToMany(mappedBy="usuario_password_token")
+    private List<Password_token> password_tokens;
 
+    public Usuario(){
+        
+    }
+    
     public Usuario(long id_usuario, String login_usuario, String password_usuario, String rol_usuario) {
         this.id_usuario = id_usuario;
         this.login_usuario = login_usuario;
@@ -73,6 +85,22 @@ public class Usuario {
 
     public void setRol_usuario(String rol_usuario) {
         this.rol_usuario = rol_usuario;
+    }
+
+    public Cliente getCliente_usuario() {
+        return cliente_usuario;
+    }
+
+    public void setCliente_usuario(Cliente cliente_usuario) {
+        this.cliente_usuario = cliente_usuario;
+    }
+
+    public List<Password_token> getPassword_tokens() {
+        return password_tokens;
+    }
+
+    public void setPassword_tokens(List<Password_token> password_tokens) {
+        this.password_tokens = password_tokens;
     }
     
     
