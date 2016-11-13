@@ -8,11 +8,16 @@ package controlador;
 
 import ExcelView.ClientesExcelView;
 import MapeoBD.Cliente;
+import MapeoBD.Empleado;
 import MapeoBD.Proyecto;
 import MapeoBD.Usuario;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -20,9 +25,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
+import modelo.EmpleadoDAO;
 import modelo.ProyectoDAO;
 import modelo.UsuarioDAO;
 import static org.apache.commons.codec.digest.DigestUtils.md5;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,7 +62,10 @@ public class controlador {
 
     @Autowired
     private UsuarioDAO usuario_bd;
-
+    
+    @Autowired
+    private EmpleadoDAO empleado_bd;
+    
 @RequestMapping(value = "/administrador/prueba", method=RequestMethod.GET)
 public String prueba(ModelMap model, HttpServletRequest a){
    
@@ -271,4 +284,106 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
   public String index(ModelMap model){
       return "index";
   }
+  
+  //nota solo sirve con windows y el excel debe estar en C:\\
+    @RequestMapping(value = "/administrador/abreExcel", method = RequestMethod.POST)
+   public ModelAndView abreExcel(ModelMap model,
+            @RequestParam("archivo") File archivo) {
+      
+       try{
+        String var="C:\\"+archivo.getPath();   
+        System.out.print(var);
+
+        File objeto=new File (var);
+        Workbook wb;
+        //wb= WorkbookFactory.create(new FileInputStream(objeto));
+        FileInputStream inp=new FileInputStream(var);
+        HSSFWorkbook workbook = new HSSFWorkbook(inp);
+        
+        HSSFSheet sheet = workbook.getSheetAt(0);
+        Iterator<Row> rowIterator = sheet.iterator();
+        Row row;
+
+        if(rowIterator.hasNext()){
+            row=rowIterator.next();
+        }
+        
+	while (rowIterator.hasNext()) {
+                row=rowIterator.next();
+                Usuario u=new Usuario();      
+		Cliente cliente ;            
+                Empleado empleado;
+                
+                String pass =row.getCell(9).getStringCellValue() ;
+                String rol=row.getCell(10).getStringCellValue();
+                String login_u = row.getCell(11).getStringCellValue(); 
+                String password=null;
+                MessageDigest md;
+                try {
+                md = MessageDigest.getInstance("MD5");
+                md.update(pass.getBytes());
+                byte[] digest = md.digest();
+                StringBuilder sb = new StringBuilder();
+                for (byte b : digest) {
+                   sb.append(String.format("%02x", b & 0xff));
+                } 
+                password=sb.toString();
+                } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                u.setLogin_usuario(login_u);
+                u.setPassword_usuario(password);
+                u.setRol_usuario(rol);
+                usuario_bd.crearUsuario(u);
+                
+                Usuario usu=usuario_bd.daID(login_u);
+                System.out.print(usu.getId_usuario() +"  "+ login_u);
+                cliente = new Cliente (usu,
+                row.getCell(0).getStringCellValue(),
+                row.getCell(1).getStringCellValue(),
+                row.getCell(2).getStringCellValue(),
+                row.getCell(3).getStringCellValue(),
+                row.getCell(4).getStringCellValue(),
+                row.getCell(5).getStringCellValue(),
+                row.getCell(6).getStringCellValue(),
+                row.getCell(7).getStringCellValue(),
+                row.getCell(8).getStringCellValue(),
+                1);
+                
+                cliente_bd.crearCliente(cliente);
+                List clientes=cliente_bd.porCorreo(row.getCell(0).getStringCellValue());
+                Cliente auxCli=(Cliente) clientes.get(0);
+                
+                System.out.print(row.getCell(13));
+                int horas=(int)(row.getCell(13).getNumericCellValue());
+                int hijos=(int)(row.getCell(16).getNumericCellValue());
+                int sueldo=(int)( row.getCell(19).getNumericCellValue());
+                int candidato=(int)( row.getCell(21).getNumericCellValue());
+                Date fecha=row.getCell(17).getDateCellValue();
+
+                empleado=new Empleado(auxCli.getId_cliente(),
+                row.getCell(12).getStringCellValue(),
+                horas,
+                row.getCell(14).getStringCellValue(),
+                row.getCell(15).getStringCellValue(),
+                hijos,
+                fecha,
+                row.getCell(18).getStringCellValue(),
+                String.valueOf(sueldo),
+                row.getCell(20).getStringCellValue(),
+                String.valueOf(candidato),
+                1);
+                
+                empleado_bd.crearEmpleado(empleado);
+                
+			}			
+			
+       }catch (Exception e) {
+	e.printStackTrace();
+	}
+       //workbook.close();
+       model.addAttribute("clientes",cliente_bd.getClientes());
+       return new ModelAndView("redirect:/home",model);    
+   }
 }

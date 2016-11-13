@@ -185,5 +185,30 @@ public class UsuarioDAO {
         return exito;
     }
     
-    
+     public Usuario daID(String login_usu){
+         Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Usuario cli = null;
+        List<Usuario> lista = new LinkedList<>();
+        try {
+           tx = session.beginTransaction();
+            Query query = session.createQuery("from Usuario where login_usuario = :var");
+              query.setParameter("var",login_usu);
+             lista = query.list();
+           tx.commit();
+           if (lista.get(0)!=null){
+               cli=lista.get(0);
+           }
+        }
+        catch (Exception e) {
+           if (tx!=null){
+               tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+           session.close();
+        }
+        
+        return cli;
+    }
 }

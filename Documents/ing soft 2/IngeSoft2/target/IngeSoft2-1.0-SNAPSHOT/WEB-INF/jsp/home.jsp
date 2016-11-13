@@ -107,7 +107,11 @@
  
      <a href="<c:url value="/exportarExcelCliente"/> "><button>Exportar Excel</button></a>
     
- 
+  <form name="cargar_excel" method="POST" action="/IngeSoft2/administrador/abreExcel">
+		Seleciona Excel:
+                <input  id="archivo" type="file" name="archivo" ><br /> 
+		<button type="submit">Abrir excel</button>
+	</form>
 
   
   <hr>
