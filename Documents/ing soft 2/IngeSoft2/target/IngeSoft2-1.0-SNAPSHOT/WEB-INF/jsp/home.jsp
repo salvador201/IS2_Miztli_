@@ -45,8 +45,6 @@
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Admin <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
-							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
 							<li><a href="/IngeSoft2/logout"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Salir</a></li>
 						</ul>
 					</li>
@@ -108,8 +106,9 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Tables</h1>
-                                <a href="<c:url value="/exportarExcelCliente"/> "><button>Exportar Excel</button></a>
-                                <a href="<c:url value="/crear"/> "><button>Agregar Cuenta</button></a>
+                                <a href="<c:url value="/exportarExcelCliente"/> "><button class="btn-primary">Exportar Excel</button></a>
+                                <a href="<c:url value="/crear"/> "><button class="btn-primary">Agregar Cuenta</button></a>
+                                 
 			</div>
 		</div><!--/.row-->
 				
@@ -147,35 +146,12 @@
 		</div><!--/.row-->	
                       
 		<div class="row">
+			
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Carga de empleados Excel</div>
+					
 					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data2.json" >
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right">Item ID</th>
-						        <th data-field="name">Item Name</th>
-						        <th data-field="price">Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Styled Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right" >Item ID</th>
-						        <th data-field="name" >Item Name</th>
-						        <th data-field="price" >Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
+						
 						<script>
 						    $(function () {
 						        $('#hover, #striped, #condensed').click(function () {
@@ -241,18 +217,5 @@
 		})
 	</script>	
 </body>
-         
-          <a href="<c:url value="/verificaEmpleado"/> "><button>Agregar Empleado</button></a>
-         
-    
-     
-     
-    
-  <form name="cargar_excel" method="POST" action="/IngeSoft2/administrador/abreExcel">
-		Seleciona Excel:
-                <input  id="archivo" type="file" name="archivo" ><br /> 
-		<button type="submit">Abrir excel</button>
-	</form>
-  
 </html>
  

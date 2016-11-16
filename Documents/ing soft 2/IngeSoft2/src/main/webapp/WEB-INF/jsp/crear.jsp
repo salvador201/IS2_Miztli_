@@ -10,9 +10,8 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="<c:url value="/js/jquery-1.12.4.min.js" />" ></script>
-        <script src="<c:url value="/js/jquery.validate.js" />" ></script>
-        <script src="<c:url value="/js/form-validation.js" />" ></script>
+        
+        
         
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +26,8 @@
     <title>HQR</title>
   	
     </head>
+    <body>
+    
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -41,9 +42,7 @@
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Admin <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
-							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
-							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+							<li><a href="/IngeSoft2/logout"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Salir</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -104,35 +103,14 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Cuenta de cliente</h1>
+				<h1 class="page-header">Crear cuenta de cliente</h1>
 			</div>
 		</div><!--/.row-->
                 
-                
-                
-                
-                
-                 <form name="crear_cliente" method="POST" action="/IngeSoft2/administrador/crearCliente">
-            <h2>Completa el formulario para crear una cuenta grupal</h2>
-            <input id="Nombre_Empresa" name="Nombre_Empresa" type="text" placeholder=" Nombre de la Empresa">
-            <input id="Nombre_Cliente" name="Nombre_Cliente" type="text" placeholder=" Nombre titular empresa">
-            <input id="apellidop" name="apellidop" type="text" placeholder=" Apellido Paterno" >
-            <input id="apellidom" name="apellidom" type="text" placeholder=" Apellido Materno" >    
-            <input id="Nombre_Usuario" name="Nombre_Usuario" type="text" placeholder=" Nombre de Usuario">
-            <input id="Puesto" name="Puesto" type="text" placeholder=" Puesto"> 
-            <input id="correo" name="correo" type="text" placeholder=" Correo">
-            <input id="password" name="password" type="text" placeholder=" Contraseña">
-            <input id="Telefono_Local" name="Telefono_Local" type="text" placeholder=" Telefono Local">
-            <input id="Telefono_Movil" name="Telefono_Movil" type="text" placeholder=" Celular">
-            <input id="Area" name="Area" type="text" placeholder=" Area">
             
-            <button type="submit">Crear</button>
-        </form>
-                
-                
-                
 		<div class="row">
 			<div class="col-md-8">
+                            
 				<div class="panel panel-default">
 					<div class="panel-heading"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg> Información</div>
 					<div class="panel-body">
@@ -265,6 +243,8 @@
              <script src="<c:url value="/js/easypiechart.js" /> "></script>
               <script src="<c:url value="/js/easypiechart-data.js" /> "></script>
                <script src="<c:url value="/js/bootstrap-datepicker.js" /> "></script>
+               <script src="<c:url value="/js/jquery.validate.js" />" ></script>
+        <script src="<c:url value="/js/form-validation.js" />" ></script>
 	<script>
 		$('#calendar').datepicker({
 		});
@@ -283,32 +263,5 @@
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>	
-</body>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <form name="crear_cliente" method="POST" action="/IngeSoft2/administrador/crearCliente">
-            <h2>Completa el formulario para crear una cuenta grupal</h2>
-            <input id="Nombre_Empresa" name="Nombre_Empresa" type="text" placeholder=" Nombre de la Empresa">
-            <input id="Nombre_Cliente" name="Nombre_Cliente" type="text" placeholder=" Nombre titular empresa">
-            <input id="apellidop" name="apellidop" type="text" placeholder=" Apellido Paterno" >
-            <input id="apellidom" name="apellidom" type="text" placeholder=" Apellido Materno" >    
-            <input id="Nombre_Usuario" name="Nombre_Usuario" type="text" placeholder=" Nombre de Usuario">
-            <input id="Puesto" name="Puesto" type="text" placeholder=" Puesto"> 
-            <input id="correo" name="correo" type="text" placeholder=" Correo">
-            <input id="password" name="password" type="text" placeholder=" Contraseña">
-            <input id="Telefono_Local" name="Telefono_Local" type="text" placeholder=" Telefono Local">
-            <input id="Telefono_Movil" name="Telefono_Movil" type="text" placeholder=" Celular">
-            <input id="Area" name="Area" type="text" placeholder=" Area">
-            
-            <button type="submit">Crear</button>
-        </form>
-     
-    
+</body>    
 </html>

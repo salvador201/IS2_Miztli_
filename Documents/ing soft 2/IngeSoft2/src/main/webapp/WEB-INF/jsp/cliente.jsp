@@ -238,6 +238,7 @@
 								</div>
 							</fieldset>
 						</form>
+                                                                        <a href="<c:url value="/verificaEmpleado"/> "><button class="btn-primary">Agregar Empleado</button></a>
 					</div>
 				</div>
 				
