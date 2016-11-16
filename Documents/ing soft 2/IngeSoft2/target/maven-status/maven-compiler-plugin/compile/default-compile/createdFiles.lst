@@ -9,6 +9,7 @@ modelo\UsuarioDAO.class
 MapeoBD\Prueba_Cliente.class
 MapeoBD\Respuesta.class
 modelo\Prueba_ProyectoDAO.class
+controlador\controlador$1.class
 controlador\controlador_RestablecerPassword.class
 MapeoBD\Pregunta_prueba.class
 modelo\ClienteDAO.class

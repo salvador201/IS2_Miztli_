@@ -15,84 +15,131 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="<c:url value="/imagenes/LogoHQRmediana.png" /> "/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     
-    <script src="<c:url value="/js/jquery-1.12.4.min.js" />" ></script>
-    <script src="<c:url value="/js/jquery.multipage.js" />" ></script>
+    <link href="<c:url value="/css/bootstrap.min.css" /> " rel="stylesheet"/>
+    <link href="<c:url value="/css/datepicker3.css" /> " rel="stylesheet"/>
+    <link href="<c:url value="/css/styles.css" /> " rel="stylesheet"/>
+    <script src="<c:url value="/js/lumino.glyphs.js" /> "></script>
    
     
-    <style>
-</style>
+   
     <title>HQR</title>
-  	<nav class="navbar navbar-default w3-cyan" role="navigation">
-        <!-- El logotipo y el icono que despliega el menú se agrupan
-             para mostrarlos mejor en los dispositivos móviles -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Desplegar navegación</span>
-                <span class="icon-bar">f</span>
-                <span class="icon-bar">g</span>
-                <span class="icon-bar">h</span>
-            </button>
-        </div>
-
-        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-             otro elemento que se pueda ocultar al minimizar la barra -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
-                <li><a href="<c:url value="/administrador/prueba"/>">Pruebas</a></li>
-                <li><a href="<c:url value="/administrador/proyectos"/>">Proyectos</a></li>
-                <li><a href="#">Reportes</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Usuario: ${login}</a></li>
-                <li><a href="/IngeSoft2/salir">Salir</a></li>
-                
-            </ul>
-        </div>
-    </nav>
+  	
   </head>
-  <body>
-    <div id="first" class="first">  
-   <center><img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " height="250" width="180"></center>
-    </div>
-    
-      <hr/>
+  
+    <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>HQR</span></a>
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Usuario <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+							
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<form role="search">
+			<div class="form-group">
+				<img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " style="width:100%; height:100%;">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="<c:url value="/home" /> "><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Cuentas Empresas</a></li>
+			<li class="active"><a href="<c:url value="/administrador/prueba" /> "><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Pruebas</a></li>
+			<li><a href="<c:url value="/administrador/proyectos" /> "><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Proyectos</a></li>
+			<li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Reportes</a></li>
+			<li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Forms</a></li>
+			<li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
+			<li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
+			<li class="parent ">
+				<a href="#">
+					<span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown 
+				</a>
+				<ul class="children collapse" id="sub-item-1">
+					<li>
+						<a class="" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 1
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 2
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 3
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li role="presentation" class="divider"></li>
+			<li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li>
+		</ul>
 
-      <div class="container doe">
-      <img src="<c:url value="/imagenes/mexico.png" /> " style="width:100%; height:100%;">
-      </div>
-        <div class="col-xs-12">
-          <center><h3>Eslogan de la empresa.</h3>
-
-          </center>
-          </div>
-          <br>
-          <br>
-          <br>
-          
-          
-  <center><h2>Prueba de adaptabilidad laboral</h2></center>
-  <br>
- 
-  <div class="formlog">
-  <h3>Instrucciones:</h3> <p>A continuación encontrarás una serie de enunciados a los cuales debes responder considerando la
-
-forma que has pensado, sentido y actuado ante determinadas situaciones en el ambiente laboral.
-
-Te pedimos contestar de la manera más honesta y sincera posible ya que no existen respuestas
-
-buenas o malas.</p>
-  <br>
-      <div style="width:500px; margin:20px; padding:10px; border:20px solid #F0F0F0;">
-	<form id="multipage">
-		<fieldset id="page_one">
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">Icons</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Prueba Adaptabilidad Laboral</h1>
+			</div>
+		</div><!--/.row-->
+				
+				
+                
+                
+                
+		
+                
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Instrucciones:</h2>
+                                <p>A continuación encontrarás una serie de enunciados a los cuales debes responder considerando la forma que has pensado, sentido y actuado ante determinadas situaciones en el ambiente laboral. 
+Te pedimos contestar de la manera más honesta y sincera posible ya que no existen respuestas buenas o malas.  
+</p>
+			</div>
+			
+                    <form method="post" action="/IngeSoft2/administrador/pruebaR">
+				<div class="panel panel-default">
+					<div class="panel-body tabs">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">Pregunta 1-5</a></li>
+							<li><a href="#tab2" data-toggle="tab">Pregunta 6-10</a></li>
+							<li><a href="#tab3" data-toggle="tab">Pregunta 11-15</a></li>
+                                                        <li><a href="#tab4" data-toggle="tab">Pregunta 16-20</a></li>
+							<li><a href="#tab5" data-toggle="tab">Pregunta 21-25</a></li>
+                                                        <li><a href="#tab6" data-toggle="tab">Pregunta 26-30</a></li>
+							
+						</ul>
+		
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="tab1">
+								<div class="form-group">
+									<fieldset id="page_one">
 			<legend>Pregunta 1</legend>
 			    No pierdo la concentración cuando se presentan eventos inesperados en mi trabajo. *
 			    <br>
@@ -124,23 +171,23 @@ buenas o malas.</p>
 		 Aunque las situaciones no sean estables, soy totalmente competente. *
 		 <br>
 		 <br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="2" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="2" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="2" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="2" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="2" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -149,23 +196,23 @@ buenas o malas.</p>
 		Es difícil para mí encarar eventos inesperados. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="3" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="3" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="3" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="3" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="3" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -175,23 +222,23 @@ buenas o malas.</p>
 		Me cuesta trabajo ser una persona madura. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="4" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="4" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="4" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="4" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="4" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -201,49 +248,54 @@ buenas o malas.</p>
 		 Mi desempeño es igual de bueno en diferentes entornos. *
 		 <br>
 		 <br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="5" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="5" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="5" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="5" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="5" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
-
-		<fieldset id="page_three">
+								</div>
+							</div>
+							<div class="tab-pane fade" id="tab2">
+								<div class="form-group">
+									
+                                                                    
+                                                                    <fieldset id="page_three">
 		<legend>Pregunta 6</legend>
 		Tengo agilidad mental. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="6" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="1" value="6"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="1" value="6"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="1" value="6"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="1" value="6">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -253,23 +305,23 @@ buenas o malas.</p>
 		Soy una persona madura que sabe cómo actuar en eventos impredecibles. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="7" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="7" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="7" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="7" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="7" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -279,23 +331,23 @@ buenas o malas.</p>
 		Me considero hábil para resolver eventos inesperados. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="8" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="8" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="8" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="8" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="8" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -305,23 +357,23 @@ buenas o malas.</p>
 		Aunque las situaciones en mi trabajo sean inciertas, soy capaz de encararlas. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="9" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="9" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="9" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="9" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="9" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -331,49 +383,56 @@ buenas o malas.</p>
 		Aunque no conozca a fondo la situación en la que me encuentre salgo adelante. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="10" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="10" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="10" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="10" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="10" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
-
-		<fieldset id="page_three">
+                                                                    
+                                                                    
+								</div>
+							</div>
+							<div class="tab-pane fade" id="tab3">
+								
+                                                            
+                                                            
+                                                            <fieldset id="page_three">
 		<legend>Pregunta 11</legend>
 		 Me siento entusiasmado cuando me enfrento a un reto difícil de resolver. *
 		 <br>
 		 <br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="11" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="11" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="11" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="11" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="11" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -383,23 +442,23 @@ buenas o malas.</p>
 		Resuelvo los conflictos de forma eficaz. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="12" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="12" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="12" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="12" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="12" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -409,23 +468,23 @@ buenas o malas.</p>
 		No soy innovador. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="13" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="13" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="13" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="13" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="13" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -435,23 +494,23 @@ buenas o malas.</p>
 		 Muchos me consideran una persona cuadrada. *
 		 <br>
 		 <br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="14" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="14" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="14" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="14" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="14" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -461,49 +520,58 @@ buenas o malas.</p>
 		Soy astuto para salir de los apuros. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="15" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="15" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="15" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="15" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="15" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
 
-		<fieldset id="page_three">
+                                                            
+                                                            
+                                                            
+                                                            
+							</div>
+                                                    <div class="tab-pane fade" id="tab4">
+								
+                                                        
+                                                        
+                                                        <fieldset id="page_three">
 		<legend>Pregunta 16</legend>
 		¿Cuál es la respuesta correcta de la siguiente operación 38+21-66? *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="16" value="1"> 
 				<label for="1">-5</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="16" value="2"> 
 				<label for="2">-6</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="16" value="3"> 
 				<label for="3">7</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="16" value="4"> 
 				<label for="4">6</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="16" value="5">
 				<label for="5">-7</label>
 			
 		</fieldset>
@@ -513,23 +581,23 @@ buenas o malas.</p>
 		Soluciono conflictos hábilmente. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="17" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="17" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="17" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="17" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="17" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -539,23 +607,23 @@ buenas o malas.</p>
 		Me causa desconfianza escuchar a personas que no siguen los pasos específicos necesarios para alcanzar una meta. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="18" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="18" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="18" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="18" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="18" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -565,23 +633,23 @@ buenas o malas.</p>
 		Soy creativo, a menudo se me ocurren diferentes formas de hacer las cosas. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="19" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="19" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="19" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="19" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="19" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -591,49 +659,56 @@ buenas o malas.</p>
 		Encuentro rápidamente respuestas a los problemas. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="20" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="20" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="20" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="20" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="20" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
-
-		<fieldset id="page_three">
+                                                        
+                                                        
+							</div>
+                                                    <div class="tab-pane fade" id="tab5">
+								
+                                                        
+                                                        
+                                                        
+                                                        <fieldset id="page_three">
 		<legend>Pregunta 21</legend>
 		Se me dificulta establecer nuevas relaciones personales en la empresa. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="21" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="21" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="21" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="21" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="21" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -643,23 +718,23 @@ buenas o malas.</p>
 		No soy comunicativo. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="22" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="22" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="22" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="22" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="22" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -669,23 +744,23 @@ buenas o malas.</p>
 		Algunas personas dicen que soy irritante. *
 		<br>
 		<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="23" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="23" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="23" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="23" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="23" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 			
 		</fieldset>
@@ -695,23 +770,23 @@ buenas o malas.</p>
 			 La relación con mis compañeros de trabajo es limitada. *
 			 <br>
 			 <br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="24" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="24" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="24" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="24" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="24" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
 
@@ -720,48 +795,57 @@ buenas o malas.</p>
 			 Prefiero estar solo que mal acompañado. *
 			 <br>
 			 <br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="25" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="25" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="25" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="25" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="25" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
-
-		<fieldset id="page_three">
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+							</div>
+                                                    <div class="tab-pane fade" id="tab6">
+                                                        
+                                                        
+                                                        <fieldset id="page_three">
 			<legend>Pregunta 26</legend>
 			A veces soy inmaduro en mi trabajo. *
 			<br>
 			<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="26" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="26" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="26" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="26" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="26" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
 
@@ -770,23 +854,23 @@ buenas o malas.</p>
 			Me enojo muy rápido si alguien me contradice. *
 			<br>
 			<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="27" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="27" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="27" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="27" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="27" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
 
@@ -795,23 +879,23 @@ buenas o malas.</p>
 			Soy agresivo con aquellos que me provocan. *
 			<br>
 			<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="28" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="28" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="28" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="28" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="28" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
 
@@ -820,23 +904,23 @@ buenas o malas.</p>
 			Soy tímido, me cuesta trabajo hablar con desconocidos. *
 			<br>
 			<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="29" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="29" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="29" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="29" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="29" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
 
@@ -845,38 +929,68 @@ buenas o malas.</p>
 			Puedo ser irrespetuoso. *
 			<br>
 			<br>
-			    <input id="1" type="radio" name="1" value="1"> 
+			    <input id="1" type="radio" name="30" value="1"> 
 				<label for="1">Totalmente en desacuerdo</label>
 				
 				<br>
-                 <input id="2" type="radio" name="1" value="2"> 
+                 <input id="2" type="radio" name="30" value="2"> 
 				<label for="2">En desacuerdo</label>
 				
 				<br>
-                 <input id="3" type="radio" name="1" value="3"> 
+                 <input id="3" type="radio" name="30" value="3"> 
 				<label for="3">Ni de acuerdo ni en desacuerdo</label>
 				
 				<br>
-                 <input id="4" type="radio" name="1" value="4"> 
+                 <input id="4" type="radio" name="30" value="4"> 
 				<label for="4">De acuerdo</label>
 				
 				<br>
-                 <input id="5" type="radio" name="1" value="5">
+                 <input id="5" type="radio" name="30" value="5">
 				<label for="5">Totalmente de acuerdo</label>
 		</fieldset>
-
-		<input type="submit" value="Terminar" />
-	</form>
-	</div>
-
-  </div>
-  
-
+								
+								<button type="submit" class="btn btn-primary">Terminar</button>
+                                                                <c:forEach var="respuesta" items="${respuestas}">
+                                                                       ${respuesta}
+                                                                       </c:forEach>
+							</div>
+						</div>
+					</div>
+				</div><!--/.panel-->
+                </form>
+			<!--/.co	
+		</div><!-- /.row -->
+		
+                        
+                        
+                        
+	</div><!--/.main-->
         
         
+        
+        <script src="<c:url value="/js/jquery-1.11.1.min.js" /> "></script>
+          <script src="<c:url value="/js/bootstrap.min.js" /> "></script>
+           <script src="<c:url value="/js/chart.min.js" /> "></script>
+            <script src="<c:url value="/js/chart-data.js" /> "></script>
+             <script src="<c:url value="/js/easypiechart.js" /> "></script>
+              <script src="<c:url value="/js/easypiechart-data.js" /> "></script>
+               <script src="<c:url value="/js/bootstrap-datepicker.js" /> "></script>
+                
+       
+	<script>
+		!function ($) {
+			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
+				$(this).find('em:first').toggleClass("glyphicon-minus");	  
+			}); 
+			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
 
-    
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+	</script>	
+</body>
 </html>

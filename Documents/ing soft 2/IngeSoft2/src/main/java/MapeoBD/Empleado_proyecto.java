@@ -28,6 +28,10 @@ public class Empleado_proyecto {
     
     @Column(name = "habilitado")
     private int habilitado;
+    
+    public Empleado_proyecto(){
+        
+    }
 
     public Empleado_proyecto(long empleado_id, long proyecto_id, int habilitado) {
         this.empleado_id = empleado_id;

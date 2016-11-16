@@ -151,7 +151,6 @@ public class ClienteDAO implements ClienteDAOint {
          try {
            tx = session.beginTransaction();
            cli=(Cliente) session.get(Cliente.class, id );
-           cli.setUsuario_id(un_cliente.getUsuario_id());
            cli.setCorreo(un_cliente.getCorreo());
            cli.setNombre_cliente(un_cliente.getNombre_cliente());
            cli.setApellido_paterno_cliente(un_cliente.getApellido_paterno_cliente());
@@ -163,11 +162,9 @@ public class ClienteDAO implements ClienteDAOint {
            cli.setNombre_empresa(un_cliente.getNombre_empresa());
            cli.setHabilitado(un_cliente.getHabilitado());
            
-           
-           user.setId_cliente(cli.getUsuario_id().getId_usuario());
+           user = (Usuario) session.get(Usuario.class, id);
            user.setLogin_usuario(usu.getLogin_usuario());
-           user.setPassword_usuario(usu.getPassword_usuario());
-           user.setRol_usuario(usu.getRol_usuario());
+           
                 
            session.update(user);
            session.update(cli);

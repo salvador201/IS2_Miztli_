@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
 import modelo.EmpleadoDAO;
@@ -34,6 +37,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -55,6 +60,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class controlador {
     
     @Autowired
+    JavaMailSender mail_sender;
+    
+    @Autowired
     private ClienteDAO cliente_bd;
     
     @Autowired
@@ -66,6 +74,9 @@ public class controlador {
     @Autowired
     private EmpleadoDAO empleado_bd;
     
+   
+    
+    
 @RequestMapping(value = "/administrador/prueba", method=RequestMethod.GET)
 public String prueba(ModelMap model, HttpServletRequest a){
    
@@ -76,6 +87,29 @@ public String prueba(ModelMap model, HttpServletRequest a){
 public String crear(HttpServletRequest a){
      
     return "crear";
+}
+
+
+
+@RequestMapping(value = "/administrador/pruebaR", method=RequestMethod.POST)
+public ModelAndView pruebaR(ModelMap model, HttpServletRequest request, RedirectAttributes redirect){
+    System.out.println("hola prueba");
+    LinkedList<Integer> respuestas = new LinkedList<Integer>();
+    for(int i = 1; i < 31; i++){
+        Integer b = Integer.parseInt(request.getParameter(String.valueOf(i)));
+        respuestas.add(b);
+    }
+    for(Integer b:respuestas){
+        System.out.println(b);
+        if(b==0){
+            return new ModelAndView("redirect:/error");   
+        }
+        
+    }
+    model.addAttribute("respuestas", respuestas);
+    return new ModelAndView("prueba", model);   
+    
+    
 }
 
 
@@ -286,9 +320,9 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
   }
   
   //nota solo sirve con windows y el excel debe estar en C:\\
-    @RequestMapping(value = "/administrador/abreExcel", method = RequestMethod.POST)
+    @RequestMapping(value = "/cliente/abreExcel", method = RequestMethod.POST)
    public ModelAndView abreExcel(ModelMap model,
-            @RequestParam("archivo") File archivo) {
+            @RequestParam("archivo") File archivo, HttpServletRequest request) {
       
        try{
         String var="C:\\"+archivo.getPath();   
@@ -350,6 +384,9 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
                 row.getCell(7).getStringCellValue(),
                 row.getCell(8).getStringCellValue(),
                 1);
+                String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+                String token ="";
+                mail_sender.send(construirResetTokenEmail(url,token,cliente.getCorreo(),null));
                 
                 cliente_bd.crearCliente(cliente);
                 List clientes=cliente_bd.porCorreo(row.getCell(0).getStringCellValue());
@@ -384,6 +421,29 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
 	}
        //workbook.close();
        model.addAttribute("clientes",cliente_bd.getClientes());
-       return new ModelAndView("redirect:/home",model);    
+       return new ModelAndView("redirect:/home");    
    }
+   
+   
+    private MimeMessagePreparator construirResetTokenEmail(String contextPath, String token, final String correo ,Usuario usuario) {
+        
+        final String texto = "Utiliza la siguiente URL para contestar la prueba";
+        final String url = contextPath + "/prueba_adaptabilidad";
+        
+        MimeMessagePreparator message_preparator = new MimeMessagePreparator() {
+ 
+            @Override
+            public void prepare(MimeMessage message) throws Exception {
+                message.setFrom(new InternetAddress("validar.correo.sistema@gmail.com"));
+                message.setRecipient(Message.RecipientType.TO,
+                        new InternetAddress(correo));
+                message.setText(texto + "\n" + url);
+                message.setSubject("Link de la prueba");
+            }
+        };
+        
+        return message_preparator;        
+    }
+   
+   
 }

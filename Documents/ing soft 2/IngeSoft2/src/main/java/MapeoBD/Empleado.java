@@ -60,6 +60,11 @@ public class Empleado {
     @Column(name = "habilitado")
     private int habilitado;
 
+    
+    public Empleado(){
+        
+    }
+    
     public Empleado(long cliente_id, String direccion, int horas_x_semana, String carrera, String estado_civil, int numero_hijos, Date fecha_nacimiento, String antiguedad, String sueldo_mensual, String sexo, String candidato, int habilitado) {
         this.cliente_id = cliente_id;
         this.direccion = direccion;

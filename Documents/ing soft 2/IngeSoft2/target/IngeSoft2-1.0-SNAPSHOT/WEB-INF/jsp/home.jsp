@@ -15,79 +15,121 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="<c:url value="/imagenes/LogoHQRmediana.png" /> "/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-
-    <style>
-        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-    </style>
-    <title>HQR</title>
-  	<nav class="navbar navbar-default w3-cyan" role="navigation">
-        <!-- El logotipo y el icono que despliega el menú se agrupan
-             para mostrarlos mejor en los dispositivos móviles -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Desplegar navegación</span>
-                <span class="icon-bar">f</span>
-                <span class="icon-bar">g</span>
-                <span class="icon-bar">h</span>
-            </button>
-        </div>
-
-        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-             otro elemento que se pueda ocultar al minimizar la barra -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-               <li><a href="<c:url value="/home"/> ">Cuentas</a></li>
-                <li><a href="<c:url value="/administrador/prueba"/>">Pruebas</a></li>
-                <li><a href="<c:url value="/administrador/proyectos"/>">Proyectos</a></li>
-                <li><a href="#">Reportes</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Usuario: ${username}</a></li>
-                <li><a href="/IngeSoft2/logout">Salir</a></li>
-                
-            </ul>
-        </div>
-    </nav>
-  </head>
-  <body>
-    <div id="first" class="first">  
-   <center><img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " height="250" width="180"></center>
-    </div>
+    <title>HQR</title>	
     
-      <hr/>
+    
+    <link href="<c:url value="/css/bootstrap.min.css" /> " rel="stylesheet"/>
+    <link href="<c:url value="/css/datepicker3.css" /> " rel="stylesheet"/>
+    <link href="<c:url value="/css/bootstrap-table.css" /> " rel="stylesheet"/>
+    <link href="<c:url value="/css/styles.css" /> " rel="stylesheet"/>
+    
+    
+    <script src="<c:url value="/js/lumino.glyphs.js" /> "></script>
+    
 
-     
-        <div class="col-xs-12">
-          <center><h3>Eslogan de la empresa.</h3>
+    
+  </head>
+  
+  <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>HQR</span></a>
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Admin <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+							<li><a href="/IngeSoft2/logout"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Salir</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+							
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<form role="search">
+			<div class="form-group">
+				<img src="<c:url value="/imagenes/LogoHQRmediana.png" /> " style="width:100%; height:100%;">
+			</div>
+		</form>
+		<ul class="nav menu">
+                        <li class="active"><a href="<c:url value="/home" /> "><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Cuentas Empresas</a></li>
+			<li><a href="<c:url value="/administrador/prueba" /> "><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Pruebas</a></li>
+			<li><a href="<c:url value="/administrador/proyectos" /> "><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Proyectos</a></li>
+			<li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Reportes</a></li>
+			<li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> </a></li>
+			<li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
+			<li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
+			<li class="parent ">
+				<a href="#">
+					<span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown 
+				</a>
+				<ul class="children collapse" id="sub-item-1">
+					<li>
+						<a class="" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 1
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 2
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 3
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li role="presentation" class="divider"></li>
+		</ul>
 
-          </center>
-          </div>
-          <br>
-          <br>
-          <br>
-          <a href="<c:url value="/crear"/> "><button>Agregar Cuenta</button></a>
-          <br> 
-          <br> 
-          <a href="<c:url value="/verificaEmpleado"/> "><button>Agregar Empleado</button></a>
-          <br> 
-          
-  <center><h2>Cuentas de empresas:</h2>
-      <br>
-      <table>
-          <tr>
-              <th><h3>Empresa</h3></th>
-              <th><h3>Titular de Empresa</h3></th>
-              <th><h3>Correo</h3></th>
-              <th><h3>Puesto</h3></th>
-              <th><h3>Área</h3></th>
-          </tr>
-  <c:forEach var="cliente" items="${clientes}">
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">Icons</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Tables</h1>
+                                <a href="<c:url value="/exportarExcelCliente"/> "><button>Exportar Excel</button></a>
+                                <a href="<c:url value="/crear"/> "><button>Agregar Cuenta</button></a>
+			</div>
+		</div><!--/.row-->
+				
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Cuentas de Empresas</div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th data-field="state" data-sortable="true">Empresa</th>
+						        <th data-field="id" data-sortable="true">Titular de Empresa</th>
+						        <th data-field="name"  data-sortable="true">Correo</th>
+						        <th data-field="price" data-sortable="true">Puesto</th>
+                                                         <th data-field="price" data-sortable="true">Area</th>
+						    </tr>
+						    </thead>
+                                                    <c:forEach var="cliente" items="${clientes}">
       <tr <c:if test="${cliente.habilitado == 0}"> bgcolor="#FD6C84" </c:if>>
           
           <td><a href="<c:url value="/administrador/show?id=${cliente.id_cliente}" />">${cliente.nombre_empresa}</a></td>
@@ -98,34 +140,119 @@
           
       </tr>
         </c:forEach>
-      </table>
-  </center>
-  
-  <br>
-  <br>
-  <br>
- 
-     <a href="<c:url value="/exportarExcelCliente"/> "><button>Exportar Excel</button></a>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->	
+                      
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Carga de empleados Excel</div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="tables/data2.json" >
+						    <thead>
+						    <tr>
+						        <th data-field="id" data-align="right">Item ID</th>
+						        <th data-field="name">Item Name</th>
+						        <th data-field="price">Item Price</th>
+						    </tr>
+						    </thead>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Styled Table</div>
+					<div class="panel-body">
+						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
+						    <thead>
+						    <tr>
+						        <th data-field="id" data-align="right" >Item ID</th>
+						        <th data-field="name" >Item Name</th>
+						        <th data-field="price" >Item Price</th>
+						    </tr>
+						    </thead>
+						</table>
+						<script>
+						    $(function () {
+						        $('#hover, #striped, #condensed').click(function () {
+						            var classes = 'table';
+						
+						            if ($('#hover').prop('checked')) {
+						                classes += ' table-hover';
+						            }
+						            if ($('#condensed').prop('checked')) {
+						                classes += ' table-condensed';
+						            }
+						            $('#table-style').bootstrapTable('destroy')
+						                .bootstrapTable({
+						                    classes: classes,
+						                    striped: $('#striped').prop('checked')
+						                });
+						        });
+						    });
+						
+						    function rowStyle(row, index) {
+						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+						
+						        if (index % 2 === 0 && index / 2 < classes.length) {
+						            return {
+						                classes: classes[index / 2]
+						            };
+						        }
+						        return {};
+						    }
+						</script>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->	
+		
+		
+	</div><!--/.main-->
+        
+        
+         <script src="<c:url value="/js/jquery-1.11.1.min.js" /> "></script>
+          <script src="<c:url value="/js/bootstrap.min.js" /> "></script>
+           <script src="<c:url value="/js/chart.min.js" /> "></script>
+            <script src="<c:url value="/js/chart-data.js" /> "></script>
+             <script src="<c:url value="/js/easypiechart.js" /> "></script>
+              <script src="<c:url value="/js/easypiechart-data.js" /> "></script>
+               <script src="<c:url value="/js/bootstrap-datepicker.js" /> "></script>
+                <script src="<c:url value="/js/bootstrap-table.js" /> "></script>
+
+	
+	<script>
+		!function ($) {
+			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
+				$(this).find('em:first').toggleClass("glyphicon-minus");	  
+			}); 
+			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+	</script>	
+</body>
+         
+          <a href="<c:url value="/verificaEmpleado"/> "><button>Agregar Empleado</button></a>
+         
+    
+     
+     
     
   <form name="cargar_excel" method="POST" action="/IngeSoft2/administrador/abreExcel">
 		Seleciona Excel:
                 <input  id="archivo" type="file" name="archivo" ><br /> 
 		<button type="submit">Abrir excel</button>
 	</form>
-
   
-  <hr>
-      <footer class="text-muted">
-      <div class="col-sm-6">
-          <center><p>&copy; <img src="<c:url value="/imagenes/miztli.png" /> " width="70" ></p></center>
-        </div>      
-    </footer>
-        
-        
-
-    
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
 </html>
  

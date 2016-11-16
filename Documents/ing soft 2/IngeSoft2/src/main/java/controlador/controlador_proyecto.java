@@ -46,10 +46,33 @@ public ModelAndView show_proyecto(ModelMap model, HttpServletRequest a, Redirect
     }
     Cliente e = proyecto_bd.dameCliente(proyecto.getCliente_id());
     List<Prueba> pruebas = proyecto_bd.damePruebas(proyecto.getId_proyecto());
+    List<Empleado> empleados = proyecto_bd.dameEmpleados(proyecto.getId_proyecto());
     model.addAttribute("pruebas", pruebas);
     model.addAttribute("cliente",e);
     model.addAttribute("proyecto", proyecto);
+    model.addAttribute("empleados", empleados);
     return new ModelAndView("remodificadoPro", model);
+    
+}
+
+
+
+
+
+@RequestMapping(value = "/cliente/show_cp", method=RequestMethod.GET)
+public ModelAndView showcp_proyecto(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+    Proyecto proyecto = proyecto_bd.verProyecto(Long.parseLong(a.getParameter("id")));
+    if(proyecto.getHabilitado() == 1){
+        model.addAttribute("checado", "checked");
+    }
+    Cliente e = proyecto_bd.dameCliente(proyecto.getCliente_id());
+    List<Prueba> pruebas = proyecto_bd.damePruebas(proyecto.getId_proyecto());
+    List<Empleado> empleados = proyecto_bd.dameEmpleados(proyecto.getId_proyecto());
+    model.addAttribute("pruebas", pruebas);
+    model.addAttribute("cliente",e);
+    model.addAttribute("proyecto", proyecto);
+    model.addAttribute("empleados", empleados);
+    return new ModelAndView("proyecto_c", model);
     
 }
  
