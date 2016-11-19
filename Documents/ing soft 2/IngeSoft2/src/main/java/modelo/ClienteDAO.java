@@ -6,6 +6,7 @@
 package modelo;
 
 import MapeoBD.Cliente;
+import MapeoBD.Empleado;
 import MapeoBD.Prueba;
 import MapeoBD.Prueba_Cliente;
 import MapeoBD.Usuario;
@@ -68,18 +69,38 @@ public class ClienteDAO implements ClienteDAOint {
          Session session = sessionFactory.openSession();
         Transaction tx = null;
         List<Cliente> lista = new LinkedList<>();
+        List<Cliente> resultado = new LinkedList<>();
+        List<Empleado> lista1 = new LinkedList<>();
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Cliente cliente order by cliente.id_cliente");
+            Query query = session.createQuery("from Cliente");
             lista = query.list();
+            Query query1 = session.createQuery("from Empleado");
+            lista1 = query1.list();
+            
+            for (Cliente c :lista){
+                if(es_solo_cliente(c,lista1)==1){
+                    resultado.add(c);
+                }
+            }
         }catch(Exception e){
             e.printStackTrace(); 
         }finally{
             session.close();
         }
-        return lista;   
+        return resultado;   
      }
      
+    public int es_solo_cliente(Cliente c,List<Empleado> em){
+        for (Empleado aux:em){
+            if(c.getId_cliente()==aux.getCliente_id()){
+                return 0;
+            }
+        }
+        return 1;
+    }
+    
+    
      public Cliente verCliente(long numero){
       Session session = sessionFactory.openSession();
         Transaction tx = null;

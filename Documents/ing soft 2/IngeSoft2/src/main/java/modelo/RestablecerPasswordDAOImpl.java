@@ -70,7 +70,7 @@ public class RestablecerPasswordDAOImpl {
                     +    "FROM Password_token P "
                     +    "WHERE P.usuario_password_token.id_usuario = :id_usuario AND "
                     +    "P.token_password_token = :token ";
-            System.out.println("\n\n\n\n\n\n\n\n\n\n"+hql+"\n\n\n\n\n\n\n\n\n\n");
+            //System.out.println("\n\n\n\n\n\n\n\n\n\n"+hql+"\n\n\n\n\n\n\n\n\n\n");
             Query query = session.createQuery(hql);
             query.setParameter("id_usuario", id_usuario);
             query.setParameter("token", token);

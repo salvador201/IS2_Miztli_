@@ -37,10 +37,9 @@ public class ClientesExcelView extends AbstractXlsView {
         header.createCell(3).setCellValue("Apellido Materno");
         header.createCell(4).setCellValue("Telefono Local");
         header.createCell(5).setCellValue("Telefono Movil");
-        header.createCell(6).setCellValue("Nonmbre Usuario");
-        header.createCell(7).setCellValue("Area");
-        header.createCell(8).setCellValue("Puesto");
-        header.createCell(9).setCellValue("Nombre Empresa");
+        header.createCell(6).setCellValue("Area");
+        header.createCell(7).setCellValue("Puesto");
+        header.createCell(8).setCellValue("Nombre Empresa");
         
     int contador = 1;
        
@@ -52,8 +51,7 @@ public class ClientesExcelView extends AbstractXlsView {
                 courseRow.createCell(2).setCellValue(cliente.getApellido_paterno_cliente());
                 courseRow.createCell(3).setCellValue(cliente.getApellido_materno_cliente());
                 courseRow.createCell(4).setCellValue(cliente.getTelefono_local());
-                courseRow.createCell(5).setCellValue(cliente.getTelefono_movil());
-                
+                courseRow.createCell(5).setCellValue(cliente.getTelefono_movil());             
                 courseRow.createCell(6).setCellValue(cliente.getArea());
                 courseRow.createCell(7).setCellValue(cliente.getPuesto());
                 courseRow.createCell(8).setCellValue(cliente.getNombre_empresa());
@@ -72,7 +70,7 @@ public class ClientesExcelView extends AbstractXlsView {
         sheet.autoSizeColumn(6);
         sheet.autoSizeColumn(7);
         sheet.autoSizeColumn(8);
-        sheet.autoSizeColumn(9);
+        
         
     }
 }

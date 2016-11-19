@@ -7,6 +7,8 @@ package modelo;
 
 import MapeoBD.Cliente;
 import MapeoBD.Empleado;
+import MapeoBD.Empleado_proyecto;
+import MapeoBD.Proyecto;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -45,19 +47,20 @@ public class EmpleadoDAO {
         return lista.get(0);
     }
     
-    public List<Empleado> getEmpleados(){
+    public List getEmpleados(){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        List<Empleado> lista = new LinkedList<>();
+        List<Empleado> lista=new LinkedList();
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("from Empleado");
             lista = query.list();
+            
         }catch(Exception e){
-            e.printStackTrace(); 
+            e.printStackTrace();  
         }finally{
             session.close();
-        }
+        }    
         return lista;
     }
     
@@ -279,5 +282,52 @@ public class EmpleadoDAO {
            session.close();
         }
         return viejo;
+    }
+
+    public List<Empleado> dameEmpleados(String id) {
+        Session session = sessionFactory.openSession();
+         Transaction tx = null;
+         List<Proyecto> lista=new LinkedList<>();
+         List<Empleado_proyecto> lista_1=new LinkedList<>();
+         List<Empleado> lista_2=new LinkedList<>();
+         List<Empleado> empleados=new LinkedList<>();
+         
+         Proyecto aux=null;
+         Empleado_proyecto aux1=null;
+         Empleado e=null;
+         try {
+           tx = session.beginTransaction();
+           Query query = session.createQuery("from Proyecto "
+                   + "where cliente_id = :var");
+           query.setParameter("var",Long.parseLong(id) );
+           lista = query.list(); 
+           aux=lista.get(0);
+           
+           Query query_1 = session.createQuery("from Empleado_proyecto where proyecto_id = :var");
+           query_1.setParameter("var",aux.getId_proyecto());
+           lista_1=query_1.list();
+           
+           for (Empleado_proyecto em: lista_1){
+               Query query_2 = session.createQuery("from Empleado where id_empleado = :var");
+                query_2.setParameter("var",em.getEmpleado_id() );
+                lista_2=query_2.list();
+               empleados.add(lista_2.get(0));
+           
+           }
+           
+             
+           tx.commit();
+        }catch (Exception e1) {
+           if (tx!=null){
+               tx.rollback();
+           }
+           e1.printStackTrace(); 
+        }finally {
+           session.close();
+        }
+     
+         //return empleados;
+         
+         return empleados;
     }
 }

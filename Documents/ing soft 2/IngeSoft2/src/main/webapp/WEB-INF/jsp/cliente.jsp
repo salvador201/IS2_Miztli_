@@ -245,6 +245,62 @@
 				
 				
 			</div><!--/.col-->
+                        
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">	
+                        <div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Empleados involucrados en el proyecto</div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="tables/data2.json" >
+						    <thead>
+						    <tr>
+						        <th data-field="Nombre" data-align="right">carrera</th>
+						        <th data-field="Puesto">edo civil</th>
+						        <th data-field="Empresa">hijos</th>
+						        <th data-field="correo">correo</th>
+						        <th data-field="NombreC">nombre_cliente</th>
+						        <th data-field="apPaterno">apellido_paterno_cliente</th>
+						        <th data-field="apMaterno">apellido_materno_cliente</th>
+						        <th data-field="telefono_local">telefono_local</th>
+						        <th data-field="telefono_movil">telefono_movil</th>
+						        <th data-field="area">area</th>
+						        <th data-field="puesto">puesto</th>
+						        <th data-field="nombre_empresa">nombre_empresa</th>
+                                                        
+                                                       
+						    </tr>
+						    </thead>
+                                                    
+                                                    <c:forEach var="empleado" items="${empleados}">
+                                                        <tr>
+                                                            <td>${empleado.carrera}</td>
+                                                            <td>${empleado.estado_civil}</td>
+                                                            <td>${empleado.numero_hijos}</td>
+                                                            
+                                                            
+                                                            <c:forEach var="cli" items="${datos_e}">
+                                                        
+                                                            <td>${cli.correo}</td>
+                                                            <td>${cli.nombre_cliente}</td>
+                                                            <td>${cli.apellido_paterno_cliente}</td>
+                                                            <td>${cli.apellido_materno_cliente}</td>
+                                                            <td>${cli.telefono_local}</td>
+                                                            <td>${cli.telefono_movil}</td>
+                                                            <td>${cli.area}</td>
+                                                            <td>${cli.puesto}</td>
+                                                            <td>${cli.nombre_empresa}</td>
+                                           
+                                                             </c:forEach>
+                                                             </tr>
+                                                          </c:forEach>
+                                                    
+                                                   
+						</table>
+					</div>
+				</div>
+			</div>
+                        </div>
+                        
                 </div>
 			
 
@@ -258,14 +314,12 @@
 	<script>
 		$('#calendar').datepicker({
 		});
-
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
 		        $(this).find('em:first').toggleClass("glyphicon-minus");      
 		    }); 
 		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
-
 		$(window).on('resize', function () {
 		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
 		})

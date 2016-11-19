@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Salvador
  */
 @Entity
-@Table(name="empleado_proyecto")
+@Table(name="Empleado_proyecto")
 public class Empleado_proyecto {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "empleado_id")

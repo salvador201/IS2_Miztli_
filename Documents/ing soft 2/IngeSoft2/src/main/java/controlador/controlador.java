@@ -9,6 +9,7 @@ package controlador;
 import ExcelView.ClientesExcelView;
 import MapeoBD.Cliente;
 import MapeoBD.Empleado;
+import MapeoBD.Empleado_proyecto;
 import MapeoBD.Proyecto;
 import MapeoBD.Usuario;
 import java.io.File;
@@ -116,10 +117,20 @@ public ModelAndView pruebaR(ModelMap model, HttpServletRequest request, Redirect
 @RequestMapping(value = "/administrador/show", method=RequestMethod.GET)
 public ModelAndView mostrarc(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Cliente cliente = cliente_bd.verCliente(Long.parseLong(a.getParameter("id")));
+    LinkedList<Cliente> datos_e = new LinkedList<Cliente>();
     if(cliente.getHabilitado() == 1){
         model.addAttribute("checado", "checked");
     }
+    
+    List<Empleado> empleados=empleado_bd.dameEmpleados(a.getParameter("id"));
+    
+    for (Empleado em: empleados){
+        datos_e.add(cliente_bd.verCliente(em.getCliente_id()));
+    }
     model.addAttribute("cliente", cliente);
+    model.addAttribute("empleados", empleados);
+    model.addAttribute("datos_e", datos_e);
+    
     return new ModelAndView("cliente", model);
     
 }

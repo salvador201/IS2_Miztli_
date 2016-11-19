@@ -15,10 +15,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import modelo.ClienteDAO;
 import modelo.ProyectoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +40,8 @@ public class controlador_proyecto {
  @Autowired
  private ProyectoDAO proyecto_bd;
  
+  @Autowired
+ private ClienteDAO cliente_bd;
  
 @RequestMapping(value = "/administrador/show_p", method=RequestMethod.GET)
 public ModelAndView show_proyecto(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
@@ -67,11 +72,23 @@ public ModelAndView showcp_proyecto(ModelMap model, HttpServletRequest a, Redire
     }
     Cliente e = proyecto_bd.dameCliente(proyecto.getCliente_id());
     List<Prueba> pruebas = proyecto_bd.damePruebas(proyecto.getId_proyecto());
+ 
     List<Empleado> empleados = proyecto_bd.dameEmpleados(proyecto.getId_proyecto());
+    List<Cliente> datos_e= new LinkedList<>();
+    
+    for (Empleado em: empleados){
+
+        System.out.println(em.getCliente_id());       
+        datos_e.add(cliente_bd.verCliente(em.getCliente_id()));
+        
+    }
+    
     model.addAttribute("pruebas", pruebas);
     model.addAttribute("cliente",e);
     model.addAttribute("proyecto", proyecto);
     model.addAttribute("empleados", empleados);
+    model.addAttribute("datos_e", datos_e);
+    
     return new ModelAndView("proyecto_c", model);
     
 }

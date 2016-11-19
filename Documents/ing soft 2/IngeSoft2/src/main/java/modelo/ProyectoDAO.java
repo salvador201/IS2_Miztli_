@@ -145,11 +145,13 @@ public class ProyectoDAO {
             query_empleado.setParameter("var",lista.get(0).getEmpleado_id());
             empleados= query_empleado.list();
             
+            
         }catch(Exception e){
             e.printStackTrace(); 
         }finally{
             session.close();
         }
+        
         return empleados;  
          
      }
