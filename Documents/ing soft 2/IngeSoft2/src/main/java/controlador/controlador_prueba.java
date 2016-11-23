@@ -6,12 +6,19 @@
 package controlador;
 
 
+import MapeoBD.Cliente;
+import MapeoBD.Empleado;
+import MapeoBD.Proyecto;
 import MapeoBD.Prueba;
+import MapeoBD.Prueba_Proyecto;
+import MapeoBD.Prueba_cliente;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
+import modelo.ProyectoDAO;
 
 import modelo.PruebaDAO;
+import modelo.Prueba_ProyectoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,7 +35,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class controlador_prueba {
     @Autowired
     private PruebaDAO prueba_bd;
-    private ClienteDAO cliente_db;
+     @Autowired
+ private ProyectoDAO proyecto_bd;
+ 
+  @Autowired
+ private ClienteDAO cliente_bd;
+ 
+  @Autowired
+ private Prueba_ProyectoDAO prueba_proyecto_bd;
     
     @RequestMapping(value = "/administrador/show_prueba", method=RequestMethod.GET)
     public ModelAndView show_prueba(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
@@ -74,21 +88,32 @@ public class controlador_prueba {
        return new ModelAndView("datos_prueba",model);   
        }
     
-   @RequestMapping(value = "/crearPrueba", method = RequestMethod.POST)
-    public String creaPrueba(ModelMap model,HttpServletRequest request){
+   @RequestMapping(value = "/asignarPrueba", method = RequestMethod.POST)
+    public ModelAndView asignarPrueba(ModelMap model,HttpServletRequest request){
             
-            String id_prueba= request.getParameter("id_prueba");
-            String nombre_prueba= request.getParameter("nombre_prueba");
-            String descripcion_prueba= request.getParameter("descripcion_prueba");
-            String habilitado= request.getParameter("habilitado");
+            String id_pru= request.getParameter("proyecto_id");
+            String id_cli= request.getParameter("cli_id");
+           System.out.print(" ////////// " + id_pru );
             
-            Prueba p=new Prueba(Long.parseLong(id_prueba), 
-                    nombre_prueba, descripcion_prueba, 
-                    Integer.parseInt(habilitado));
+            Prueba_cliente p=new Prueba_cliente(Long.parseLong(id_pru), 
+                    Long.parseLong(id_cli),1);
             
-            prueba_bd.crearPrueba(p);
+           // prueba_bd.crearPrueba_cliente(p);
        
-            return "home";
+            Proyecto proyecto = proyecto_bd.verProyecto(Long.parseLong(request.getParameter("id")));
+    if(proyecto.getHabilitado() == 1){
+        model.addAttribute("checado", "checked");
+    }
+    Cliente e = proyecto_bd.dameCliente(proyecto.getCliente_id());
+    List<Prueba> pruebas = proyecto_bd.damePruebas(proyecto.getId_proyecto());
+    List<Empleado> empleados = proyecto_bd.dameEmpleados(proyecto.getId_proyecto());
+    List<Cliente> clientes=cliente_bd.getClientes();
+    model.addAttribute("pruebas", pruebas);
+    model.addAttribute("cliente",e);
+    model.addAttribute("proyecto", proyecto);
+    model.addAttribute("empleados", empleados);
+    model.addAttribute("clientes", clientes);
+    return new ModelAndView("remodificadoPro", model);
        
         }
         
@@ -123,9 +148,48 @@ public class controlador_prueba {
      @RequestMapping(value = "/ClientePruebas", method = RequestMethod.POST)
     public ModelAndView daPruebasCliente(ModelMap model,HttpServletRequest request){
         String id_cliente=request.getParameter("id");
-        model.addAttribute("pruebas",cliente_db.daPruebas(Long.parseLong(id_cliente)));
+        model.addAttribute("pruebas",cliente_bd.daPruebas(Long.parseLong(id_cliente)));
         return new ModelAndView("Lista_pruebas",model);  
         
+    }
+    
+    
+     @RequestMapping(value = "/crearPrueba", method = RequestMethod.POST)
+    public String creaPrueba(ModelMap model,HttpServletRequest request){
+            
+            String id_prueba= request.getParameter("id_prueba");
+            String nombre_prueba= request.getParameter("nombre_prueba");
+            String descripcion_prueba= request.getParameter("descripcion_prueba");
+            String habilitado= request.getParameter("habilitado");
+            
+            Prueba p=new Prueba(Long.parseLong(id_prueba), 
+                    nombre_prueba, descripcion_prueba, 
+                    Integer.parseInt(habilitado));
+            
+            prueba_bd.crearPrueba(p);
+       
+            return "home";
+       
+}
+
+    @RequestMapping(value = "/pruebaProyecto", method=RequestMethod.GET)
+    public ModelAndView prueba_proyecto(ModelMap model,HttpServletRequest request){
+        List<Prueba> pruebas=prueba_bd.getPruebas();
+        List<Proyecto> proyecto=proyecto_bd.getProyectos();
+        
+        model.addAttribute("pp", prueba_proyecto_bd.getPruebas_todas());
+        model.addAttribute("pruebas",pruebas);
+        model.addAttribute("proyectos",proyecto);
+        
+     return new ModelAndView("prueba_proyecto",model);
+   
+    }
+
+    @RequestMapping(value = "/asignarPruebaProyecto", method = RequestMethod.POST)
+    public ModelAndView pruebaproyecto(ModelMap model,HttpServletRequest request){
+        
+        return new ModelAndView("prueba_proyecto",model);  
+      
     }
     
 }

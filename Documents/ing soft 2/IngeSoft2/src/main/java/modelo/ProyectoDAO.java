@@ -141,9 +141,13 @@ public class ProyectoDAO {
             Query query = session.createQuery("from Empleado_proyecto where proyecto_id = :var");
             query.setParameter("var",id_proyecto);
             lista = query.list();
-            Query query_empleado = session.createQuery("from Empleado where id_empleado = :var");
-            query_empleado.setParameter("var",lista.get(0).getEmpleado_id());
-            empleados= query_empleado.list();
+            for(Empleado_proyecto em:lista){
+                Query query_empleado = session.createQuery("from Empleado where id_empleado = :var");
+                query_empleado.setParameter("var",em.getEmpleado_id());
+                empleados.add((Empleado) query_empleado.list().get(0));
+            }
+            
+            
             
             
         }catch(Exception e){

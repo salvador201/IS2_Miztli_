@@ -3,6 +3,7 @@ package modelo;
 
 
 import MapeoBD.Prueba;
+import MapeoBD.Prueba_cliente;
 import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Query;
@@ -80,6 +81,7 @@ public class PruebaDAO {
         }
      }
       
+     
       public void modificaPrueba(Prueba prueba,Long id){
          Session session = sessionFactory.openSession();
          Transaction tx = null;

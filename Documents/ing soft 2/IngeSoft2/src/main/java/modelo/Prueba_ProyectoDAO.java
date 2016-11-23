@@ -58,6 +58,21 @@ public class Prueba_ProyectoDAO {
         }
         return lista;
     }
+    public List<Prueba_Proyecto> getPruebas_todas(){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List<Prueba_Proyecto> lista = new LinkedList<>();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Prueba_Proyecto ");
+            lista = query.list();
+        }catch(Exception e){
+            e.printStackTrace(); 
+        }finally{
+            session.close();
+        }
+        return lista;
+    }
     
     
     public void crearPrueba_Proyecto(Prueba_Proyecto prueba_pro){

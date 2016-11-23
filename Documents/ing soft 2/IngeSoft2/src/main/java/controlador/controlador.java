@@ -11,6 +11,7 @@ import MapeoBD.Cliente;
 import MapeoBD.Empleado;
 import MapeoBD.Empleado_proyecto;
 import MapeoBD.Proyecto;
+import MapeoBD.Prueba;
 import MapeoBD.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 import modelo.ClienteDAO;
 import modelo.EmpleadoDAO;
 import modelo.ProyectoDAO;
+import modelo.PruebaDAO;
 import modelo.UsuarioDAO;
 import static org.apache.commons.codec.digest.DigestUtils.md5;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -74,6 +76,9 @@ public class controlador {
     
     @Autowired
     private EmpleadoDAO empleado_bd;
+    
+    @Autowired
+    private PruebaDAO prueba_bd;
     
    
     
@@ -149,10 +154,20 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String currentPrincipalName = authentication.getName();
      System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
-    System.out.println("hola");
+   
+       List<Prueba> pruebas=prueba_bd.getPruebas();
+       List<Empleado> empleados=empleado_bd.getEmpleados();
+       List<Cliente> datos_e=new LinkedList<>();
+       for(Empleado em:empleados){
+           datos_e.add(cliente_bd.verCliente(em.getCliente_id()));
+       }
+       
+       model.addAttribute("pruebas", pruebas);
+       model.addAttribute("datos_e", datos_e);
+       
   if(String.valueOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities()).equals("[ROLE_ADMIN]")){
     System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
-    System.out.println("hola");
+  
     List b = cliente_bd.getClientes();
     b.remove(0);
     model.addAttribute("clientes", b);
@@ -163,6 +178,7 @@ public ModelAndView home(ModelMap model, HttpServletRequest a, RedirectAttribute
        Cliente aa = (Cliente) c.get(0);
        long f = aa.getId_cliente();
        List b = proyecto_bd.getProyecto(f);
+       
        model.addAttribute("proyectos", b);
        model.addAttribute("username", currentPrincipalName);
        return new ModelAndView("homec", model);

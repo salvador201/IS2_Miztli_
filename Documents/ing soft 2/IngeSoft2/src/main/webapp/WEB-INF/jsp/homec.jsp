@@ -61,10 +61,10 @@
 		</form>
 		<ul class="nav menu">
                         <li class="active"><a href="<c:url value="/home" /> "><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Cuentas Empresas</a></li>
-			<li><a href="<c:url value="/administrador/prueba" /> "><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Pruebas</a></li>
+			<li><a href="<c:url value="/pruebaProyecto" /> "><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Pruebas</a></li>
 			<li><a href="<c:url value="/administrador/proyectos" /> "><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Proyectos</a></li>
 			<li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Reportes</a></li>
-			<li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Forms</a></li>
+			<li><a href="<c:url value="/proyectos" /> "><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Crear Empleados</a></li>
 			<li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
 			<li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
 			<li class="parent ">
@@ -121,10 +121,11 @@
 						        <th data-field="descripcion" data-sortable="true">Decripción</th>
 						        <th data-field="fechai"  data-sortable="true">Fecha Inicio</th>
 						        <th data-field="fechaf" data-sortable="true">Fecha Final</th>
+						       
                                                         
 						    </tr>
 						    </thead>
-                                                    <c:forEach var="proyecto" items="${proyectos}">
+            <c:forEach var="proyecto" items="${proyectos}">
       <tr <c:if test="${proyecto.habilitado!=1}">bgcolor="#FD6C84"</c:if>>
           
           <td><a href="<c:url value="/cliente/show_cp?id=${proyecto.id_proyecto}" />">${proyecto.nombre_proyecto}</a></td>
@@ -132,6 +133,7 @@
           <td>${proyecto.fecha_inicio}</td>
           <td>${proyecto.fecha_fin}</td>
           
+           
           
       </tr>
         </c:forEach>
@@ -159,17 +161,35 @@
 			</div>
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Styled Table</div>
+					<div class="panel-heading">Asignar Pruebas a empleados</div>
 					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right" >Item ID</th>
-						        <th data-field="name" >Item Name</th>
-						        <th data-field="price" >Item Price</th>
-						    </tr>
-						    </thead>
+                                            <form class="form-horizontal" method="POST" action="/IngeSoft2/asignarPrueba">
+						<table data-toggle="table" data-url="tables/data2.json" >
+						     <div class="form-group">
+									<label class="col-md-3 control-label" >Selecionar Prueba</label>
+									<div class="col-md-9">
+                                                                            <select class="form-control">
+                                                                            <c:forEach var="prueba" items="${pruebas}">
+                                                                                <option value="${prueba.id_prueba}" name="proyecto_id" type="text">${prueba.nombre_prueba}</option>
+                                                                             </c:forEach>
+                                                                            </select>
+									</div>
+                                                                        
+                                                                        <label class="col-md-3 control-label"  >Selecionar Empleado</label>
+									<div class="col-md-9">
+                                                                            <select class="form-control">
+                                                                            <c:forEach var="cli" items="${clientes}">
+                                                                                <option value="${cli.id_cliente}" name="cli_id" type="text">${cli.nombre_cliente}</option>
+                                                                             </c:forEach>
+                                                                            </select>
+									</div>
+								</div>
+                                                    <button type="submit" class="btn btn-primary btn-md pull-right">Asignar</button>
 						</table>
+                                                </form>
+                                            
+                                            
+                                            
 						<script>
 						    $(function () {
 						        $('#hover, #striped, #condensed').click(function () {

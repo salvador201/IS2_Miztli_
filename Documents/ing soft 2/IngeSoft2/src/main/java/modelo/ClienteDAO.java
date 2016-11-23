@@ -8,7 +8,7 @@ package modelo;
 import MapeoBD.Cliente;
 import MapeoBD.Empleado;
 import MapeoBD.Prueba;
-import MapeoBD.Prueba_Cliente;
+import MapeoBD.Prueba_cliente;
 import MapeoBD.Usuario;
 import java.util.LinkedList;
 import java.util.List;
@@ -210,8 +210,8 @@ public class ClienteDAO implements ClienteDAOint {
       public List<Prueba> daPruebas(long id){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        Prueba_Cliente pc= null;
-        List<Prueba_Cliente> lista = new LinkedList<>();
+        Prueba_cliente pc= null;
+        List<Prueba_cliente> lista = new LinkedList<>();
         List<Prueba> pruebas=new LinkedList<>();
         try {
            tx = session.beginTransaction();

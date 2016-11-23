@@ -52,10 +52,17 @@ public ModelAndView show_proyecto(ModelMap model, HttpServletRequest a, Redirect
     Cliente e = proyecto_bd.dameCliente(proyecto.getCliente_id());
     List<Prueba> pruebas = proyecto_bd.damePruebas(proyecto.getId_proyecto());
     List<Empleado> empleados = proyecto_bd.dameEmpleados(proyecto.getId_proyecto());
+    List<Cliente> datos_e= new LinkedList<>();
+    for(Empleado em : empleados){
+        datos_e.add(cliente_bd.verCliente(em.getCliente_id()));
+    }
+    List<Cliente> clientes=cliente_bd.getClientes();
     model.addAttribute("pruebas", pruebas);
     model.addAttribute("cliente",e);
     model.addAttribute("proyecto", proyecto);
     model.addAttribute("empleados", empleados);
+    model.addAttribute("clientes", clientes);
+    model.addAttribute("datos_e", datos_e);
     return new ModelAndView("remodificadoPro", model);
     
 }

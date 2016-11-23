@@ -36,6 +36,7 @@
                 <value>MapeoBD.Respuesta</value>  
                 <value>MapeoBD.Prueba_Proyecto</value>
                 <value>MapeoBD.Usuario</value>    
+                <!-- <value>MapeoBD.Prueba_cliente</value>   --> 
             </list>
         </property>    
         <property name="hibernateProperties">
@@ -75,8 +76,16 @@
     <bean id="PruebaDAO" class="modelo.PruebaDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
-    
+    <!-- 
+    <bean id="Prueba_clienteDAO" class="modelo.Prueba_clienteDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    -->
     <bean id="RespuestaDAO" class="modelo.RespuestaDAO"
+        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
+    />
+    
+    <bean id="Prueba_ProyectoDAO" class="modelo.Prueba_ProyectoDAO"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
     

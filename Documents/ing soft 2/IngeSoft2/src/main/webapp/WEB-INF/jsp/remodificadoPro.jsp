@@ -205,17 +205,9 @@
                                                                              <input type="checkbox" class="form-control" name="habilitado" value="1" ${checado}>
 									</div>
 								</div>  
-                                                                        
-                                                                         
-                                                                        
-                                                                        
-                                                                     
-                                                                        
-								
+                                                              
 								<!-- Message body -->
-							
-								
-								<!-- Form actions -->
+							<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
 										<button type="submit" class="btn btn-primary btn-md pull-right">Actualizar</button>
@@ -237,17 +229,30 @@
 						<table data-toggle="table" data-url="tables/data2.json" >
 						    <thead>
 						    <tr>
-						        <th data-field="Nombre" data-align="right">carrera</th>
-						        <th data-field="Puesto">edo civil</th>
-						        <th data-field="Empresa">hijos</th>
+						        <th data-field="Correo" data-align="right">correo</th>
+						        <th data-field="nombre_cliente">nombre_cliente</th>
+						        <th data-field="apellido_paterno_cliente">apellido_paterno_cliente</th>
+						        <th data-field="apellido_materno_cliente">apellido_materno_cliente</th>
+						        <th data-field="telefono_local">telefono_local</th>
+						        <th data-field="telefono_movil">telefono_movil</th>
+						        <th data-field="area">area</th>
+						        <th data-field="puesto">puesto</th>
+						        <th data-field="nombre_empresa">nombre_empresa</th>
 						    </tr>
 						    </thead>
                                                     
-                                                    <c:forEach var="empleado" items="${empleados}">
+                                                    <c:forEach var="cli" items="${datos_e}">
                                                         <tr>
-                                                            <td>${empleado.carrera}</td>
-                                                            <td>${empleado.estado_civil}</td>
-                                                            <td>${empleado.numero_hijos}</td>
+                                                            <td><a href="<c:url value="/administrador/show?id=${cliente.id_cliente}" />">${cliente.correo}</a></td>
+                                                         <td>${cliente.correo}</td>
+                                                         <td>${cliente.nombre_cliente}</td>
+                                                         <td>${cliente.apellido_paterno_cliente}</td>
+                                                            <td>${cliente.apellido_materno_cliente}</td>
+                                                          <td>${cliente.telefono_local}</td>
+                                                           <td>${cliente.telefono_movil}</td>
+                                                            <td>${cliente.area}</td>
+                                                            <td>${cliente.puesto}</td>
+                                                            <td>${cliente.nombre_empresa}</td> 
                                                              </tr>
                                                           </c:forEach>
 						</table>
@@ -256,7 +261,44 @@
 			</div>
                         </div>
                 </div>
-			
+                
+                                                                        
+                			
+			</div><!--/.col-->
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">	
+                        <div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Asignar Pruebas a Clientes</div>
+					<div class="panel-body">
+                                            <form class="form-horizontal" method="POST" action="/IngeSoft2/asignarPrueba">
+						<table data-toggle="table" data-url="tables/data2.json" >
+						     <div class="form-group">
+									<label class="col-md-3 control-label" >Selecionar Prueba</label>
+									<div class="col-md-9">
+                                                                            <select class="form-control">
+                                                                            <c:forEach var="prueba" items="${pruebas}">
+                                                                                <option value="${prueba.id_prueba}" name="proyecto_id" type="text">${prueba.nombre_prueba}</option>
+                                                                             </c:forEach>
+                                                                            </select>
+									</div>
+                                                                        
+                                                                        <label class="col-md-3 control-label"  >Selecionar Empleado</label>
+									<div class="col-md-9">
+                                                                            <select class="form-control">
+                                                                            <c:forEach var="dato" items="${datos_e}">
+                                                                                <option value="${dato.id_cliente}" name="dato" type="text">${dato.nombre_cliente}</option>
+                                                                             </c:forEach>
+                                                                            </select>
+									</div>
+								</div>
+                                                    <button type="submit" class="btn btn-primary btn-md pull-right">Asignar</button>
+						</table>
+                                                </form>
+					</div>
+				</div>
+			</div>
+                        </div>
+                </div>
 
 	 <script src="<c:url value="/js/jquery-1.11.1.min.js" /> "></script>
           <script src="<c:url value="/js/bootstrap.min.js" /> "></script>
