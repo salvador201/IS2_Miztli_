@@ -183,7 +183,7 @@ public class ClienteDAO implements ClienteDAOint {
            cli.setNombre_empresa(un_cliente.getNombre_empresa());
            cli.setHabilitado(un_cliente.getHabilitado());
            
-           user = (Usuario) session.get(Usuario.class, id);
+           user = (Usuario) session.get(Usuario.class, cli.getUsuario_id().getId_usuario());
            user.setLogin_usuario(usu.getLogin_usuario());
            
                 

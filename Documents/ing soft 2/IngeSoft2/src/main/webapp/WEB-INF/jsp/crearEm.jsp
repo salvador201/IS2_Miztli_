@@ -107,7 +107,7 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Crear cuenta de cliente</h1>
+				<h1 class="page-header">Crear cuenta de un cliente</h1>
 			</div>
 		</div><!--/.row-->
                 
@@ -117,11 +117,87 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg> Información</div>
 					<div class="panel-body">
-						<form class="form-horizontal" name="crear_cliente" method="POST" action="/IngeSoft2/administrador/crearCliente">
+						<form class="form-horizontal" name="crear_cliente" method="POST" action="/IngeSoft2/crearEmpleado">
 							<fieldset>
 								<!-- Name input-->
                                                                 <p>Aqui podras crear una cuenta grupal</p>
                                                                 
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">Login</label>
+									<div class="col-md-9">
+									<input class="form-control" id="login_usuario" name="login_usuario" type="text" placeholder="login_usuario">
+									</div>
+								</div>
+                                                                
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">password_usuario</label>
+									<div class="col-md-9">
+									<input class="form-control" id="password_usuario" name="password_usuario" type="text" placeholder="password_usuario">
+									</div>
+								</div>
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">rol_usuario</label>
+									<div class="col-md-9">
+									<input class="form-control" id="rol_usuario" name="rol_usuario" type="text" placeholder="rol_usuario">
+									</div>
+								</div>
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">correo</label>
+									<div class="col-md-9">
+									<input class="form-control" id="correo" name="correo" type="text" placeholder=" correo">
+									</div>
+								</div>
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">nombre_cliente</label>
+									<div class="col-md-9">
+									<input class="form-control" id="nombre_cliente" name="nombre_cliente" type="text" placeholder=" nombre_cliente">
+									</div>
+								</div>
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">apellido_paterno_cliente</label>
+									<div class="col-md-9">
+									<input class="form-control" id="apellido_paterno_cliente" name="apellido_paterno_cliente" type="text" placeholder=" apellido_paterno_cliente">
+									</div>
+								</div>
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">apellido_materno_cliente</label>
+									<div class="col-md-9">
+									<input class="form-control" id="apellido_materno_cliente" name="apellido_materno_cliente" type="text" placeholder=" apellido_materno_cliente">
+									</div>
+								</div>
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">telefono_local</label>
+									<div class="col-md-9">
+									<input class="form-control" id="telefono_local" name="telefono_local" type="text" placeholder=" telefono_local">
+									</div>
+								</div>
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">telefono_movil</label>
+									<div class="col-md-9">
+									<input class="form-control" id="telefono_movil" name="telefono_movil" type="text" placeholder=" telefono_movil">
+									</div>
+								</div>
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">area</label>
+									<div class="col-md-9">
+									<input class="form-control" id="area" name="area" type="text" placeholder=" area">
+									</div>
+								</div>
+                                                                
+                                                                <div class="form-group">
+									<label class="col-md-3 control-label" for="id">puesto</label>
+									<div class="col-md-9">
+									<input class="form-control" id="puesto" name="puesto" type="text" placeholder=" puesto">
+									</div>
+								</div>
+                                                                                                                                                                                            
                                                                 <div class="form-group">
 									<label class="col-md-3 control-label" for="id">Nombre empresa</label>
 									<div class="col-md-9">
@@ -139,7 +215,7 @@
                                                                 
                                                                 
                                                                 <div class="form-group">
-									<label class="col-md-3 control-label" for="apellidop">Horas de trabajo por semana</label>
+									<label class="col-md-3 control-label" for="Horas">Horas de trabajo por semana</label>
 									<div class="col-md-9">
                                                                             <input class="form-control" id="horas_x_semana" name="horas_x_semana" type="text" placeholder="horas_x_semana">
 									</div>
@@ -147,16 +223,15 @@
                                                                 
                                                                 
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="apellidom">Carrera</label>
+									<label class="col-md-3 control-label" for="Carrera">Carrera</label>
 									<div class="col-md-9">
                                                                             <input class="form-control" id="carrera" name="carrera" type="text" placeholder="carrera">
 									</div>
 								</div>
 							
-								<!-- Email input-->
-                                                                
+								                                                                
                                                                 <div class="form-group">
-									<label class="col-md-3 control-label" for="correo">Estado Civil</label>
+									<label class="col-md-3 control-label" for="Estado">Estado Civil</label>
 									<div class="col-md-9">
 										 <input class="form-control" id="estado_civil" name="estado_civil" type="text" placeholder="estado_civil">
 									</div>
@@ -164,14 +239,14 @@
                                                                 
                                                                         
                                                                         <div class="form-group">
-									<label class="col-md-3 control-label" for="Puesto">Número de hijos</label>
+									<label class="col-md-3 control-label" for="hijos">Número de hijos</label>
 									<div class="col-md-9">
                                                                             <input class="form-control" id="numero_hijos" name="numero_hijos" type="text" placeholder="numero_hijos"> 
 									</div>
 								</div>  
                                                                 
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="correo">Fecha de naciemiento</label>
+									<label class="col-md-3 control-label" for="naciemiento">Fecha de naciemiento</label>
 									<div class="col-md-9">
 										 <input class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" type="text" placeholder="fecha_nacimiento">
 									</div>
@@ -179,21 +254,21 @@
                                                                         
                                                                         
                                                                         <div class="form-group">
-									<label class="col-md-3 control-label" for="Nombre_Empresa">Antiguedad</label>
+									<label class="col-md-3 control-label" for="Antiguedad">Antiguedad</label>
 									<div class="col-md-9">
                                                                              <input class="form-control" id="antiguiedad" name="antiguiedad" type="text" placeholder="antiguiedad">
 									</div>
 								</div>  
                                                                         
                                                                         <div class="form-group">
-									<label class="col-md-3 control-label" for="telefono_local">Sueldo mensual</label>
+									<label class="col-md-3 control-label" for="Sueldo">Sueldo mensual</label>
 									<div class="col-md-9">
                                                                             <input class="form-control" id="sueldo_mensual" name="sueldo_mensual" type="text" placeholder="sueldo_mensual">
 									</div>
 								</div>  
                                                                         
                                                                         <div class="form-group">
-									<label class="col-md-3 control-label" for="telefono_Movil">Sexo</label>
+									<label class="col-md-3 control-label" for="Sexo">Sexo</label>
 									<div class="col-md-9">
                                                                            <input class="form-control" id="sexo" name="sexo" type="text" placeholder="sexo">
 									</div>
@@ -201,24 +276,13 @@
                                                                         
                                                                         
                                                                         <div class="form-group">
-									<label class="col-md-3 control-label" for="area">Candidato</label>
+									<label class="col-md-3 control-label" for="Candidato">Candidato</label>
 									<div class="col-md-9">
                                                                             <input class="form-control" id="candidato" name="candidato" type="text" placeholder="candidato">
 									</div>
 								</div>  
                                                                         
-                                                                         
-                                                                      
-                                                                        
-                                                                        
-                                                                        
-                                                                        
-                                                                      
-                                                                        
                                                                        
-                                                                        
-                                                                        
-								
 								<!-- Message body -->
 							
 								
@@ -238,7 +302,7 @@
 			</div><!--/.col-->
                 </div>
 			
-
+         
 	 <script src="<c:url value="/js/jquery-1.11.1.min.js" /> "></script>
           <script src="<c:url value="/js/bootstrap.min.js" /> "></script>
            <script src="<c:url value="/js/chart.min.js" /> "></script>

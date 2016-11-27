@@ -127,7 +127,7 @@ public ModelAndView mostrarc(ModelMap model, HttpServletRequest a, RedirectAttri
         model.addAttribute("checado", "checked");
     }
     
-    List<Empleado> empleados=empleado_bd.dameEmpleados(a.getParameter("id"));
+    List<Empleado> empleados=empleado_bd.getEmpleados();
     
     for (Empleado em: empleados){
         datos_e.add(cliente_bd.verCliente(em.getCliente_id()));

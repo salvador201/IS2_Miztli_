@@ -249,48 +249,29 @@
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">	
                         <div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Empleados involucrados en el proyecto</div>
+					<div class="panel-heading">Selecciona un empleado para editarlo XD </div>
 					<div class="panel-body">
 						<table data-toggle="table" data-url="tables/data2.json" >
 						    <thead>
 						    <tr>
-						        <th data-field="Nombre" data-align="right">carrera</th>
-						        <th data-field="Puesto">edo civil</th>
-						        <th data-field="Empresa">hijos</th>
-						        <th data-field="correo">correo</th>
-						        <th data-field="NombreC">nombre_cliente</th>
-						        <th data-field="apPaterno">apellido_paterno_cliente</th>
-						        <th data-field="apMaterno">apellido_materno_cliente</th>
-						        <th data-field="telefono_local">telefono_local</th>
-						        <th data-field="telefono_movil">telefono_movil</th>
-						        <th data-field="area">area</th>
-						        <th data-field="puesto">puesto</th>
-						        <th data-field="nombre_empresa">nombre_empresa</th>
+						        
+						        <th data-field="correo"> Correo</th>
+						        <th data-field="NombreC"> Nombre cliente </th>
+						        <th data-field="apPaterno"> Apellido paterno </th>
+						        <th data-field="apMaterno"> Apellido materno </th>
+						        
                                                         
                                                        
 						    </tr>
 						    </thead>
                                                     
-                                                    <c:forEach var="empleado" items="${empleados}">
+                                                   <c:forEach var="cli" items="${datos_e}">
+
                                                         <tr>
-                                                            <td>${empleado.carrera}</td>
-                                                            <td>${empleado.estado_civil}</td>
-                                                            <td>${empleado.numero_hijos}</td>
-                                                            
-                                                            
-                                                            <c:forEach var="cli" items="${datos_e}">
-                                                        
-                                                            <td>${cli.correo}</td>
+                                                            <td><a href="<c:url value="/dEmpleado?id=${cli.id_cliente}" />">${cli.correo}</a></td>
                                                             <td>${cli.nombre_cliente}</td>
                                                             <td>${cli.apellido_paterno_cliente}</td>
                                                             <td>${cli.apellido_materno_cliente}</td>
-                                                            <td>${cli.telefono_local}</td>
-                                                            <td>${cli.telefono_movil}</td>
-                                                            <td>${cli.area}</td>
-                                                            <td>${cli.puesto}</td>
-                                                            <td>${cli.nombre_empresa}</td>
-                                           
-                                                             </c:forEach>
                                                              </tr>
                                                           </c:forEach>
                                                     
